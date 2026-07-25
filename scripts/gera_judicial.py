@@ -52,9 +52,16 @@ def main():
                     {"leiloeiro": lote["leiloeiro"], "link": lote["link"]}
                 )
             continue
-        for campo in ("tipo", "area", "quartos", "modalidade", "endereco_geo", "link_lances", "rodadas"):
+        for campo in ("tipo", "area", "quartos", "modalidade", "endereco_geo", "link_lances",
+                      "rodadas", "endereco", "titulo", "edital_url", "valor_minimo"):
             if campo in ext:
                 lote[campo] = ext[campo]
+        # normaliza zeros da plataforma para "não informado"
+        if not lote.get("valor_minimo"):
+            lote["valor_minimo"] = None
+        for r in lote.get("rodadas") or []:
+            if not r.get("lance_minimo"):
+                r["lance_minimo"] = None
         lote.pop("descricao", None)  # não precisa ir para o mapa
         lote.pop("status", None)
         finais.append(lote)

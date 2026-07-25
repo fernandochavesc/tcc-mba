@@ -559,11 +559,12 @@
     </table>
   </div>
 
-  <h3>Recorte de MVP recomendado</h3>
+  <h3>Recorte de MVP recomendado <span class="chip ok">atualizado 25/07/2026</span></h3>
   <ol>
-    <li><strong>Fase 1 (validação, ~4–6 semanas):</strong> só cidade do RJ; fontes = Caixa (lista estruturada) + 10 leiloeiros judiciais mais ativos da lista CGJ + Zuk; filtros bairro/tipo/quartos/valor; alerta por e-mail.</li>
-    <li><strong>Fase 2:</strong> demais leiloeiros da lista CGJ; Santander/Itaú/BB via leiloeiros parceiros; WhatsApp; score de oportunidade (% de deságio vs avaliação).</li>
-    <li><strong>Fase 3:</strong> histórico de resultados (arrematado/deserto) e análise de preço por bairro.</li>
+    <li><strong>Fase 1 — MVP com atualização manual (em andamento):</strong> mapa público com a lista da Caixa (capital inteira) + lotes judiciais da Zona Sul coletados dos leiloeiros credenciados da lista CGJ; filtros bairro/tipo/quartos/preço/modalidade. Os dados são atualizados sob demanda rodando os scripts do repositório (sem automação nesta fase — decisão de escopo para acelerar a validação). Entregas já no ar: Spike 0 (Caixa) e Spike 1 (Portella/Rymer); em expansão para os demais leiloeiros da lista CGJ.</li>
+    <li><strong>Fase 2 — automação:</strong> atualização diária agendada (GitHub Action) do pipeline de coleta; extração de quartos/área via chamada de LLM com structured output (hoje a extração assistida é registrada manualmente em <code>scripts/extracao_manual.json</code>); monitoramento de falhas por fonte.</li>
+    <li><strong>Fase 3 — alertas e bancos:</strong> busca salva com notificação (e-mail, depois WhatsApp); Santander/Itaú/BB via leiloeiros parceiros; score de oportunidade (% de deságio vs avaliação).</li>
+    <li><strong>Fase 4 — inteligência:</strong> histórico de resultados (arrematado/deserto) e análise de preço por bairro.</li>
   </ol>
 
   <h3>Ponte com o TCC (Direção A × Direção C)</h3>

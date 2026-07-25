@@ -1,18 +1,30 @@
 {
-  "_nota": "Extração assistida por LLM (Claude) em 25/07/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m² edificada/privativa), tipo, modalidade corrigida (o flag 'judicial' da plataforma é inconsistente — ex.: lote com vara e processo marcado extrajudicial), endereco_geo (endereço normalizado para geocodificação), merge_de (dedupe entre leiloeiros do mesmo bem, ex.: programa Comprei/PGFN). Em produção esta etapa vira uma chamada de LLM com structured output.",
-  "PORTELLA-3589": { "tipo": "Apartamento", "area": 35, "quartos": null, "modalidade": "Leilão Judicial", "endereco_geo": "Avenida Nossa Senhora de Copacabana 1003, Copacabana, Rio de Janeiro, RJ" },
-  "PORTELLA-3591": { "tipo": "Apartamento", "area": 53, "quartos": null, "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ" },
-  "PORTELLA-3592": { "tipo": "Apartamento", "area": 36, "quartos": null, "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ" },
-  "PORTELLA-3617": { "tipo": "Apartamento", "area": 500, "quartos": null, "endereco_geo": "Avenida Atlântica 2172, Copacabana, Rio de Janeiro, RJ" },
-  "PORTELLA-3631": { "tipo": "Casa", "area": null, "quartos": 3, "endereco_geo": "Rua São Salvador 72, Laranjeiras, Rio de Janeiro, RJ", "_fonte_quartos": "descrição: 'quarto', 'quarto com suíte' (térreo) e 'um quarto' (2º andar)" },
-  "PORTELLA-3644": { "tipo": "Apartamento", "area": 42, "quartos": null, "endereco_geo": "Avenida Prado Júnior 298, Copacabana, Rio de Janeiro, RJ" },
-  "PORTELLA-2721": { "tipo": "Apartamento", "area": 109, "quartos": null, "endereco_geo": "Rua Voluntários da Pátria 381, Botafogo, Rio de Janeiro, RJ" },
-  "PORTELLA-3590": { "tipo": "Casa", "area": 281, "quartos": null, "endereco_geo": "Rua Senador Correia 37, Laranjeiras, Rio de Janeiro, RJ" },
-  "PORTELLA-3625": { "tipo": "Sala Comercial", "area": null, "quartos": null, "modalidade": "PGFN · Comprei", "endereco_geo": "Rua Bambina 56, Botafogo, Rio de Janeiro, RJ", "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/79415" },
-  "PORTELLA-3571": { "merge_em": "RYMER-1182" },
-  "RYMER-1183": { "tipo": "Apartamento", "area": 38, "quartos": 0, "endereco_geo": "Rua Paula Freitas 32, Copacabana, Rio de Janeiro, RJ", "_fonte_quartos": "conjugado (laudo)" },
-  "RYMER-1297": { "tipo": "Apartamento", "area": 21, "quartos": 1, "endereco_geo": "Praia de Botafogo 356, Botafogo, Rio de Janeiro, RJ", "rodadas": [{ "n": 1, "data": "17/08/2026", "hora": "12:00", "lance_minimo": 355000.42 }] },
-  "RYMER-1298": { "tipo": "Apartamento", "area": 303, "quartos": 3, "endereco_geo": "Praça Eugenio Jardim 14, Copacabana, Rio de Janeiro, RJ", "rodadas": [{ "n": 1, "data": "27/07/2026", "hora": "12:00", "lance_minimo": 4100000 }], "_fonte_quartos": "suíte master + 1 quarto (1º piso) + suíte (2º piso); dependência de empregada não contada" },
-  "RYMER-1316": { "tipo": "Apartamento", "area": null, "quartos": 3, "endereco_geo": "Rua Conselheiro Lafaiete 15, Copacabana, Rio de Janeiro, RJ", "_fonte_quartos": "descrição: '3 quartos, sendo 1 dependência de empregado'" },
-  "RYMER-1182": { "tipo": "Sala Comercial", "area": null, "quartos": null, "modalidade": "PGFN · Comprei", "endereco_geo": "Rua Voluntários da Pátria 126, Botafogo, Rio de Janeiro, RJ", "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/74387", "_dedupe": "mesmo bem anunciado por Portella (PORTELLA-3571) e Rymer via programa Comprei/PGFN" }
+  "_nota": "Extração assistida por LLM (Claude) em 25/07/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
+
+  "RODRIGOLOPES-3589": { "tipo": "Apartamento", "area": 35, "quartos": null, "modalidade": "Leilão Judicial", "endereco_geo": "Avenida Nossa Senhora de Copacabana 1003, Copacabana, Rio de Janeiro, RJ" },
+  "RODRIGOLOPES-3591": { "tipo": "Apartamento", "area": 53, "quartos": null, "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ" },
+  "RODRIGOLOPES-3592": { "tipo": "Apartamento", "area": 36, "quartos": null, "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ" },
+  "RODRIGOLOPES-3617": { "tipo": "Apartamento", "area": 500, "quartos": null, "endereco_geo": "Avenida Atlântica 2172, Copacabana, Rio de Janeiro, RJ" },
+  "RODRIGOLOPES-3631": { "tipo": "Casa", "area": null, "quartos": 3, "endereco_geo": "Rua São Salvador 72, Laranjeiras, Rio de Janeiro, RJ", "_fonte_quartos": "descrição: 'quarto', 'quarto com suíte' (térreo) e 'um quarto' (2º andar)" },
+  "RODRIGOLOPES-3644": { "tipo": "Apartamento", "area": 42, "quartos": null, "endereco_geo": "Avenida Prado Júnior 298, Copacabana, Rio de Janeiro, RJ" },
+  "RODRIGOLOPES-2721": { "tipo": "Apartamento", "area": 109, "quartos": null, "endereco_geo": "Rua Voluntários da Pátria 381, Botafogo, Rio de Janeiro, RJ" },
+  "RODRIGOLOPES-3590": { "tipo": "Casa", "area": 281, "quartos": null, "endereco_geo": "Rua Senador Correia 37, Laranjeiras, Rio de Janeiro, RJ" },
+  "RODRIGOLOPES-3625": { "tipo": "Sala Comercial", "area": 840, "quartos": null, "modalidade": "PGFN · Comprei", "endereco_geo": "Rua Bambina 56, Botafogo, Rio de Janeiro, RJ", "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/79415", "edital_url": "https://static.suporteleiloes.com.br/leiloesjacombr/bens/2482/arquivos/sl-bem-2482-6a43c3ffe3d19-6a43c3ffe4b8c.pdf", "_area_fonte": "laudo (via anúncio Leilões JA): 5º e 6º andares com 420m² cada, adaptados para hospital" },
+  "RODRIGOLOPES-3571": { "merge_em": "JONASRYMER-1182" },
+
+  "JONASRYMER-1183": { "tipo": "Apartamento", "area": 38, "quartos": 1, "endereco_geo": "Rua Paula Freitas 32, Copacabana, Rio de Janeiro, RJ", "_fonte_quartos": "conjugado; anúncio da Leilões JA do mesmo bem: '01 QUARTO E 01 BANHEIRO - CONJUGADO'" },
+  "JONASRYMER-1297": { "tipo": "Apartamento", "area": 21, "quartos": 1, "endereco_geo": "Praia de Botafogo 356, Botafogo, Rio de Janeiro, RJ" },
+  "JONASRYMER-1298": { "tipo": "Apartamento", "area": 303, "quartos": 3, "endereco_geo": "Praça Eugenio Jardim 14, Copacabana, Rio de Janeiro, RJ", "_fonte_quartos": "suíte master + 1 quarto (1º piso) + suíte (2º piso); dependência de empregada não contada" },
+  "JONASRYMER-1316": { "tipo": "Apartamento", "area": null, "quartos": 3, "endereco_geo": "Rua Conselheiro Lafaiete 15, Copacabana, Rio de Janeiro, RJ", "_fonte_quartos": "descrição: '3 quartos, sendo 1 dependência de empregado'" },
+  "JONASRYMER-1182": { "tipo": "Sala Comercial", "area": null, "quartos": null, "modalidade": "PGFN · Comprei", "endereco_geo": "Rua Voluntários da Pátria 126, Botafogo, Rio de Janeiro, RJ", "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/74387", "_dedupe": "mesmo bem anunciado por Portella (RODRIGOLOPES-3571) e Rymer via programa Comprei/PGFN; fases de proposta com datas distintas em cada leiloeiro" },
+
+  "LUIZTENORIOD-1206": { "tipo": "Casa", "area": null, "quartos": null, "valor_minimo": null, "endereco": "Rua Pereira da Silva, nº 856 – Laranjeiras", "endereco_geo": "Rua Pereira da Silva 856, Laranjeiras, Rio de Janeiro, RJ", "titulo": "Imóvel em Laranjeiras (Rua Pereira da Silva)", "_nota": "descrição na fonte corrompida por marcação MsoNormal (Word); endereço extraído do título original" },
+
+  "JULIANASEVID-2468": { "merge_em": "JONASRYMER-1183" },
+  "JULIANASEVID-2533": { "merge_em": "JONASRYMER-1316" },
+  "JULIANASEVID-2568": { "merge_em": "RODRIGOLOPES-3625" },
+
+  "RODRIGODASIL-586": { "tipo": "Apartamento", "area": null, "quartos": null, "valor_minimo": null, "endereco_geo": "Praia de Botafogo 198, Botafogo, Rio de Janeiro, RJ", "_nota": "cobertura do Edifício Corcovado; fração 2/22 de terreno com 822m² (não é a área do imóvel)" },
+  "RODRIGODASIL-590": { "tipo": "Apartamento", "area": 31, "quartos": null, "valor_minimo": null, "endereco_geo": "Rua Ministro Viveiros de Castro 32, Copacabana, Rio de Janeiro, RJ" },
+  "RODRIGODASIL-514": { "tipo": "Prédio Comercial", "area": null, "quartos": null, "valor_minimo": null, "endereco_geo": "Rua Buarque de Macedo 26, Flamengo, Rio de Janeiro, RJ", "_nota": "venda de 'Direito e Ação' sobre salas 201/301/401; loja não incluída" }
 }
