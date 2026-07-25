@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS de Gestão de Entregas e Pagamento de Motoboys — Estruturação Inicial</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --bg-elevated: #1a1f26;
+    --bg-card: #1e242c;
+    --border: #2a3038;
+    --border-strong: #3a4250;
+    --text: #e6e8eb;
+    --text-muted: #8a93a0;
+    --text-subtle: #5b6472;
+    --accent: #d97757;
+    --accent-soft: rgba(217, 119, 87, 0.12);
+    --accent-border: rgba(217, 119, 87, 0.3);
+    --warn: #e0c46c;
+    --warn-soft: rgba(224, 196, 108, 0.1);
+    --success: #7cc88a;
+    --success-soft: rgba(124, 200, 138, 0.1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+
+  header.hero {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 640px;
+    margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--text-subtle);
+  }
+
+  .meta span strong {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  nav.toc {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 56px;
+  }
+
+  nav.toc .toc-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-subtle);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  nav.toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  nav.toc li {
+    counter-increment: toc;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+
+  nav.toc li::before {
+    content: counter(toc, decimal-leading-zero);
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    margin-right: 12px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  nav.toc a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  nav.toc a:hover { color: var(--text); }
+
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 24px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    margin: 0 0 20px;
+    padding-top: 8px;
+    color: var(--text);
+  }
+
+  h2 .num {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    margin-right: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    display: inline-block;
+    min-width: 28px;
+  }
+
+  p {
+    margin: 0 0 18px;
+    color: var(--text);
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 18px 22px;
+    border-radius: 0 8px 8px 0;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+
+  .callout .callout-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .personas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+
+  .persona {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+
+  .persona-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .persona-title .tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-subtle);
+    font-weight: 600;
+  }
+
+  .persona h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .persona p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .paths {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 24px 0 8px;
+  }
+
+  .path {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 24px;
+    position: relative;
+  }
+
+  .path-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+
+  .path h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 650;
+  }
+
+  .path .risk-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .risk-low { background: var(--success-soft); color: var(--success); }
+  .risk-mid { background: var(--warn-soft); color: var(--warn); }
+  .risk-high { background: var(--accent-soft); color: var(--accent); }
+
+  .path p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+  .risks {
+    counter-reset: risk;
+  }
+
+  .risk {
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+    counter-increment: risk;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+  }
+
+  .risk:last-child { padding-bottom: 0; }
+
+  .risk::before {
+    content: counter(risk);
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 13px;
+    padding-top: 2px;
+  }
+
+  .risk-body p { margin: 0; font-size: 15px; }
+  .risk-body p:first-child { color: var(--text); font-weight: 500; margin-bottom: 4px; }
+  .risk-body p:last-child { color: var(--text-muted); font-size: 14px; }
+
+  .next-steps ol {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+  }
+
+  .next-steps li {
+    counter-increment: step;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px 18px 56px;
+    margin-bottom: 12px;
+    position: relative;
+    font-size: 14.5px;
+    color: var(--text-muted);
+  }
+
+  .next-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 22px;
+    top: 18px;
+    width: 24px;
+    height: 24px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    color: var(--text-subtle);
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 40px 20px 64px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .meta { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="hero">
+    <div class="eyebrow">MBA · Projeto-âncora · Estruturação inicial</div>
+    <h1>SaaS de Gestão de Entregas e Pagamento de Motoboys</h1>
+    <p class="subtitle">Documento estratégico de partida: o que sabemos, o que precisa ser validado, e quais caminhos fazem sentido perseguir antes de escrever a próxima linha de código.</p>
+    <div class="meta">
+      <span><strong>Autor:</strong> Fernando Chaves</span>
+      <span><strong>Data:</strong> 25 mai 2026</span>
+      <span><strong>Status:</strong> Hipótese inicial</span>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <div class="toc-label">Sumário</div>
+    <ol>
+      <li><a href="#contexto">Contexto e ponto de partida</a></li>
+      <li><a href="#atores">Mapa de atores e suas dores</a></li>
+      <li><a href="#hipoteses">Hipóteses centrais a validar</a></li>
+      <li><a href="#direcoes">Direções estratégicas possíveis</a></li>
+      <li><a href="#ia">Onde a IA entra de forma não-óbvia</a></li>
+      <li><a href="#riscos">Riscos e perguntas críticas</a></li>
+      <li><a href="#proximos">Próximos passos sugeridos</a></li>
+    </ol>
+  </nav>
+
+  <section id="contexto">
+    <h2><span class="num">01</span>Contexto e ponto de partida</h2>
+    <p>A oportunidade nasce de uma dor real e observada de perto: um restaurante que opera três frentes (salgados, pizza e comida japonesa) recebe pedidos por iFood e 99 Food, mas precisa fazer a logística própria de entrega usando motoboys próprios ou terceirizados. O restaurante fica em um bairro específico e entrega em vários outros, o que torna o cálculo de remuneração dos motoboys por dia uma tarefa não trivial: cada entrega tem distância e tempo diferentes, e a regra de pagamento precisa ser justa para o entregador e sustentável para o dono.</p>
+    <p>O amigo do Fernando já construiu uma primeira versão funcional desse sistema, o que é importante porque significa que existe um produto mínimo validado dentro de pelo menos um cliente (ele próprio).</p>
+    <div class="callout">
+      <div class="callout-label">Pergunta estratégica central</div>
+      Esse cálculo de pagamento é o produto, ou é apenas a porta de entrada para algo maior? Quando o ponto de partida é uma calculadora ou planilha automatizada, o valor real do negócio costuma estar nas camadas adjacentes — fluxo financeiro, gestão de pessoas, automação operacional, ou em virar a infraestrutura financeira de quem está mal servido pelo mercado.
+    </div>
+  </section>
+
+  <section id="atores">
+    <h2><span class="num">02</span>Mapa de atores e suas dores</h2>
+    <p>O ecossistema ao redor desse problema tem pelo menos três personas claras, cada uma com dores próprias que podem virar features ou produtos separados.</p>
+
+    <div class="personas">
+      <div class="persona">
+        <div class="persona-title"><span class="tag">Persona 01</span></div>
+        <h3>Dono do restaurante</h3>
+        <p>Quer reduzir tempo gasto fazendo conta de motoboy, evitar conflito com entregadores, ter previsibilidade de custo logístico e idealmente entender se o delivery dá lucro ou prejuízo por bairro, produto ou horário. Essa última camada — margem por entrega — é onde mora a maior dor latente.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-title"><span class="tag">Persona 02</span></div>
+        <h3>Gerente de motoboys</h3>
+        <p>Usuário operacional diário, coordena escala, atribui pedidos e resolve atritos. Dores em comunicação com os entregadores, alocação eficiente e prestação de contas para o dono. Se o produto resolve bem a vida dele, vira o champion interno que pressiona pela adoção.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-title"><span class="tag">Persona 03 · estratégica</span></div>
+        <h3>Motoboys</h3>
+        <p>Persona mais subestimada e provavelmente a mais estratégica. Querem receber no mesmo dia ou D+1, em vez de esperar 1-2 semanas como no iFood. É uma dor financeira clássica em economias informais, e abre porta para antecipação de recebíveis, conta digital, cartão e crédito.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="hipoteses">
+    <h2><span class="num">03</span>Hipóteses centrais a validar</h2>
+    <p>A primeira hipótese é que <strong>existe demanda fora desse restaurante</strong>. O fato do amigo precisar do produto não garante que outros 10, 100 ou 1.000 restaurantes precisem do mesmo nível de sofisticação. É possível que muitos resolvam com planilha, com regra fixa por bairro, ou terceirizando 100% no iFood Entrega. Validar com 15-20 restaurantes de perfil parecido se a dor é forte o suficiente para pagar uma assinatura é o primeiro passo antes de qualquer linha de código adicional.</p>
+    <p>A segunda hipótese é sobre <strong>quem é o cliente real</strong>. Pode parecer óbvio que é o restaurante, mas se a maior dor financeira está no motoboy, talvez o modelo certo seja gratuito para o restaurante (porque ele ganha eficiência) e monetizado via tarifa de antecipação para o entregador. Esse tipo de modelo de "lado curto e lado longo" costuma desbloquear crescimento mais rápido.</p>
+    <p>A terceira hipótese é sobre <strong>defensibilidade</strong>. Calcular pagamento por distância não é difícil tecnicamente; o que torna o produto difícil de copiar são camadas como: integração com iFood/99 Food para puxar pedidos automaticamente, rede de motoboys cadastrados que circulam entre estabelecimentos, dados acumulados de rotas e tempos por região, ou produtos financeiros embutidos. Sem pelo menos uma dessas camadas, o produto é uma feature, não uma empresa.</p>
+  </section>
+
+  <section id="direcoes">
+    <h2><span class="num">04</span>Direções estratégicas possíveis</h2>
+    <p>Existem ao menos três caminhos não excludentes que podem ser combinados em fases. Cada um tem perfil de risco, ticket médio e barreira de entrada distintos.</p>
+
+    <div class="paths">
+      <div class="path">
+        <div class="path-header">
+          <h3>A · SaaS B2B clássico para restaurantes</h3>
+          <span class="risk-tag risk-low">Menor risco</span>
+        </div>
+        <p>Assinatura mensal por estabelecimento, com módulos de cálculo de pagamento, gestão de escala, atribuição de entregas e relatórios financeiros. Caminho previsível, mas com ticket baixo (R$ 100-300/mês) e ciclo de venda longo para o tamanho do ticket. Exige eficiência muito grande em aquisição.</p>
+      </div>
+      <div class="path">
+        <div class="path-header">
+          <h3>B · Infraestrutura financeira para motoboys</h3>
+          <span class="risk-tag risk-mid">Risco médio</span>
+        </div>
+        <p>O restaurante é canal de aquisição, talvez gratuito. O motoboy ganha conta digital com pagamento D+0 ou D+1, e antecipação de valores futuros mediante taxa. Margem unitária maior, LTV cresce com cartão, crédito e seguro. Barreira maior por regulação financeira e parcerias bancárias.</p>
+      </div>
+      <div class="path">
+        <div class="path-header">
+          <h3>C · Sistema operacional do delivery próprio</h3>
+          <span class="risk-tag risk-high">Maior ambição</span>
+        </div>
+        <p>Para restaurantes que querem reduzir dependência de iFood. Combina logística, financeiro do motoboy, recebimento de pedidos próprio (WhatsApp, cardápio digital) e analytics de margem. Maior surface area para IA: roteamento, previsão de demanda, precificação dinâmica.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ia">
+    <h2><span class="num">05</span>Onde a IA entra de forma não-óbvia</h2>
+    <p>Vale separar onde IA é diferencial real e onde é só marketing. Cálculo de pagamento e roteamento simples não precisam de IA — são problemas determinísticos resolvidos com regras e algoritmos clássicos.</p>
+    <p>Onde IA agrega valor real e defensável é em: <strong>previsão de demanda</strong> por bairro e horário (para sugerir escala de motoboys), <strong>detecção de anomalias</strong> em pedidos ou tempos de entrega, <strong>classificação automática de mensagens</strong> entre gerente e motoboys, <strong>geração de relatórios em linguagem natural</strong> para o dono do restaurante ("essa semana você gastou 18% mais com entregas no Jardim X, principalmente em pedidos abaixo de R$ 40"), e <strong>análise de crédito</strong> para liberar antecipação para motoboys. Esse último é particularmente interessante porque é onde IA tem ROI direto e mensurável.</p>
+  </section>
+
+  <section id="riscos">
+    <h2><span class="num">06</span>Riscos e perguntas críticas</h2>
+    <div class="risks">
+      <div class="risk">
+        <div class="risk-body">
+          <p>Risco de mercado — o iFood pode lançar uma versão mais robusta a qualquer momento.</p>
+          <p>Pergunta crítica: existe um nicho de restaurantes que ativamente quer reduzir dependência do iFood, e esse nicho é grande o suficiente? A resposta provavelmente é sim — a relação restaurante-iFood é frequentemente conflituosa em torno de taxas — mas precisa ser validado.</p>
+        </div>
+      </div>
+      <div class="risk">
+        <div class="risk-body">
+          <p>Risco regulatório, especialmente se o caminho envolver antecipação de pagamentos.</p>
+          <p>Operar como instituição de pagamento exige autorização do Banco Central ou parceria com BaaS (banking as a service), com custo e prazo associados. Não é impeditivo, mas precisa entrar no planejamento desde o início.</p>
+        </div>
+      </div>
+      <div class="risk">
+        <div class="risk-body">
+          <p>Risco clássico de SaaS de nicho com ticket baixo: CAC versus LTV.</p>
+          <p>Restaurante pequeno tem alto churn, baixa disposição a pagar e canal de aquisição caro. Se o modelo for SaaS puro, é fundamental ter um motion de aquisição muito eficiente — PLG com onboarding sem fricção, parcerias com associações ou conteúdo orgânico forte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proximos" class="next-steps">
+    <h2><span class="num">07</span>Próximos passos sugeridos</h2>
+    <p>Antes de escrever uma linha de código nova ou pensar em arquitetura técnica, vale dedicar duas a três semanas a três frentes paralelas. A partir disso é possível tomar a decisão mais importante do começo: qual caminho estratégico perseguir primeiro, e em que ordem.</p>
+    <ol>
+      <li><strong>Entrevistas com 15-20 donos de restaurante</strong> de perfil parecido (delivery próprio, multi-bairro, mais de um motoboy) para validar intensidade da dor e disposição a pagar. Sem mostrar produto, só ouvindo.</li>
+      <li><strong>Conversas com 10-15 motoboys</strong> para validar a dor de fluxo de caixa, entender qual taxa de antecipação aceitariam pagar e como decidem hoje entre trabalhar para iFood vs. restaurante próprio.</li>
+      <li><strong>Mapeamento de concorrência</strong> direta e indireta no Brasil — Cardápio Web, Anota AI, Goomer e similares já têm pedaços disso. Como se posicionam? Onde estão os gaps?</li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>Documento vivo · revisitar conforme as validações trazem evidência</span>
+    <span>v0.1 · 2026-05-25</span>
+  </footer>
+
+</div>
+</body>
+</html>
