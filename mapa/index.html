@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Oportunidades — Imóveis Caixa no Rio de Janeiro</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root{
+    --bg:#0e1116; --surface:#161b22; --surface2:#1c232d; --border:#2a323d;
+    --text:#e6edf3; --muted:#93a1b1; --accent:#6ea8fe; --accent2:#8b7cf6;
+    --green:#3fb950; --amber:#e3b341; --red:#f85149; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--text);display:flex;flex-direction:column;overflow:hidden}
+  a{color:var(--accent);text-decoration:none}
+
+  header{border-bottom:1px solid var(--border);padding:14px 18px;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+  header h1{font-size:18px;font-weight:750}
+  header .src{font-size:12.5px;color:var(--muted)}
+  header .back{margin-left:auto;font-size:13px;font-weight:600;white-space:nowrap}
+
+  .filtros{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--border);background:var(--surface)}
+  .filtros select,.filtros input{background:var(--surface2);border:1px solid var(--border);color:var(--text);
+    border-radius:8px;padding:7px 10px;font-size:13px;font-family:inherit}
+  .filtros select:focus,.filtros input:focus{outline:none;border-color:var(--accent)}
+  .filtros label{font-size:12px;color:var(--muted);font-weight:600}
+  .alvo{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;
+    padding:7px 12px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+  .alvo.on{background:rgba(63,185,80,.16);border-color:var(--green);color:var(--green)}
+  .contagem{margin-left:auto;font-size:13px;color:var(--muted)}
+  .contagem b{color:var(--accent)}
+
+  .corpo{flex:1;display:flex;min-height:0}
+  #mapa{flex:1;min-width:0;min-height:320px}
+  .leaflet-container{background:#0b0e13}
+
+  aside{width:360px;max-width:45%;border-left:1px solid var(--border);background:var(--surface);
+    display:flex;flex-direction:column;min-height:0}
+  aside .cab{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:8px}
+  aside .cab h2{font-size:15px;font-weight:700}
+  aside .cab span{font-size:12px;color:var(--muted)}
+  aside .cab button{margin-left:auto;background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer}
+  aside .lista{overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px}
+  .imovel{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+  .imovel .tipo{font-size:13.5px;font-weight:700}
+  .imovel .end{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .imovel .valores{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;align-items:baseline}
+  .imovel .preco{font-size:15px;font-weight:750;color:var(--green)}
+  .imovel .aval{font-size:11.5px;color:var(--muted);text-decoration:line-through}
+  .imovel .desc-pct{font-size:11.5px;font-weight:700;color:var(--amber)}
+  .imovel .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .imovel .chip{font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--muted)}
+  .imovel .ver{display:inline-block;margin-top:9px;font-size:12.5px;font-weight:600}
+  .aviso{font-size:12.5px;color:var(--muted);background:var(--surface2);border:1px dashed var(--border);
+    border-radius:10px;padding:12px 14px;line-height:1.5}
+  .aviso b{color:var(--amber)}
+
+  footer{border-top:1px solid var(--border);padding:8px 18px;font-size:11.5px;color:var(--muted)}
+
+  @media(max-width:760px){
+    body{overflow:auto}
+    .corpo{flex-direction:column;min-height:75vh}
+    aside{width:100%;max-width:none;border-left:none;border-top:1px solid var(--border);max-height:50vh}
+    .contagem{width:100%;margin-left:0}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🗺️ Mapa de Oportunidades — Rio de Janeiro</h1>
+  <span class="src" id="fonte">Carregando…</span>
+  <a class="back" href="../">← Hub de pesquisa</a>
+</header>
+
+<div class="filtros">
+  <label>Quartos
+    <select id="f-quartos">
+      <option value="">Todos</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3+</option>
+    </select>
+  </label>
+  <label>Tipo
+    <select id="f-tipo"><option value="">Todos</option></select>
+  </label>
+  <label>Modalidade
+    <select id="f-modalidade"><option value="">Todas</option></select>
+  </label>
+  <label>Preço até
+    <select id="f-preco">
+      <option value="">Sem limite</option>
+      <option value="100000">R$ 100 mil</option>
+      <option value="250000">R$ 250 mil</option>
+      <option value="500000">R$ 500 mil</option>
+      <option value="1000000">R$ 1 milhão</option>
+    </select>
+  </label>
+  <label>Bairro
+    <input id="f-bairro" list="bairros-list" placeholder="Todos" size="14">
+    <datalist id="bairros-list"></datalist>
+  </label>
+  <button class="alvo" id="f-alvo" type="button" title="Botafogo, Flamengo, Copacabana e Laranjeiras">⭐ Zona Sul alvo</button>
+  <span class="contagem" id="contagem"></span>
+</div>
+
+<div class="corpo">
+  <div id="mapa"></div>
+  <aside id="painel" hidden>
+    <div class="cab">
+      <h2 id="painel-titulo"></h2><span id="painel-sub"></span>
+      <button id="painel-fechar" title="Fechar">✕</button>
+    </div>
+    <div class="lista" id="painel-lista"></div>
+  </aside>
+</div>
+
+<footer>
+  Demo (Spike 0) da pesquisa do TCC — dados públicos da lista oficial de venda de imóveis da Caixa, posições agregadas por centróide de bairro (OpenStreetMap/Nominatim).
+  Próxima etapa: lotes de leilão judicial da Zona Sul (TJRJ) com extração por IA.
+</footer>
+
+<script>
+const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+let DADOS = null, CENTROS = null, mapa = null, camada = null, bairroAberto = null;
+
+const $ = id => document.getElementById(id);
+const filtros = { quartos:'', tipo:'', modalidade:'', preco:'', bairro:'', alvo:false };
+
+function titulo(s){ return s.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase()); }
+
+function aplicaFiltros(im){
+  if (filtros.alvo && !DADOS.zona_sul_alvo.includes(im.bairro)) return false;
+  if (filtros.bairro && im.bairro !== filtros.bairro) return false;
+  if (filtros.quartos === '3') { if (!im.quartos || im.quartos < 3) return false; }
+  else if (filtros.quartos) { if (String(im.quartos) !== filtros.quartos) return false; }
+  if (filtros.tipo && im.tipo !== filtros.tipo) return false;
+  if (filtros.modalidade && im.modalidade !== filtros.modalidade) return false;
+  if (filtros.preco && !(im.preco && im.preco <= +filtros.preco)) return false;
+  return true;
+}
+
+function filtrados(){ return DADOS.imoveis.filter(aplicaFiltros); }
+
+function desenha(){
+  const itens = filtrados();
+  const porBairro = new Map();
+  for (const im of itens){
+    if (!porBairro.has(im.bairro)) porBairro.set(im.bairro, []);
+    porBairro.get(im.bairro).push(im);
+  }
+  if (camada) camada.remove();
+  camada = L.layerGroup();
+  let comPin = 0;
+  for (const [bairro, lista] of porBairro){
+    const c = CENTROS[bairro];
+    if (!c) continue;
+    comPin += lista.length;
+    const alvo = DADOS.zona_sul_alvo.includes(bairro);
+    const r = Math.max(7, Math.min(34, 4 + Math.sqrt(lista.length) * 2.6));
+    const m = L.circleMarker(c, {
+      radius: r, weight: alvo ? 2.5 : 1.5,
+      color: alvo ? '#3fb950' : '#6ea8fe',
+      fillColor: alvo ? '#3fb950' : '#6ea8fe',
+      fillOpacity: .35
+    });
+    m.bindTooltip(`${titulo(bairro)} — ${lista.length} imóve${lista.length>1?'is':'l'}`);
+    m.on('click', () => abrePainel(bairro));
+    camada.addLayer(m);
+  }
+  camada.addTo(mapa);
+  const nb = porBairro.size;
+  $('contagem').innerHTML = `<b>${itens.length}</b> imóveis em <b>${nb}</b> bairros` +
+    (itens.length - comPin > 0 ? ` (${itens.length - comPin} sem pin)` : '');
+  if (bairroAberto) abrePainel(bairroAberto, true);
+}
+
+function abrePainel(bairro, atualizando){
+  const itens = filtrados().filter(im => im.bairro === bairro)
+    .sort((a,b) => (a.preco||9e12) - (b.preco||9e12));
+  if (!atualizando && !itens.length) return;
+  bairroAberto = bairro;
+  $('painel').hidden = false;
+  $('painel-titulo').textContent = titulo(bairro);
+  $('painel-sub').textContent = `${itens.length} imóve${itens.length===1?'l':'is'}`;
+  const lista = $('painel-lista');
+  lista.replaceChildren();
+  if (DADOS.zona_sul_alvo.includes(bairro) && itens.length < 8){
+    const av = document.createElement('div');
+    av.className = 'aviso';
+    av.innerHTML = '<b>Poucos imóveis aqui — e isso é um achado:</b> o estoque da Caixa (retomados de banco) concentra-se na periferia. Imóveis da Zona Sul vão a leilão principalmente pela via <b>judicial</b> — a próxima fonte deste mapa (Spike 1).';
+    lista.appendChild(av);
+  }
+  for (const im of itens.slice(0, 150)){
+    const d = document.createElement('div');
+    d.className = 'imovel';
+    const desc = im.desconto ? `−${Math.round(im.desconto)}%` : '';
+    d.innerHTML = `
+      <div class="tipo"></div>
+      <div class="end"></div>
+      <div class="valores">
+        <span class="preco"></span>
+        <span class="aval"></span>
+        <span class="desc-pct"></span>
+      </div>
+      <div class="meta"></div>`;
+    d.querySelector('.tipo').textContent = `${im.tipo || 'Imóvel'}${im.quartos ? ` · ${im.quartos} quarto${im.quartos>1?'s':''}` : ''}${im.area ? ` · ${im.area} m²` : ''}`;
+    d.querySelector('.end').textContent = im.endereco;
+    d.querySelector('.preco').textContent = im.preco ? BRL.format(im.preco) : 'consultar';
+    d.querySelector('.aval').textContent = im.avaliacao && im.avaliacao > (im.preco||0) ? BRL.format(im.avaliacao) : '';
+    d.querySelector('.desc-pct').textContent = desc;
+    const meta = d.querySelector('.meta');
+    for (const t of [im.modalidade, im.financiamento].filter(Boolean)){
+      const c = document.createElement('span'); c.className = 'chip'; c.textContent = t; meta.appendChild(c);
+    }
+    if (im.link){
+      const a = document.createElement('a'); a.className = 'ver'; a.href = im.link;
+      a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Ver na Caixa →';
+      d.appendChild(a);
+    }
+    lista.appendChild(d);
+  }
+  if (itens.length > 150){
+    const mais = document.createElement('div'); mais.className = 'aviso';
+    mais.textContent = `Mostrando 150 de ${itens.length} — use os filtros para refinar.`;
+    lista.appendChild(mais);
+  }
+}
+
+function opcoes(sel, valores){
+  for (const v of valores){
+    const o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o);
+  }
+}
+
+async function init(){
+  const [d, b] = await Promise.all([
+    fetch('data.json').then(r => r.json()),
+    fetch('bairros.json').then(r => r.json()),
+  ]);
+  DADOS = d; CENTROS = b;
+  $('fonte').textContent = `${DADOS.fonte} · lista gerada em ${DADOS.data_geracao} · ${DADOS.imoveis.length.toLocaleString('pt-BR')} imóveis na capital`;
+
+  mapa = L.map('mapa', { zoomControl: true }).setView([-22.92, -43.45], 11);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    maxZoom: 18
+  }).addTo(mapa);
+
+  opcoes($('f-tipo'), [...new Set(DADOS.imoveis.map(i => i.tipo).filter(Boolean))].sort());
+  opcoes($('f-modalidade'), [...new Set(DADOS.imoveis.map(i => i.modalidade).filter(Boolean))].sort());
+  const dl = $('bairros-list');
+  for (const bb of [...new Set(DADOS.imoveis.map(i => i.bairro))].sort()){
+    const o = document.createElement('option'); o.value = titulo(bb); dl.appendChild(o);
+  }
+
+  $('f-quartos').onchange = e => { filtros.quartos = e.target.value; desenha(); };
+  $('f-tipo').onchange = e => { filtros.tipo = e.target.value; desenha(); };
+  $('f-modalidade').onchange = e => { filtros.modalidade = e.target.value; desenha(); };
+  $('f-preco').onchange = e => { filtros.preco = e.target.value; desenha(); };
+  $('f-bairro').oninput = e => {
+    const v = e.target.value.trim().toUpperCase();
+    filtros.bairro = [...new Set(DADOS.imoveis.map(i => i.bairro))].includes(v) ? v : '';
+    desenha();
+    if (filtros.bairro && CENTROS[filtros.bairro]) mapa.setView(CENTROS[filtros.bairro], 14);
+  };
+  $('f-alvo').onclick = e => {
+    filtros.alvo = !filtros.alvo;
+    e.target.classList.toggle('on', filtros.alvo);
+    desenha();
+    if (filtros.alvo) mapa.setView([-22.955, -43.185], 13);
+    else mapa.setView([-22.92, -43.45], 11);
+  };
+  $('painel-fechar').onclick = () => { $('painel').hidden = true; bairroAberto = null; };
+
+  desenha();
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+{
+ "ABOLICAO": [
+  -22.88616,
+  -43.29985
+ ],
+ "AGUA SANTA": [
+  -22.91114,
+  -43.31213
+ ],
+ "ANCHIETA": [
+  -22.82319,
+  -43.39911
+ ],
+ "ANDARAI": [
+  -22.92908,
+  -43.25349
+ ],
+ "ANIL": [
+  -22.95581,
+  -43.33841
+ ],
+ "BANCARIOS": [
+  -22.79176,
+  -43.18097
+ ],
+ "BANGU": [
+  -22.87531,
+  -43.46488
+ ],
+ "BARRA DA TIJUCA": [
+  -22.99974,
+  -43.36599
+ ],
+ "BARRA DE GUARATIBA": [
+  -23.036,
+  -43.55214
+ ],
+ "BARRA OLIMPICA": [
+  -22.97135,
+  -43.38672
+ ],
+ "BARROS FILHO": [
+  -22.83489,
+  -43.36319
+ ],
+ "BENFICA": [
+  -22.8923,
+  -43.24034
+ ],
+ "BENTO RIBEIRO": [
+  -22.86666,
+  -43.36084
+ ],
+ "BONSUCESSO": [
+  -22.86593,
+  -43.25332
+ ],
+ "BOTAFOGO": [
+  -22.95151,
+  -43.1863
+ ],
+ "BRAS DE PINA": [
+  -22.83189,
+  -43.29773
+ ],
+ "CACHAMBI": [
+  -22.88977,
+  -43.27433
+ ],
+ "CACUIA": [
+  -22.8217,
+  -43.18379
+ ],
+ "CAMPINHO": [
+  -22.88522,
+  -43.34774
+ ],
+ "CAMPO GRANDE": [
+  -22.90295,
+  -43.55913
+ ],
+ "CASCADURA": [
+  -22.88418,
+  -43.3284
+ ],
+ "CATUMBI": [
+  -22.91945,
+  -43.19708
+ ],
+ "CAVALCANTI": [
+  -22.87053,
+  -43.31653
+ ],
+ "CENTRO": [
+  -22.28,
+  -42.53253
+ ],
+ "CIDADE DE DEUS": [
+  -22.94803,
+  -43.3629
+ ],
+ "COCOTA": [
+  -22.805,
+  -43.18055
+ ],
+ "COELHO NETO": [
+  -22.83224,
+  -43.35019
+ ],
+ "COLEGIO": [
+  -22.83979,
+  -43.33576
+ ],
+ "COPACABANA": [
+  -22.97197,
+  -43.1843
+ ],
+ "CORDOVIL": [
+  -22.81944,
+  -43.29159
+ ],
+ "COSME VELHO": [
+  -22.94151,
+  -43.20062
+ ],
+ "COSMOS": [
+  -22.90781,
+  -43.61449
+ ],
+ "CURICICA": [
+  -22.95199,
+  -43.38729
+ ],
+ "DEL CASTILHO": [
+  -22.87956,
+  -43.27242
+ ],
+ "DEODORO": [
+  -22.8512,
+  -43.38703
+ ],
+ "DISTRITO DO ANDARAI": null,
+ "ENCANTADO": [
+  -22.89747,
+  -43.30425
+ ],
+ "ENGENHEIRO LEAL": [
+  -22.87439,
+  -43.32553
+ ],
+ "ENGENHO DA RAINHA": [
+  -22.86265,
+  -43.29379
+ ],
+ "ENGENHO DE DENTRO": [
+  -22.90266,
+  -43.29678
+ ],
+ "ENGENHO NOVO": [
+  -22.90909,
+  -43.26784
+ ],
+ "FREG CAMPO GRANDE": null,
+ "FREG DE CAMPO GRANDE": null,
+ "FREG DE GUARATIBA": null,
+ "FREG DE JACAREPAGUA": null,
+ "FREG DE SANTA CRUZ": null,
+ "FREG DO ENGENHO NOVO": null,
+ "FREG JACAREPAGUA": null,
+ "FREG. DE SANTA CRUZ": null,
+ "FREGUESIA  GUARATIBA": null,
+ "FREGUESIA (ILHA DO GOVERNADOR)": null,
+ "FREGUESIA (JACAREPAGUA)": [
+  -22.94089,
+  -43.34226
+ ],
+ "FREGUESIA DE GRANDE": null,
+ "FREGUESIA SANTA CRUZ": null,
+ "GAMBOA": [
+  -22.89775,
+  -43.1929
+ ],
+ "GARDENIA AZUL": [
+  -22.95829,
+  -43.35122
+ ],
+ "GLORIA": [
+  -22.91832,
+  -43.17392
+ ],
+ "GRAJAU": [
+  -22.92252,
+  -43.26451
+ ],
+ "GUADALUPE": [
+  -22.83762,
+  -43.37516
+ ],
+ "GUARATIBA": [
+  -22.99058,
+  -43.58492
+ ],
+ "HIGIENOPOLIS": [
+  -22.874,
+  -43.26137
+ ],
+ "HONORIO GURGEL": [
+  -22.84658,
+  -43.35613
+ ],
+ "INHAUMA": [
+  -22.87155,
+  -43.28235
+ ],
+ "INHOAIBA": [
+  -22.91318,
+  -43.5933
+ ],
+ "IRAJA": [
+  -22.83511,
+  -43.32336
+ ],
+ "ITANHANGA": [
+  -22.98709,
+  -43.30494
+ ],
+ "JACARE": [
+  -22.89312,
+  -43.2572
+ ],
+ "JACAREPAGUA": [
+  -22.95317,
+  -43.37158
+ ],
+ "JARDIM AMERICA": [
+  -22.81001,
+  -43.32321
+ ],
+ "JARDIM CARIOCA": [
+  -22.80525,
+  -43.19319
+ ],
+ "JARDIM GUANABARA": [
+  -22.81284,
+  -43.20078
+ ],
+ "JARDIM SULACAP": [
+  -22.89568,
+  -43.393
+ ],
+ "LINS DE VASCONCELOS": [
+  -22.91405,
+  -43.28435
+ ],
+ "MADUREIRA": [
+  -22.87166,
+  -43.3372
+ ],
+ "MARACANA": [
+  -22.91216,
+  -43.23119
+ ],
+ "MARECHAL HERMES": [
+  -22.85997,
+  -43.37046
+ ],
+ "MARIA DA GRACA": [
+  -22.88304,
+  -43.26388
+ ],
+ "MEIER": [
+  -22.90173,
+  -43.27971
+ ],
+ "NOSSA SRA DA AJUDA": null,
+ "OLARIA": [
+  -22.84849,
+  -43.27061
+ ],
+ "OSWALDO CRUZ": [
+  -22.87053,
+  -43.35019
+ ],
+ "PACIENCIA": [
+  -22.8987,
+  -43.63696
+ ],
+ "PADRE MIGUEL": [
+  -22.87881,
+  -43.44856
+ ],
+ "PARADA DE LUCAS": [
+  -22.8167,
+  -43.30121
+ ],
+ "PARQUE ANCHIETA": [
+  -22.83517,
+  -43.41558
+ ],
+ "PARQUE COLUMBIA": [
+  -22.81389,
+  -43.3425
+ ],
+ "PAVUNA": [
+  -22.81219,
+  -43.35928
+ ],
+ "PECHINCHA": [
+  -22.92899,
+  -43.35342
+ ],
+ "PEDRA DE GUARATIBA": [
+  -22.99835,
+  -43.63887
+ ],
+ "PENHA": [
+  -22.83811,
+  -43.27645
+ ],
+ "PENHA CIRCULAR": [
+  -22.83264,
+  -43.28422
+ ],
+ "PIEDADE": [
+  -22.89267,
+  -43.311
+ ],
+ "PILARES": [
+  -22.87909,
+  -43.29555
+ ],
+ "PRACA DA BANDEIRA": [
+  -22.91122,
+  -43.2132
+ ],
+ "PRACA SECA": [
+  -22.89926,
+  -43.35278
+ ],
+ "QUINTINO BOCAIUVA": [
+  -22.89559,
+  -43.32533
+ ],
+ "RAMOS": [
+  -22.85198,
+  -43.25557
+ ],
+ "REALENGO": [
+  -22.87727,
+  -43.4301
+ ],
+ "RECREIO DOS BANDEIRANTES": [
+  -23.01852,
+  -43.4634
+ ],
+ "RIACHUELO": [
+  -22.9027,
+  -43.25518
+ ],
+ "RICARDO DE ALBUQUERQUE": [
+  -22.8367,
+  -43.39168
+ ],
+ "ROCHA": [
+  -22.89956,
+  -43.24881
+ ],
+ "ROCHA MIRANDA": [
+  -22.85035,
+  -43.34631
+ ],
+ "SAMPAIO": [
+  -22.90223,
+  -43.26024
+ ],
+ "SANTA CRUZ": [
+  -22.91762,
+  -43.68349
+ ],
+ "SANTA TERESA": [
+  -22.92155,
+  -43.18603
+ ],
+ "SANTISSIMO": [
+  -22.87519,
+  -43.51985
+ ],
+ "SANTO CRISTO": [
+  -22.90077,
+  -43.20339
+ ],
+ "SAO CONRADO": [
+  -22.99136,
+  -43.26753
+ ],
+ "SAO CRISTOVAO": [
+  -22.89932,
+  -43.22193
+ ],
+ "SAO FRANCISCO XAVIER": [
+  -22.90476,
+  -43.24403
+ ],
+ "SENADOR CAMARA": [
+  -22.88875,
+  -43.49139
+ ],
+ "SENADOR VASCONCELOS": [
+  -22.89537,
+  -43.52886
+ ],
+ "TANQUE": [
+  -22.91519,
+  -43.35575
+ ],
+ "TAQUARA": [
+  -22.92189,
+  -43.38465
+ ],
+ "TAUA": [
+  -22.79775,
+  -43.18675
+ ],
+ "TIJUCA": [
+  -22.92474,
+  -43.23272
+ ],
+ "TODOS OS SANTOS": [
+  -22.89456,
+  -43.28506
+ ],
+ "TOMAS COELHO": [
+  -22.8677,
+  -43.30609
+ ],
+ "TURIACU": [
+  -22.86166,
+  -43.3418
+ ],
+ "VARGEM GRANDE": [
+  -22.97079,
+  -43.49689
+ ],
+ "VARGEM PEQUENA": [
+  -22.98182,
+  -43.45781
+ ],
+ "VAZ LOBO": [
+  -22.85897,
+  -43.32786
+ ],
+ "VICENTE DE CARVALHO": [
+  -22.85718,
+  -43.31579
+ ],
+ "VILA DA PENHA": [
+  -22.84351,
+  -43.31006
+ ],
+ "VILA ISABEL": [
+  -22.9167,
+  -43.25084
+ ],
+ "VILA KOSMOS": [
+  -22.8536,
+  -43.3032
+ ],
+ "VILA VALQUEIRE": [
+  -22.88861,
+  -43.36578
+ ],
+ "VISTA ALEGRE": [
+  -22.82962,
+  -43.31513
+ ],
+ "FREGUESIA ILHA DO GOVERNADOR": [
+  -22.7855,
+  -43.1965
+ ]
+}
