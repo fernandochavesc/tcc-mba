@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hub de Leilões de Imóveis no RJ — Pesquisa de Viabilidade</title>
+<style>
+  :root {
+    --paper: #FAFAF7;
+    --paper-2: #F1F2ED;
+    --ink: #22303A;
+    --ink-soft: #4A5A66;
+    --line: #DDE1D9;
+    --accent: #0E6E5C;
+    --accent-soft: #E3EFEA;
+    --gold: #B7791F;
+    --gold-soft: #F6ECD9;
+    --red: #B3403A;
+    --red-soft: #F5E3E1;
+    --code-bg: #ECEFE9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141B21;
+      --paper-2: #1B242C;
+      --ink: #E5E9EB;
+      --ink-soft: #9FAEB8;
+      --line: #2C3842;
+      --accent: #3FA88F;
+      --accent-soft: #1A2E2A;
+      --gold: #D9A03F;
+      --gold-soft: #33291A;
+      --red: #D9756F;
+      --red-soft: #362020;
+      --code-bg: #1B242C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141B21;
+    --paper-2: #1B242C;
+    --ink: #E5E9EB;
+    --ink-soft: #9FAEB8;
+    --line: #2C3842;
+    --accent: #3FA88F;
+    --accent-soft: #1A2E2A;
+    --gold: #D9A03F;
+    --gold-soft: #33291A;
+    --red: #D9756F;
+    --red-soft: #362020;
+    --code-bg: #1B242C;
+  }
+  :root[data-theme="light"] {
+    --paper: #FAFAF7;
+    --paper-2: #F1F2ED;
+    --ink: #22303A;
+    --ink-soft: #4A5A66;
+    --line: #DDE1D9;
+    --accent: #0E6E5C;
+    --accent-soft: #E3EFEA;
+    --gold: #B7791F;
+    --gold-soft: #F6ECD9;
+    --red: #B3403A;
+    --red-soft: #F5E3E1;
+    --code-bg: #ECEFE9;
+  }
+
+  html { background: var(--paper); }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    line-height: 1.62;
+    margin: 0;
+    font-size: 17px;
+  }
+  .wrap { max-width: 76ch; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* Header with calçadão wave band */
+  header.masthead { border-bottom: 1px solid var(--line); padding: 40px 0 28px; }
+  .wave-band { height: 26px; margin-bottom: 28px; opacity: .85; }
+  .wave-band svg { display: block; width: 100%; height: 100%; }
+  .eyebrow {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 12px; letter-spacing: .14em; text-transform: none;
+    color: var(--accent); font-weight: 600;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.15; margin: 10px 0 12px; text-wrap: balance; font-weight: 700;
+  }
+  .subtitle { color: var(--ink-soft); font-size: 18px; max-width: 60ch; margin: 0; }
+  .meta {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 13px; color: var(--ink-soft); margin-top: 18px;
+    display: flex; gap: 18px; flex-wrap: wrap;
+  }
+
+  /* TOC */
+  nav.toc {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 14px; border: 1px solid var(--line); border-radius: 6px;
+    padding: 18px 22px; margin: 32px 0; background: var(--paper-2);
+  }
+  nav.toc strong { display: block; margin-bottom: 8px; font-size: 12px; letter-spacing: .12em; color: var(--ink-soft); }
+  nav.toc ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+  nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  nav.toc a:hover { color: var(--accent); border-color: var(--accent); }
+
+  h2 {
+    font-size: 26px; line-height: 1.2; margin: 56px 0 16px; text-wrap: balance;
+    padding-top: 24px; border-top: 1px solid var(--line);
+  }
+  h3 { font-size: 19px; margin: 32px 0 10px; text-wrap: balance; }
+  p { margin: 0 0 16px; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  ul, ol { padding-left: 24px; margin: 0 0 16px; }
+  li { margin-bottom: 6px; }
+  strong { font-weight: 700; }
+
+  /* Confidence chips */
+  .chip {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 1px 8px 2px; border-radius: 999px; vertical-align: 1px;
+    letter-spacing: .02em; white-space: nowrap;
+  }
+  .chip.ok  { background: var(--accent-soft); color: var(--accent); }
+  .chip.obs { background: var(--gold-soft);   color: var(--gold); }
+  .chip.ref { background: var(--red-soft);    color: var(--red); }
+
+  /* Verdict cards */
+  .verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 24px 0; }
+  .verdict .card {
+    border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; background: var(--paper-2);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .card .dim { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; letter-spacing: .1em; color: var(--ink-soft); font-weight: 600; }
+  .card .call { font-size: 17px; font-weight: 700; }
+  .card .call.green { color: var(--accent); }
+  .card .call.amber { color: var(--gold); }
+  .card .note { font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* Callout */
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--accent-soft);
+    padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0;
+  }
+  .callout.gold { border-color: var(--gold); background: var(--gold-soft); }
+  .callout.red { border-color: var(--red); background: var(--red-soft); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Tables */
+  .table-scroll { overflow-x: auto; margin: 18px 0 24px; border: 1px solid var(--line); border-radius: 6px; }
+  table {
+    border-collapse: collapse; width: 100%; min-width: 640px;
+    font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+  th {
+    text-align: left; font-size: 12px; letter-spacing: .06em; color: var(--ink-soft);
+    background: var(--paper-2); padding: 10px 12px; border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.no { color: var(--red); font-weight: 700; }
+  td.yes { color: var(--accent); font-weight: 700; }
+
+  /* Pipeline diagram */
+  .pipeline {
+    font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px;
+    display: flex; flex-direction: column; gap: 0; margin: 20px 0 24px; align-items: stretch;
+  }
+  .stage {
+    border: 1px solid var(--line); border-radius: 6px; background: var(--paper-2);
+    padding: 12px 16px;
+  }
+  .stage b { display: block; font-size: 13px; color: var(--accent); margin-bottom: 2px; }
+  .stage span { color: var(--ink-soft); font-size: 13.5px; }
+  .flow-arrow { text-align: center; color: var(--ink-soft); font-size: 15px; padding: 3px 0; }
+
+  /* Walkthrough steps */
+  ol.steps { counter-reset: st; list-style: none; padding-left: 0; margin: 18px 0 24px; display: grid; gap: 10px; }
+  ol.steps li {
+    counter-increment: st; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; margin: 0;
+  }
+  ol.steps li::before {
+    content: counter(st);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    width: 28px; height: 28px; border-radius: 999px; background: var(--accent); color: var(--paper);
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-top: 2px;
+  }
+
+  code, .mono {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .85em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px;
+  }
+
+  footer.src { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 24px; font-size: 14.5px; color: var(--ink-soft); }
+  footer.src h2 { border: none; padding-top: 0; margin-top: 0; font-size: 20px; color: var(--ink); }
+  footer.src ul { padding-left: 20px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a { transition: color .15s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="wave-band" aria-hidden="true">
+      <svg viewBox="0 0 800 26" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 13 Q 25 0 50 13 T 100 13 T 150 13 T 200 13 T 250 13 T 300 13 T 350 13 T 400 13 T 450 13 T 500 13 T 550 13 T 600 13 T 650 13 T 700 13 T 750 13 T 800 13" fill="none" stroke="var(--ink)" stroke-width="2.4" opacity=".55"/>
+        <path d="M0 21 Q 25 8 50 21 T 100 21 T 150 21 T 200 21 T 250 21 T 300 21 T 350 21 T 400 21 T 450 21 T 500 21 T 550 21 T 600 21 T 650 21 T 700 21 T 750 21 T 800 21" fill="none" stroke="var(--accent)" stroke-width="2.4" opacity=".8"/>
+      </svg>
+    </div>
+    <div class="eyebrow">Pesquisa de viabilidade · TCC MBA em IA &amp; Negócios</div>
+    <h1>Hub de Leilões de Imóveis no Rio de Janeiro</h1>
+    <p class="subtitle">Onde os leilões judiciais e extrajudiciais do RJ são publicados, quem já agrega esses dados, e como coletá-los, padronizá-los e transformá-los em filtros e notificações.</p>
+    <div class="meta">
+      <span>Pesquisa realizada em 25/07/2026</span>
+      <span>24 fontes lidas · 118 afirmações extraídas · 25 verificadas adversarialmente</span>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <strong>Conteúdo</strong>
+    <ol>
+      <li><a href="#parecer">Sumário executivo — parecer de viabilidade</a></li>
+      <li><a href="#base">Como funciona um leilão de imóvel no Brasil</a></li>
+      <li><a href="#fontes">Mapa de fontes primárias no RJ</a></li>
+      <li><a href="#concorrencia">Plataformas existentes (concorrência)</a></li>
+      <li><a href="#coleta">Viabilidade da coleta de dados</a></li>
+      <li><a href="#mvp">Arquitetura proposta do MVP</a></li>
+      <li><a href="#riscos">Riscos e próximos passos</a></li>
+    </ol>
+  </nav>
+
+  <p><span class="chip ok">Verificado</span> confirmado por 2–3 verificadores independentes contra a fonte primária &nbsp;·&nbsp; <span class="chip obs">Observado</span> extraído diretamente da fonte em 25/07/2026, sem rodada adversarial &nbsp;·&nbsp; <span class="chip ref">Refutado</span> a verificação derrubou a hipótese — e o erro é um achado.</p>
+
+  <h2 id="parecer">1. Sumário executivo — parecer de viabilidade</h2>
+
+  <p><strong>O projeto é viável, e o problema que o motiva é real e estrutural.</strong> Os leilões judiciais do TJRJ não têm portal central: são conduzidos por cerca de 81 leiloeiros credenciados, cada um obrigado por norma a manter <strong>seu próprio site</strong> — a fragmentação que você sente como usuário é consequência direta do desenho regulatório <span class="chip ok">Verificado</span>. Um hub centralizado ataca exatamente essa lacuna.</p>
+
+  <div class="verdict">
+    <div class="card">
+      <span class="dim">Viabilidade técnica</span>
+      <span class="call green">Viável, provada</span>
+      <span class="note">Incumbentes raspam 400–900 leiloeiros diariamente; há até projeto open source com coleta + alerta no Telegram. Extração de editais com LLM: ~90% de acurácia vs ~59% com regex.</span>
+    </div>
+    <div class="card">
+      <span class="dim">Viabilidade jurídica</span>
+      <span class="call amber">Viável com cuidado</span>
+      <span class="note">Dados do certame são públicos, mas LGPD + fiscalização da ANPD exigem coletar só dados do imóvel e do leilão — nunca dos executados. Anti-bot e termos de uso pedem estratégia por fonte.</span>
+    </div>
+    <div class="card">
+      <span class="dim">Mercado</span>
+      <span class="call amber">Concorrido, com lacuna clara</span>
+      <span class="note">Nenhum agregador analisado filtra por nº de quartos; alertas granulares são raros. Disposição a pagar comprovada: assinatura de R$ 74,90/mês no Mapa do Leilão.</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>A lacuna do caso de uso de referência é real.</strong> Hoje ninguém consegue configurar <em>“me avise quando entrar apartamento de 2 quartos em Botafogo ou Flamengo em leilão”</em>. Filtro de bairro existe em alguns agregadores; o de quartos, em nenhum dos analisados (só a Caixa o oferece, e apenas para o estoque dela). O motivo é técnico — “quartos” não é campo estruturado nos editais; precisa ser <strong>extraído por IA da descrição em prosa</strong> — e é exatamente aí que um produto com camada de IA se diferencia.</p>
+  </div>
+
+  <h2 id="base">2. Como funciona um leilão de imóvel no Brasil</h2>
+  <p>Há dois regimes distintos, e o hub precisa modelar os dois.</p>
+
+  <h3>2.1 Leilão judicial (execução na Justiça)</h3>
+  <ul>
+    <li>Base legal: <strong>CPC/2015, arts. 879–903</strong>; leilão eletrônico regulamentado pela <strong>Resolução CNJ 236/2016</strong> (art. 882, §1º do CPC), vigente <span class="chip ok">Verificado</span> (<a href="https://atos.cnj.jus.br/atos/detalhar/2313">texto integral</a>).</li>
+    <li>Leilões realizados <strong>exclusivamente por leiloeiros credenciados no tribunal</strong> — exclusividade confirmada pelo STF <span class="chip ok">Verificado</span>.</li>
+    <li>Entre as 11 obrigações do leiloeiro credenciado está <strong>manter site próprio</strong> com imagens dos bens (Res. 236/2016, incisos II e XI) <span class="chip ok">Verificado</span> — por isso os dados ficam pulverizados.</li>
+    <li>No RJ: credenciamento regido pelo <strong>Ato Normativo Conjunto TJRJ 7/2018</strong> (alterado pelo 8/2018; cadastro atualizado pelo Provimento CGJ 57/2025) <span class="chip ok">Verificado</span>.</li>
+    <li>Estrutura típica: <strong>1ª praça</strong> (lance mínimo ≈ avaliação) e <strong>2ª praça</strong> (lance mínimo definido pelo juízo, tipicamente 50% da avaliação), com datas no edital.</li>
+  </ul>
+
+  <h3>2.2 Leilão extrajudicial (alienação fiduciária — bancos)</h3>
+  <p>Base legal: <strong>Lei 9.514/97, art. 27</strong>, com alterações da Lei 13.465/2017 <span class="chip obs">Observado</span> (<a href="https://www.irib.org.br/noticias/detalhes/artigo-a-alienacao-fiduciaria-de-coisa-imovel-e-os-leiloes-apos-a-consolidacao-da-propriedade-imobiliaria-undefined-por-bruno-jose-berti-filho">IRIB</a>):</p>
+  <ol>
+    <li>Devedor inadimplente é intimado pelo <strong>cartório de Registro de Imóveis (RGI)</strong>;</li>
+    <li>Propriedade é <strong>consolidada</strong> em nome do banco (averbação no RGI);</li>
+    <li>Banco tem 30 dias para promover o <strong>1º leilão</strong> (lance mínimo = avaliação do contrato); <strong>2º leilão</strong> nos 15 dias seguintes (lance mínimo = dívida + despesas);</li>
+    <li>Se ambos fracassam, a dívida é extinta e o banco vende livremente — daí os portais de <strong>venda direta</strong> (“outlet”) da Caixa, Santander etc.</li>
+  </ol>
+  <div class="callout gold">
+    <p><strong>Cartórios não são fonte útil de coleta.</strong> O cartório não controla nem publica a data do leilão — quem publica é o leiloeiro contratado pelo banco. As fontes operacionais são os portais dos bancos e dos leiloeiros.</p>
+  </div>
+  <p><strong>Implicação de produto:</strong> o hub precisa normalizar não só “1ª/2ª praça judicial”, mas também leilão extrajudicial, licitação aberta, venda direta e “melhor proposta” — modalidades com regras e datas diferentes.</p>
+
+  <h2 id="fontes">3. Mapa de fontes primárias no RJ</h2>
+
+  <h3>3.1 Lado judicial (TJRJ) — o lado difícil e menos coberto</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Fonte</th><th>O que tem</th><th>Formato</th><th>Como coletar</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Lista oficial de leiloeiros credenciados</strong> (CGJ/TJRJ) <span class="chip ok">Verificado</span></td>
+          <td>~81 leiloeiros com nome, processo SEI, nº JUCERJA, <strong>site</strong> e e-mail</td>
+          <td>PDF tabular não estruturado (sem API/CSV)</td>
+          <td>Baixar e parsear periodicamente — é a <strong>lista-semente</strong> do crawler; novas edições saem ao longo do ano</td>
+        </tr>
+        <tr>
+          <td><strong>Sites dos ~81 leiloeiros</strong> (rymerleiloes, alfaleiloes, portellaleiloes, leje, d1lance…) <span class="chip ok">Verificado</span></td>
+          <td>Lotes, editais, datas de praça, lances</td>
+          <td>HTML heterogêneo + editais em PDF; ~78 domínios distintos (alguns em plataforma white-label <code>lel.br</code>)</td>
+          <td>Crawler por leiloeiro + extração de edital com LLM</td>
+        </tr>
+        <tr>
+          <td><strong>Editais (PDF)</strong> <span class="chip ok">Verificado</span></td>
+          <td>Descrição do imóvel, avaliação, datas e valores de 1ª/2ª praça, ônus, processo</td>
+          <td><strong>Prosa corrida</strong> — tipo, endereço, bairro, quartos e valor não são campos estruturados</td>
+          <td>Parsing + LLM (ver §5)</td>
+        </tr>
+        <tr>
+          <td><strong>DJEN (CNJ)</strong> — não mais o DJERJ <span class="chip ref">Refutado→achado</span></td>
+          <td>Desde 11/11/2024 o DJEN é o meio único de publicação de atos processuais no PJERJ (Avisos TJ 347 e 372/2024)</td>
+          <td>Diário eletrônico</td>
+          <td>Canal complementar de descoberta; a fonte operacional é o site do leiloeiro (CPC art. 887 §2º)</td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://sindicatodosleiloeirosrj.com.br/editais/">Sindicato dos Leiloeiros do RJ</a></strong> <span class="chip obs">Observado</span></td>
+          <td>Arquivo de editais de leilões judiciais da capital</td>
+          <td>PDFs agregados</td>
+          <td>Atalho de coleta — um “mini-hub” já existente, sem estrutura</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout red">
+    <p><strong>Achado importante <span class="chip ref">Refutado</span>:</strong> a hipótese de que “os editais são publicados primariamente no Diário Oficial (DJERJ)” caiu na verificação. Um edital real de julho/2026 (14ª Vara Cível da Capital) declara publicação <strong>no site do leiloeiro</strong> e no site do sindicato — sem menção ao DJERJ. Desenhar o coletor em torno do diário oficial seria um erro de arquitetura; o coletor deve mirar os <strong>sites dos leiloeiros credenciados</strong>.</p>
+  </div>
+
+  <p>O TJRJ <strong>não tem portal próprio de leilões</strong> (diferente do TJDFT, que mantém o LEILOJUS) <span class="chip ok">Verificado</span>. E as páginas institucionais do tribunal são instáveis — URLs que mudam, ambiente de homologação morto, redirecionamentos para intranet — um risco operacional para crawlers que dependam de URL fixa <span class="chip ok">Verificado</span>.</p>
+
+  <h3>3.2 Lado extrajudicial / bancos — mais volume, mais estrutura</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Fonte</th><th>Modalidades</th><th>Dados / formato</th><th>Alertas próprios</th><th>Coleta</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong><a href="https://venda-imoveis.caixa.gov.br">Caixa</a></strong> <span class="chip obs">Observado</span></td>
+          <td>Leilão SFI, Licitação Aberta, Venda Direta, Compra Direta</td>
+          <td><strong>Melhor fonte estruturada</strong>: filtros por estado, cidade, tipo, <strong>quartos (1/2/3+)</strong>, garagem, área, valor; <strong>download da lista completa por estado</strong></td>
+          <td>Sim (ofertas por perfil)</td>
+          <td>Lista para download elimina raspagem página a página; maior estoque do RJ (~8–10 mil imóveis via agregadores)</td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.santanderimoveis.com.br">Santander Imóveis</a></strong></td>
+          <td>Leilão + venda direta</td>
+          <td>Portal próprio (não analisado a fundo nesta rodada)</td>
+          <td>—</td>
+          <td>Também acessível via agregadores (278 imóveis no Zuk <span class="chip obs">Observado</span>)</td>
+        </tr>
+        <tr>
+          <td><strong><a href="https://www.itau.com.br/imoveis-itau">Itaú</a></strong> <span class="chip obs">Observado</span></td>
+          <td>Leilão, Venda Direta, Imóveis com pontos</td>
+          <td>Página via JavaScript; <strong>403 para clientes não-navegador</strong>; leilões acontecem <strong>no site do leiloeiro parceiro</strong></td>
+          <td>Não documentado</td>
+          <td>Coleta via leiloeiros parceiros; comissão de 5%; vendas <em>ad corpus</em> (metragens de edital não são confiáveis)</td>
+        </tr>
+        <tr>
+          <td><strong>Banco do Brasil</strong> (seuimovelbb.com.br) <span class="chip obs">Observado</span></td>
+          <td>Leilão + venda direta</td>
+          <td>Página institucional bloqueia automação (403, shadow DOM); inventário no portal parceiro</td>
+          <td>—</td>
+          <td>Alvo de coleta é o seuimovelbb.com.br</td>
+        </tr>
+        <tr>
+          <td><strong>Bradesco / Emgea</strong></td>
+          <td>Leilão + venda direta</td>
+          <td>Via leiloeiros parceiros (Sodré Santoro etc.) e agregadores</td>
+          <td>—</td>
+          <td>Emgea aparece como comitente em agregadores (108 imóveis no Leilão Imóvel <span class="chip obs">Observado</span>)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="concorrencia">4. Plataformas existentes (concorrência e benchmark)</h2>
+  <p>Dados observados em 25/07/2026 <span class="chip obs">Observado</span> — retrato do dia, sem verificação adversarial.</p>
+
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Plataforma</th><th>Tipo</th><th>Cobertura RJ observada</th><th>Filtros</th><th>Quartos?</th><th>Alertas</th><th>Modelo de negócio</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.leilaoimovel.com.br/leilao-de-imoveis/rj"><strong>Leilão Imóvel</strong></a></td>
+          <td>Agregador (400+ leiloeiros, coleta diária)</td>
+          <td>12.725 no estado (8.508 Caixa, 811 judiciais, 502 extrajudiciais; 5.859 na capital)</td>
+          <td>cidade, <strong>bairro</strong>, tipo, modalidade, banco, datas, desconto</td>
+          <td class="no">Não</td>
+          <td>Alerta por estado + buscas salvas (sem alerta fino)</td>
+          <td>Assessoria gratuita (comissão/parcerias); Cloudflare</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.portalzuk.com.br"><strong>Portal Zuk</strong></a></td>
+          <td>Leiloeiro + agregador</td>
+          <td>~112 no estado (inclui PJERJ e JF-RJ)</td>
+          <td>estado, cidade, <strong>bairro</strong>, tipo, preço, % desconto, ocupação</td>
+          <td class="no">Não</td>
+          <td>Newsletter + WhatsApp genéricos</td>
+          <td>Leiloeiros próprios + parcerias Santander/Itaú/Bradesco/Inter/C6</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.megaleiloes.com.br/imoveis/rj"><strong>Mega Leilões</strong></a></td>
+          <td>Leiloeiro grande</td>
+          <td>85 no estado</td>
+          <td><strong>bairro</strong>, valor, cidade, categoria, judicial/extrajudicial</td>
+          <td class="no">Não</td>
+          <td>Só newsletter genérica</td>
+          <td>Comissão; cards HTML já expõem datas/valores de 1ª e 2ª praça</td>
+        </tr>
+        <tr>
+          <td><a href="https://mapadoleilao.com.br"><strong>Mapa do Leilão</strong></a></td>
+          <td>Agregador nacional (900+ leiloeiros, ~50 mil lotes)</td>
+          <td>Páginas para Rio, Niterói, S. Gonçalo, Caxias</td>
+          <td>cidade/região, tipo, preço, % desconto, leiloeiro, tipo de leilão</td>
+          <td class="no">Não</td>
+          <td><strong>WhatsApp por perfil</strong> — melhor benchmark</td>
+          <td><strong>Assinatura R$ 74,90/mês ou R$ 499,70/ano</strong> — prova de disposição a pagar</td>
+        </tr>
+        <tr>
+          <td><a href="https://leiloai.com"><strong>LeilôAI</strong></a></td>
+          <td>Agregador com IA</td>
+          <td>Página BB/Rio estava <strong>vazia</strong> (lacuna de cobertura)</td>
+          <td>score de oportunidade 0–100, “Radar Judicial”</td>
+          <td>—</td>
+          <td>Sim, com cadastro</td>
+          <td>Freemium; “plataforma informativa baseada em dados públicos”</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.sodresantoro.com.br"><strong>Sodré Santoro</strong></a></td>
+          <td>Leiloeiro tradicional</td>
+          <td>Página RJ (Niterói, Barra…)</td>
+          <td>estado, comitente bancário</td>
+          <td class="no">Não</td>
+          <td>Não</td>
+          <td>Comissão; SPA com API própria, anti-bot ativo</td>
+        </tr>
+        <tr>
+          <td><a href="https://resale.com.br"><strong>Resale</strong></a></td>
+          <td>“Outlet imobiliário” (venda direta de retomados)</td>
+          <td>3.574 imóveis em 25 estados; tinha apto no <strong>Flamengo</strong> na home</td>
+          <td>cidade, tipo, valor</td>
+          <td>—</td>
+          <td>Não visível</td>
+          <td>Canal oficial de carteiras (Emgea, Sicoob, Embracon)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Leitura da concorrência:</strong></p>
+  <ul>
+    <li><strong>A agregação em escala é tecnicamente comprovada</strong> — Leilão Imóvel e Mapa do Leilão raspam centenas de leiloeiros diariamente.</li>
+    <li><strong>A lacuna do caso de uso persiste em todos:</strong> nenhum oferece filtro de quartos; alertas por bairro + tipo + quartos não existem.</li>
+    <li><strong>Ninguém é especialista em RJ:</strong> todos são nacionais e rasos na camada de dados do imóvel. Um hub focado na cidade, com dados enriquecidos por IA e alertas finos, tem diferenciação defensável.</li>
+    <li><strong>Há validação de monetização</strong> — assinatura, freemium e assessoria/comissão coexistem no mercado.</li>
+  </ul>
+
+  <h2 id="coleta">5. Viabilidade da coleta de dados</h2>
+
+  <h3>5.1 Técnica — viável, com esforço concentrado no lado judicial</h3>
+  <p><strong>Formatos encontrados, do mais fácil ao mais difícil:</strong></p>
+  <ol>
+    <li><strong>Caixa</strong>: dados estruturados + download de lista por estado <span class="chip obs">Observado</span> — quase uma “API informal”.</li>
+    <li><strong>Cards HTML semiestruturados</strong> em agregadores/leiloeiros (Mega Leilões expõe datas e valores de praça no HTML).</li>
+    <li><strong>SPAs com API interna</strong> (Sodré Santoro — engenharia reversa da API ou headless browser).</li>
+    <li><strong>Sites com anti-bot</strong> (Cloudflare no Leilão Imóvel; 403 no Itaú/BB) — headless com cuidado, ou ir direto à fonte primária.</li>
+    <li><strong>Editais em PDF (prosa)</strong> — o núcleo duro <span class="chip ok">Verificado</span>: tipo, endereço, bairro, quartos e valores precisam ser extraídos do texto corrido.</li>
+  </ol>
+
+  <p><strong>Evidência de que a extração por IA funciona</strong> (o coração do TCC):</p>
+  <ul>
+    <li>Workflow RAG+LLM em documentos jurídicos brasileiros reais: <strong>~90% de acurácia média vs 58,75% com regex</strong> — vantagem maior justamente nos campos de formato variável (<a href="https://sol.sbc.org.br/index.php/sbbd_estendido/article/download/30806/30609/">SBBD</a>) <span class="chip obs">Observado</span>. Funciona até com modelos abertos pequenos em GPU de consumo.</li>
+    <li>Pipeline em 2 estágios (classificador de páginas + LLM só nas relevantes) corta o custo de tokens em <strong>64–88%</strong> sem perder completude (<a href="https://aclanthology.org/2026.propor-1.61/">PROPOR 2026</a>) <span class="chip obs">Observado</span>.</li>
+    <li>Geocodificação: <strong><a href="https://www.urbandemographics.org/post/geocoding-brazilian-data-with-geocodebr/">geocodebr</a></strong> (Ipea, base CNEFE/IBGE) é gratuito e geocodificou 43 milhões de endereços em ~65 min — resolve “endereço do edital → Botafogo/Flamengo” sem API comercial.</li>
+    <li>Precedente open source: <a href="https://github.com/DouglasFantoni/scrapper-imoveis">scrapper-imoveis</a> raspa 4 fontes (incl. Caixa) e alerta via Telegram com stack serverless mínima. Scrapers comerciais prontos existem na Apify (Caixa, Zuk).</li>
+  </ul>
+  <p><strong>Frequência:</strong> leilões têm janelas de dias/semanas — coleta 1–2×/dia basta (o projeto open source roda 3×/semana).</p>
+
+  <h3>5.2 Jurídica — viável com desenho cuidadoso</h3>
+  <p><strong>A favor:</strong></p>
+  <ul>
+    <li>Publicidade dos atos processuais é regra constitucional (CF arts. 5º LX, 93 IX); a Res. CNJ 121/2011 garante consulta pública sem cadastro a dados processuais básicos.</li>
+    <li>A própria Res. CNJ 236/2016 fundamenta os leilões eletrônicos no princípio da <strong>publicidade</strong> <span class="chip ok">Verificado</span> — editais existem para ser divulgados; agregá-los serve ao propósito da norma.</li>
+    <li>LGPD art. 7º §§3º–4º e §7º: dados públicos podem ser tratados sem consentimento para novas finalidades, <strong>desde que</strong> com propósito legítimo e específico e preservação dos direitos dos titulares.</li>
+    <li>Precedente de posicionamento: o LeilôAI opera abertamente como “plataforma informativa baseada em dados públicos”.</li>
+  </ul>
+  <p><strong>Contra / riscos:</strong></p>
+  <ul>
+    <li>“Público” ≠ “de uso livre”: a licitude depende da compatibilidade com a finalidade da publicação original (<a href="https://www.migalhas.com.br/coluna/dados-publicos/378258/os-desafios-juridicos-do-web-scraping">Migalhas</a>; doutrina Bioni).</li>
+    <li>A <strong>ANPD colocou raspagem de dados no Mapa de Temas Prioritários 2024–2025</strong> (Radar Tecnológico nº 3, nov/2024) — agregadores nascem sob escrutínio (<a href="https://www.grantthornton.com.br/insights/artigos-e-publicacoes/raspagem-de-dados-entenda-a-nova-prioridade-da-anpd-e-seus-efeitos/">Grant Thornton</a>).</li>
+    <li>Termos de uso e barreiras técnicas dos sites raspados; tribunais podem tratar scraping de sistemas processuais como “uso inadequado”.</li>
+    <li>Precedente restritivo internacional: a França proibiu scraping/análise automatizada de decisões judiciais (Lei 2019-222) — fontes judiciais podem ficar mais restritas no futuro.</li>
+  </ul>
+  <div class="callout">
+    <p><strong>Desenho recomendado (mitigação):</strong> coletar apenas dados do imóvel e do certame — <strong>nunca</strong> nomes de executados/devedores (esvazia quase todo o risco LGPD); finalidade específica documentada com teste de legítimo interesse; respeitar robots.txt e rate limits, preferindo fontes primárias oficiais; e sempre <strong>linkar para o leiloeiro oficial</strong> para o lance — o hub informa e notifica, não intermedia.</p>
+  </div>
+
+  <h3>5.3 Desafios de normalização — onde a IA entra</h3>
+  <ul>
+    <li><strong>Quartos:</strong> não existe como campo em nenhuma fonte judicial; extrair da descrição (“apartamento 204, composto de sala, dois quartos…”) via LLM.</li>
+    <li><strong>Bairro/zona:</strong> endereço em prosa → geocodebr/CNEFE → bairro oficial → “Zona Sul”.</li>
+    <li><strong>Datas e valores:</strong> 1ª/2ª praça judicial vs 1º/2º leilão extrajudicial vs encerramento de venda online — modelo canônico com <code>modalidade</code>, <code>rodadas[]</code> e <code>status</code>.</li>
+    <li><strong>Deduplicação:</strong> o mesmo imóvel aparece no leiloeiro, em agregadores e no banco → chave composta (matrícula/RGI quando houver; senão endereço normalizado + nº do processo).</li>
+    <li><strong>Confiabilidade:</strong> metragens “ad corpus” — exibir sempre o edital-fonte e um selo de confiança por campo.</li>
+  </ul>
+
+  <h2 id="mvp">6. Arquitetura proposta do MVP</h2>
+
+  <div class="pipeline">
+    <div class="stage"><b>Fontes</b><span>Lista CGJ (PDF, ~81 sites de leiloeiros) · sites dos leiloeiros · lista da Caixa (download) · portais de bancos</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="stage"><b>Coleta</b><span>Crawlers (Playwright/HTTP), 1–2× ao dia → fila de documentos novos (HTML/PDF)</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="stage"><b>Estágio 1 — classificador barato</b><span>Página/trecho relevante? Corta 64–88% dos tokens antes do LLM</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="stage"><b>Estágio 2 — extração LLM com schema</b><span>tipo, endereço, quartos, m², avaliação, modalidade, rodadas de praça, ônus, link do lote</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="stage"><b>Normalização + geocodificação</b><span>geocodebr → bairro/zona oficiais</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="stage"><b>Deduplicação</b><span>matrícula/RGI &gt; endereço normalizado + processo</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="stage"><b>Banco canônico (Postgres) → produto</b><span>site com filtros (bairro, tipo, quartos, valor, datas, modalidade) + motor de alertas: busca salva × novos lotes → e-mail / WhatsApp / push</span></div>
+  </div>
+
+  <p><strong>Stack enxuta sugerida:</strong> Next.js/React + Postgres (Supabase) + workers agendados (cron em Lambda/Railway) + Playwright para SPAs + LLM com structured output para extração + geocodebr (job offline diário) + e-mail (Resend) e WhatsApp/Telegram para alertas. O gargalo de custo (tokens de LLM) é controlado pelo estágio classificador.</p>
+
+  <p><strong>Modelo de dados canônico (núcleo):</strong> <code>Imovel</code> (tipo, endereço, bairro, zona, lat/lng, quartos, área, matrícula?) ← <code>Oferta</code> (fonte, modalidade [judicial | extrajudicial | venda direta | licitação], leiloeiro, processo?, avaliação, rodadas[{n, data, lance mínimo}], status, link do lote, edital) ← <code>Alerta</code> (usuário, filtros, canal).</p>
+
+  <h3>Walkthrough — “apartamento de 2 quartos em Botafogo/Flamengo”</h3>
+  <ol class="steps">
+    <li>Crawler visita os ~78 sites de leiloeiros da lista CGJ + lista da Caixa + bancos → detecta lote novo da 14ª Vara Cível com edital em PDF.</li>
+    <li>Classificador marca as 2 páginas relevantes do edital; o LLM extrai: <code>tipo: apartamento · Rua São Clemente 143/302 · quartos: 2 · avaliação R$ 850.000 · 1ª praça 12/08 (R$ 850 mil) · 2ª praça 26/08 (R$ 425 mil)</code>.</li>
+    <li>geocodebr resolve o endereço → bairro <strong>Botafogo</strong>, Zona Sul.</li>
+    <li>Dedupe: o lote já existia via agregador → registro único, nova fonte anexada.</li>
+    <li>Motor de alertas cruza com a busca salva <code>{apartamento · ≥2 quartos · Botafogo, Flamengo}</code> → dispara WhatsApp/e-mail com resumo padronizado + link do leiloeiro oficial + edital.</li>
+    <li>O usuário dá o lance <strong>no site do leiloeiro credenciado</strong> — o hub não intermedia.</li>
+  </ol>
+  <p>Hoje, nenhuma plataforma analisada completa esse fluxo — o elo que falta em todas é o par <strong>extração de quartos + alerta granular</strong>: exatamente a “camada de IA sobre dados públicos fragmentados”.</p>
+
+  <h2 id="riscos">7. Riscos e próximos passos</h2>
+
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Risco</th><th>Severidade</th><th>Mitigação</th></tr></thead>
+      <tbody>
+        <tr><td>ANPD/LGPD — agregadores sob fiscalização ativa</td><td>Alta</td><td>Coletar só dados do imóvel/certame; registro de finalidade e teste de legítimo interesse (bom capítulo para o TCC)</td></tr>
+        <tr><td>Anti-bot / mudanças de layout em ~78 fontes judiciais</td><td>Média</td><td>Priorizar 10–15 leiloeiros mais ativos no MVP; extração por LLM é resiliente a mudanças de layout</td></tr>
+        <tr><td>Instabilidade das URLs do TJRJ <span class="chip ok">Verificado</span></td><td>Média</td><td>Depender da lista CGJ (PDF versionado) + sites dos leiloeiros, não das páginas do tribunal</td></tr>
+        <tr><td>Alucinação/erro de extração do LLM</td><td>Média</td><td>Schema + validação; exibir edital-fonte; selo de confiança por campo; amostragem humana</td></tr>
+        <tr><td>Incumbentes copiarem o filtro</td><td>Baixa/média</td><td>Foco RJ + qualidade de dados + velocidade de alerta como diferencial</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Recorte de MVP recomendado</h3>
+  <ol>
+    <li><strong>Fase 1 (validação, ~4–6 semanas):</strong> só cidade do RJ; fontes = Caixa (lista estruturada) + 10 leiloeiros judiciais mais ativos da lista CGJ + Zuk; filtros bairro/tipo/quartos/valor; alerta por e-mail.</li>
+    <li><strong>Fase 2:</strong> demais leiloeiros da lista CGJ; Santander/Itaú/BB via leiloeiros parceiros; WhatsApp; score de oportunidade (% de deságio vs avaliação).</li>
+    <li><strong>Fase 3:</strong> histórico de resultados (arrematado/deserto) e análise de preço por bairro.</li>
+  </ol>
+
+  <h3>Ponte com o TCC (Direção A × Direção C)</h3>
+  <p>Esta pesquisa valida os dois “contras” da Direção A da sua página de ideias e os converte em tese:</p>
+  <ul>
+    <li><em>“Acesso e padronização de dados são desafio técnico”</em> → confirmado <span class="chip ok">Verificado</span>, e é exatamente a oportunidade: o problema não é falta de dados, é <strong>fragmentação regulatoriamente induzida</strong> (~81 sites obrigatórios por norma) + <strong>dados presos em prosa de edital</strong>.</li>
+    <li><em>“Exige aprender direito”</em> → o essencial cabe na seção 2; o produto não pratica atos jurídicos (informa e notifica; o lance ocorre no leiloeiro oficial).</li>
+    <li><strong>Enquadramento acadêmico:</strong> o hub é um caso concreto da Direção C — <em>“IA como camada operacional sobre sistemas existentes”</em> — aplicada a dados públicos fragmentados: a camada de IA reduz carga cognitiva sem substituir os sistemas de origem.</li>
+  </ul>
+
+  <footer class="src">
+    <h2>Fontes</h2>
+    <p><strong>Verificadas (fontes primárias):</strong></p>
+    <ul>
+      <li>TJRJ — <a href="https://www.tjrj.jus.br/institucional/dir-gerais/dgjur/gbjur/credenciamento-leiloeiros-publicos-corretores-imoveis">Credenciamento de leiloeiros (Atos 7 e 8/2018)</a> · <a href="https://www.tjrj.jus.br/documents/d/cgj/planilha_de_leiloeiros_publicos-controle_e_validade_de_cadastro_publicacao_em_7-3-2025">Planilha de leiloeiros credenciados (07/03/2025; há edições mais novas)</a> · <a href="https://www.tjrj.jus.br/documents/10136/18661/leilao-imoveis.pdf">Edital exemplo (PDF)</a></li>
+      <li>CNJ — <a href="https://www.cnj.jus.br/conselho-regulamenta-alienacao-judicial-eletronica-conforme-novo-cpc/">Notícia Res. 236/2016</a> · <a href="https://atos.cnj.jus.br/atos/detalhar/2313">Texto integral</a></li>
+      <li>Contraprova DJERJ→DJEN: Avisos TJ 347/2024 e 372/2024; CPC/2015 art. 887 §2º; edital Portella jul/2026</li>
+    </ul>
+    <p><strong>Observadas (acessadas em 25/07/2026):</strong></p>
+    <ul>
+      <li>Bancos — <a href="https://www.caixa.gov.br/voce/habitacao/imoveis-venda/Paginas/default.aspx">Caixa</a> · <a href="https://www.itau.com.br/imoveis-itau">Itaú</a> · <a href="https://www.bb.com.br/site/compras-contratacao-e-venda-de-imoveis/venda-de-imoveis/">BB</a> / seuimovelbb.com.br · <a href="https://www.santanderimoveis.com.br">Santander Imóveis</a></li>
+      <li>Plataformas — <a href="https://www.portalzuk.com.br">Portal Zuk</a> · <a href="https://www.leilaoimovel.com.br/leilao-de-imoveis/rj">Leilão Imóvel RJ</a> · <a href="https://www.megaleiloes.com.br/imoveis/rj">Mega Leilões RJ</a> · <a href="https://mapadoleilao.com.br">Mapa do Leilão</a> · <a href="https://leiloai.com/imoveis/bb/rio-de-janeiro">LeilôAI</a> · <a href="https://www.sodresantoro.com.br/imoveis/lotes?lot_state=rio+de+janeiro">Sodré Santoro RJ</a> · <a href="https://resale.com.br">Resale</a></li>
+      <li>Jurídico — <a href="https://www.irib.org.br/noticias/detalhes/artigo-a-alienacao-fiduciaria-de-coisa-imovel-e-os-leiloes-apos-a-consolidacao-da-propriedade-imobiliaria-undefined-por-bruno-jose-berti-filho">IRIB (alienação fiduciária)</a> · <a href="https://www.migalhas.com.br/coluna/dados-publicos/378258/os-desafios-juridicos-do-web-scraping">Migalhas (web scraping)</a> · <a href="https://www.grantthornton.com.br/insights/artigos-e-publicacoes/raspagem-de-dados-entenda-a-nova-prioridade-da-anpd-e-seus-efeitos/">Grant Thornton (ANPD)</a> · <a href="https://iapd.org.br/iapd-org-br-raspagem-data-scraping-protecao-dados-lgpd/">IAPD (LGPD)</a> · <a href="https://sindicatodosleiloeirosrj.com.br/editais/">Sindicato dos Leiloeiros RJ (editais)</a></li>
+      <li>Técnico — <a href="https://sol.sbc.org.br/index.php/sbbd_estendido/article/download/30806/30609/">SBBD (LLM ~90% vs regex 58,75%)</a> · <a href="https://aclanthology.org/2026.propor-1.61/">PROPOR 2026 (−64–88% tokens)</a> · <a href="https://www.urbandemographics.org/post/geocoding-brazilian-data-with-geocodebr/">geocodebr (Ipea/CNEFE)</a> · <a href="https://github.com/DouglasFantoni/scrapper-imoveis">scrapper-imoveis (open source)</a></li>
+    </ul>
+    <p>Relatório gerado por pesquisa profunda assistida por IA em 25/07/2026 · Cópia em Markdown salva em <code>MBA/Projeto de Pesquisa/pesquisa-viabilidade-hub-leiloes-rj.md</code></p>
+  </footer>
+</div>
+
+</body>
+</html>
