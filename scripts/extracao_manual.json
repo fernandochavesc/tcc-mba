@@ -1,0 +1,18 @@
+{
+  "_nota": "Extração assistida por LLM (Claude) em 25/07/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m² edificada/privativa), tipo, modalidade corrigida (o flag 'judicial' da plataforma é inconsistente — ex.: lote com vara e processo marcado extrajudicial), endereco_geo (endereço normalizado para geocodificação), merge_de (dedupe entre leiloeiros do mesmo bem, ex.: programa Comprei/PGFN). Em produção esta etapa vira uma chamada de LLM com structured output.",
+  "PORTELLA-3589": { "tipo": "Apartamento", "area": 35, "quartos": null, "modalidade": "Leilão Judicial", "endereco_geo": "Avenida Nossa Senhora de Copacabana 1003, Copacabana, Rio de Janeiro, RJ" },
+  "PORTELLA-3591": { "tipo": "Apartamento", "area": 53, "quartos": null, "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ" },
+  "PORTELLA-3592": { "tipo": "Apartamento", "area": 36, "quartos": null, "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ" },
+  "PORTELLA-3617": { "tipo": "Apartamento", "area": 500, "quartos": null, "endereco_geo": "Avenida Atlântica 2172, Copacabana, Rio de Janeiro, RJ" },
+  "PORTELLA-3631": { "tipo": "Casa", "area": null, "quartos": 3, "endereco_geo": "Rua São Salvador 72, Laranjeiras, Rio de Janeiro, RJ", "_fonte_quartos": "descrição: 'quarto', 'quarto com suíte' (térreo) e 'um quarto' (2º andar)" },
+  "PORTELLA-3644": { "tipo": "Apartamento", "area": 42, "quartos": null, "endereco_geo": "Avenida Prado Júnior 298, Copacabana, Rio de Janeiro, RJ" },
+  "PORTELLA-2721": { "tipo": "Apartamento", "area": 109, "quartos": null, "endereco_geo": "Rua Voluntários da Pátria 381, Botafogo, Rio de Janeiro, RJ" },
+  "PORTELLA-3590": { "tipo": "Casa", "area": 281, "quartos": null, "endereco_geo": "Rua Senador Correia 37, Laranjeiras, Rio de Janeiro, RJ" },
+  "PORTELLA-3625": { "tipo": "Sala Comercial", "area": null, "quartos": null, "modalidade": "PGFN · Comprei", "endereco_geo": "Rua Bambina 56, Botafogo, Rio de Janeiro, RJ", "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/79415" },
+  "PORTELLA-3571": { "merge_em": "RYMER-1182" },
+  "RYMER-1183": { "tipo": "Apartamento", "area": 38, "quartos": 0, "endereco_geo": "Rua Paula Freitas 32, Copacabana, Rio de Janeiro, RJ", "_fonte_quartos": "conjugado (laudo)" },
+  "RYMER-1297": { "tipo": "Apartamento", "area": 21, "quartos": 1, "endereco_geo": "Praia de Botafogo 356, Botafogo, Rio de Janeiro, RJ", "rodadas": [{ "n": 1, "data": "17/08/2026", "hora": "12:00", "lance_minimo": 355000.42 }] },
+  "RYMER-1298": { "tipo": "Apartamento", "area": 303, "quartos": 3, "endereco_geo": "Praça Eugenio Jardim 14, Copacabana, Rio de Janeiro, RJ", "rodadas": [{ "n": 1, "data": "27/07/2026", "hora": "12:00", "lance_minimo": 4100000 }], "_fonte_quartos": "suíte master + 1 quarto (1º piso) + suíte (2º piso); dependência de empregada não contada" },
+  "RYMER-1316": { "tipo": "Apartamento", "area": null, "quartos": 3, "endereco_geo": "Rua Conselheiro Lafaiete 15, Copacabana, Rio de Janeiro, RJ", "_fonte_quartos": "descrição: '3 quartos, sendo 1 dependência de empregado'" },
+  "RYMER-1182": { "tipo": "Sala Comercial", "area": null, "quartos": null, "modalidade": "PGFN · Comprei", "endereco_geo": "Rua Voluntários da Pátria 126, Botafogo, Rio de Janeiro, RJ", "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/74387", "_dedupe": "mesmo bem anunciado por Portella (PORTELLA-3571) e Rymer via programa Comprei/PGFN" }
+}

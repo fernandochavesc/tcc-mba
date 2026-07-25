@@ -58,6 +58,15 @@
   .aviso{font-size:12.5px;color:var(--muted);background:var(--surface2);border:1px dashed var(--border);
     border-radius:10px;padding:12px 14px;line-height:1.5}
   .aviso b{color:var(--amber)}
+  .imovel.judicial{border-color:rgba(63,185,80,.45)}
+  .imovel .rodadas{margin-top:9px;display:flex;flex-direction:column;gap:4px}
+  .imovel .rodada{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;
+    background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 10px}
+  .imovel .rodada .quando{color:var(--text);font-weight:600}
+  .imovel .rodada .lance{color:var(--green);font-weight:700;font-variant-numeric:tabular-nums}
+  .legenda{background:rgba(22,27,34,.92);border:1px solid var(--border);border-radius:10px;
+    padding:8px 12px;font-size:11.5px;color:var(--muted);line-height:1.7}
+  .legenda .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 
   footer{border-top:1px solid var(--border);padding:8px 18px;font-size:11.5px;color:var(--muted)}
 
@@ -120,13 +129,12 @@
 </div>
 
 <footer>
-  Demo (Spike 0) da pesquisa do TCC — dados públicos da lista oficial de venda de imóveis da Caixa, posições agregadas por centróide de bairro (OpenStreetMap/Nominatim).
-  Próxima etapa: lotes de leilão judicial da Zona Sul (TJRJ) com extração por IA.
+  Demo (Spikes 0 e 1) da pesquisa do TCC — dados públicos: lista oficial da Caixa (bolhas azuis, por centróide de bairro) e lotes de leilão judicial coletados dos leiloeiros credenciados do TJRJ Portella e Rymer (pins verdes, endereço geocodificado; quartos extraídos por IA das descrições). Sem dados pessoais das partes. Lances sempre no site oficial do leiloeiro.
 </footer>
 
 <script>
 const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
-let DADOS = null, CENTROS = null, mapa = null, camada = null, bairroAberto = null;
+let DADOS = null, CENTROS = null, JUD = [], mapa = null, camada = null, camadaJud = null, bairroAberto = null;
 
 const $ = id => document.getElementById(id);
 const filtros = { quartos:'', tipo:'', modalidade:'', preco:'', bairro:'', alvo:false };
@@ -145,6 +153,25 @@ function aplicaFiltros(im){
 }
 
 function filtrados(){ return DADOS.imoveis.filter(aplicaFiltros); }
+
+function precoRef(l){
+  const lances = (l.rodadas || []).map(r => r.lance_minimo).filter(Boolean);
+  if (l.valor_minimo) lances.push(l.valor_minimo);
+  return lances.length ? Math.min(...lances) : l.avaliacao;
+}
+
+function aplicaFiltrosJud(l){
+  // pins judiciais são todos da Zona Sul alvo por construção — o toggle não os esconde
+  if (filtros.bairro && l.bairro !== filtros.bairro) return false;
+  if (filtros.quartos === '3') { if (!l.quartos || l.quartos < 3) return false; }
+  else if (filtros.quartos) { if (String(l.quartos) !== filtros.quartos) return false; }
+  if (filtros.tipo && l.tipo !== filtros.tipo) return false;
+  if (filtros.modalidade && l.modalidade !== filtros.modalidade) return false;
+  if (filtros.preco && !(precoRef(l) && precoRef(l) <= +filtros.preco)) return false;
+  return true;
+}
+
+function judFiltrados(){ return JUD.filter(l => l.latlng).filter(aplicaFiltrosJud); }
 
 function desenha(){
   const itens = filtrados();
@@ -173,22 +200,94 @@ function desenha(){
     camada.addLayer(m);
   }
   camada.addTo(mapa);
+
+  if (camadaJud) camadaJud.remove();
+  camadaJud = L.layerGroup();
+  const juds = judFiltrados();
+  for (const l of juds){
+    const m = L.circleMarker(l.latlng, {
+      radius: 8, weight: 2, color: '#eafaef', fillColor: '#3fb950', fillOpacity: .95
+    });
+    const prox = (l.rodadas || [])[0];
+    m.bindTooltip(`⚖ ${l.titulo}${prox ? ` — ${prox.n}ª praça ${prox.data}` : ''}`);
+    m.on('click', () => abrePainelJud(l));
+    camadaJud.addLayer(m);
+  }
+  camadaJud.addTo(mapa);
+
   const nb = porBairro.size;
-  $('contagem').innerHTML = `<b>${itens.length}</b> imóveis em <b>${nb}</b> bairros` +
+  $('contagem').innerHTML = `<b>${itens.length}</b> Caixa em <b>${nb}</b> bairros · <b style="color:#3fb950">${juds.length}</b> judiciais` +
     (itens.length - comPin > 0 ? ` (${itens.length - comPin} sem pin)` : '');
   if (bairroAberto) abrePainel(bairroAberto, true);
+}
+
+function cardJudicial(l){
+  const d = document.createElement('div');
+  d.className = 'imovel judicial';
+  d.innerHTML = `
+    <div class="tipo"></div>
+    <div class="end"></div>
+    <div class="valores">
+      <span class="preco"></span>
+      <span class="aval"></span>
+      <span class="desc-pct"></span>
+    </div>
+    <div class="rodadas"></div>
+    <div class="meta"></div>`;
+  d.querySelector('.tipo').textContent = `⚖ ${l.tipo || 'Imóvel'}${l.quartos ? ` · ${l.quartos} quarto${l.quartos>1?'s':''}` : (l.quartos === 0 ? ' · conjugado' : '')}${l.area ? ` · ${l.area} m²` : ''}`;
+  d.querySelector('.end').textContent = l.endereco;
+  const ref = precoRef(l);
+  d.querySelector('.preco').textContent = ref ? BRL.format(ref) : 'consultar';
+  d.querySelector('.aval').textContent = l.avaliacao && l.avaliacao > (ref||0) ? BRL.format(l.avaliacao) : '';
+  d.querySelector('.desc-pct').textContent = l.avaliacao && ref && ref < l.avaliacao ? `−${Math.round((1 - ref/l.avaliacao)*100)}%` : '';
+  const rod = d.querySelector('.rodadas');
+  for (const r of (l.rodadas || [])){
+    const linha = document.createElement('div'); linha.className = 'rodada';
+    linha.innerHTML = `<span class="quando"></span><span class="lance"></span>`;
+    linha.querySelector('.quando').textContent = `${r.n}ª praça · ${r.data} ${r.hora || ''}`;
+    linha.querySelector('.lance').textContent = r.lance_minimo ? BRL.format(r.lance_minimo) : '';
+    rod.appendChild(linha);
+  }
+  const meta = d.querySelector('.meta');
+  for (const t of [l.modalidade, l.status_leilao, l.leiloeiro, l.vara].filter(Boolean)){
+    const c = document.createElement('span'); c.className = 'chip'; c.textContent = t; meta.appendChild(c);
+  }
+  const links = [
+    ['Ver no leiloeiro →', l.link],
+    ['Edital (PDF)', l.edital_url],
+    ['Dar lance (Comprei/PGFN)', l.link_lances],
+    ...(l.fontes_extras || []).map(f => [`Também em ${f.leiloeiro} →`, f.link]),
+  ].filter(x => x[1]);
+  for (const [txt, href] of links){
+    const a = document.createElement('a'); a.className = 'ver'; a.href = href;
+    a.target = '_blank'; a.rel = 'noopener'; a.textContent = txt;
+    a.style.marginRight = '12px';
+    d.appendChild(a);
+  }
+  return d;
+}
+
+function abrePainelJud(l){
+  bairroAberto = null;
+  $('painel').hidden = false;
+  $('painel-titulo').textContent = titulo(l.bairro || '');
+  $('painel-sub').textContent = 'lote judicial';
+  const lista = $('painel-lista');
+  lista.replaceChildren(cardJudicial(l));
 }
 
 function abrePainel(bairro, atualizando){
   const itens = filtrados().filter(im => im.bairro === bairro)
     .sort((a,b) => (a.preco||9e12) - (b.preco||9e12));
-  if (!atualizando && !itens.length) return;
+  if (!atualizando && !itens.length && !judFiltrados().some(l => l.bairro === bairro)) return;
   bairroAberto = bairro;
   $('painel').hidden = false;
   $('painel-titulo').textContent = titulo(bairro);
-  $('painel-sub').textContent = `${itens.length} imóve${itens.length===1?'l':'is'}`;
+  const judsBairro = judFiltrados().filter(l => l.bairro === bairro);
+  $('painel-sub').textContent = `${itens.length} Caixa · ${judsBairro.length} judicia${judsBairro.length===1?'l':'is'}`;
   const lista = $('painel-lista');
   lista.replaceChildren();
+  for (const l of judsBairro) lista.appendChild(cardJudicial(l));
   if (DADOS.zona_sul_alvo.includes(bairro) && itens.length < 8){
     const av = document.createElement('div');
     av.className = 'aviso';
@@ -238,12 +337,13 @@ function opcoes(sel, valores){
 }
 
 async function init(){
-  const [d, b] = await Promise.all([
+  const [d, b, j] = await Promise.all([
     fetch('data.json').then(r => r.json()),
     fetch('bairros.json').then(r => r.json()),
+    fetch('judicial.json').then(r => r.ok ? r.json() : {lotes: []}).catch(() => ({lotes: []})),
   ]);
-  DADOS = d; CENTROS = b;
-  $('fonte').textContent = `${DADOS.fonte} · lista gerada em ${DADOS.data_geracao} · ${DADOS.imoveis.length.toLocaleString('pt-BR')} imóveis na capital`;
+  DADOS = d; CENTROS = b; JUD = j.lotes || [];
+  $('fonte').textContent = `Caixa (lista de ${DADOS.data_geracao}, ${DADOS.imoveis.length.toLocaleString('pt-BR')} imóveis) + ${JUD.length} lotes judiciais de leiloeiros TJRJ (Zona Sul)`;
 
   mapa = L.map('mapa', { zoomControl: true }).setView([-22.92, -43.45], 11);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -251,10 +351,21 @@ async function init(){
     maxZoom: 18
   }).addTo(mapa);
 
-  opcoes($('f-tipo'), [...new Set(DADOS.imoveis.map(i => i.tipo).filter(Boolean))].sort());
-  opcoes($('f-modalidade'), [...new Set(DADOS.imoveis.map(i => i.modalidade).filter(Boolean))].sort());
+  const legenda = L.control({position: 'bottomleft'});
+  legenda.onAdd = () => {
+    const div = L.DomUtil.create('div', 'legenda');
+    div.innerHTML = '<span class="dot" style="background:#6ea8fe;opacity:.6"></span>Caixa — agregado por bairro<br>' +
+                    '<span class="dot" style="background:#3fb950"></span>Leilão judicial — endereço exato';
+    return div;
+  };
+  legenda.addTo(mapa);
+
+  const tipos = new Set([...DADOS.imoveis.map(i => i.tipo), ...JUD.map(l => l.tipo)].filter(Boolean));
+  opcoes($('f-tipo'), [...tipos].sort());
+  const modalidades = new Set([...DADOS.imoveis.map(i => i.modalidade), ...JUD.map(l => l.modalidade)].filter(Boolean));
+  opcoes($('f-modalidade'), [...modalidades].sort());
   const dl = $('bairros-list');
-  for (const bb of [...new Set(DADOS.imoveis.map(i => i.bairro))].sort()){
+  for (const bb of [...new Set([...DADOS.imoveis.map(i => i.bairro), ...JUD.map(l => l.bairro)])].filter(Boolean).sort()){
     const o = document.createElement('option'); o.value = titulo(bb); dl.appendChild(o);
   }
 
@@ -264,7 +375,8 @@ async function init(){
   $('f-preco').onchange = e => { filtros.preco = e.target.value; desenha(); };
   $('f-bairro').oninput = e => {
     const v = e.target.value.trim().toUpperCase();
-    filtros.bairro = [...new Set(DADOS.imoveis.map(i => i.bairro))].includes(v) ? v : '';
+    const conhecidos = new Set([...DADOS.imoveis.map(i => i.bairro), ...JUD.map(l => l.bairro)].filter(Boolean));
+    filtros.bairro = conhecidos.has(v) ? v : '';
     desenha();
     if (filtros.bairro && CENTROS[filtros.bairro]) mapa.setView(CENTROS[filtros.bairro], 14);
   };
