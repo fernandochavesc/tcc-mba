@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Direção A · Hub de leilões de imóveis no RJ — TCC</title>
-<link rel="stylesheet" href="../assets/tcc.css">
+<link rel="stylesheet" href="../assets/tcc.css?v=2">
 </head>
 <body>
 
@@ -348,12 +348,12 @@
 
   <h3>Walkthrough — “apartamento de 2 quartos em Botafogo/Flamengo”</h3>
   <ol class="steps">
-    <li>Crawler visita os ~78 sites de leiloeiros da lista CGJ + lista da Caixa + bancos → detecta lote novo da 14ª Vara Cível com edital em PDF.</li>
-    <li>Classificador marca as 2 páginas relevantes do edital; o LLM extrai: <code>tipo: apartamento · Rua São Clemente 143/302 · quartos: 2 · avaliação R$ 850.000 · 1ª praça 12/08 (R$ 850 mil) · 2ª praça 26/08 (R$ 425 mil)</code>.</li>
-    <li>geocodebr resolve o endereço → bairro <strong>Botafogo</strong>, Zona Sul.</li>
-    <li>Dedupe: o lote já existia via agregador → registro único, nova fonte anexada.</li>
-    <li>Motor de alertas cruza com a busca salva <code>{apartamento · ≥2 quartos · Botafogo, Flamengo}</code> → dispara WhatsApp/e-mail com resumo padronizado + link do leiloeiro oficial + edital.</li>
-    <li>O usuário dá o lance <strong>no site do leiloeiro credenciado</strong> — o hub não intermedia.</li>
+    <li><span>Crawler visita os ~78 sites de leiloeiros da lista CGJ + lista da Caixa + bancos → detecta lote novo da 14ª Vara Cível com edital em PDF.</span></li>
+    <li><span>Classificador marca as 2 páginas relevantes do edital; o LLM extrai: <code>tipo: apartamento · Rua São Clemente 143/302 · quartos: 2 · avaliação R$ 850.000 · 1ª praça 12/08 (R$ 850 mil) · 2ª praça 26/08 (R$ 425 mil)</code>.</span></li>
+    <li><span>geocodebr resolve o endereço → bairro <strong>Botafogo</strong>, Zona Sul.</span></li>
+    <li><span>Dedupe: o lote já existia via agregador → registro único, nova fonte anexada.</span></li>
+    <li><span>Motor de alertas cruza com a busca salva <code>{apartamento · ≥2 quartos · Botafogo, Flamengo}</code> → dispara WhatsApp/e-mail com resumo padronizado + link do leiloeiro oficial + edital.</span></li>
+    <li><span>O usuário dá o lance <strong>no site do leiloeiro credenciado</strong> — o hub não intermedia.</span></li>
   </ol>
   <p>Hoje, nenhuma plataforma analisada completa esse fluxo — o elo que falta em todas é o par <strong>extração de quartos + alerta granular</strong>: exatamente a “camada de IA sobre dados públicos fragmentados”.</p>
 
@@ -661,7 +661,7 @@
 <footer class="rodape"><a href="../">Índice do TCC</a> · Direção A · suas anotações ficam apenas neste navegador</footer>
 
 <script>window.TCC_NS = 'a';</script>
-<script src="../assets/tcc.js"></script>
+<script src="../assets/tcc.js?v=2"></script>
 <script>
 TCC.listaTarefas([
   "Entrevistar 5 investidores que já arremataram imóvel",
