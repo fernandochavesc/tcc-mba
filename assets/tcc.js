@@ -123,6 +123,10 @@
     chave: k,
     listaTarefas: function (padroes) { lista(k('tasks'), 'tasks', 'task-in', 'task-add', padroes, progresso); },
     listaDores: function (padroes) { lista(k('pains'), 'pains', 'pain-in', 'pain-add', padroes || []); },
+    /* lista genérica: TCC.lista('perguntas', {lista:'perguntas', input:'p-in', botao:'p-add', padroes:[...], progresso:true}) */
+    lista: function (nome, o) {
+      lista(k(nome), o.lista, o.input, o.botao, o.padroes || [], o.progresso ? progresso : o.aoMudar);
+    },
     anotacoes: function () { anotacoes(k('notes')); },
     personas: function (idGrade, lista) {
       var g = document.getElementById(idGrade);

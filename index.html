@@ -13,67 +13,231 @@
   <div class="wrap">
     <span class="badge">TCC · MBA em IA &amp; Negócios · fase de descoberta</span>
     <h1>Duas direções em avaliação para o <span class="grad">TCC</span></h1>
-    <p class="sub">Este é o índice da pesquisa. Cada direção tem sua própria página, com visão geral, plano de pesquisa, personas, dores, fluxo, resultados e anotações de campo.</p>
+    <p class="sub">Índice da pesquisa e espaço de acompanhamento com o orientador. Cada direção tem sua própria página, com visão geral, plano de pesquisa, personas, dores, fluxo, resultados e anotações de campo.</p>
   </div>
 </header>
 
+<nav class="tabs" aria-label="Seções do índice">
+  <div class="wrap" role="tablist">
+    <button data-t="visao" class="active" role="tab" aria-selected="true">Visão geral</button>
+    <button data-t="orientacao" role="tab" aria-selected="false">Orientação</button>
+    <button data-t="notas" role="tab" aria-selected="false">Anotações</button>
+  </div>
+</nav>
+
 <main class="wrap">
 
-  <div class="highlight">
-    <div class="q">PERGUNTA DE PESQUISA CANDIDATA</div>
-    <blockquote>Como a IA pode atuar como uma camada operacional sobre sistemas existentes para reduzir carga cognitiva e aumentar a eficiência em pequenos negócios?</blockquote>
-    <p style="color:var(--muted);font-size:13.5px;margin-top:10px">As duas direções abaixo são caminhos concretos para responder a essa pergunta. A escolha deve sair da <b>intensidade das dores</b> que aparecerem em campo — não da preferência por um setor.</p>
-  </div>
+  <!-- ============================================ VISÃO GERAL -->
+  <section id="visao" class="tab active">
 
-  <div class="dirs">
-
-    <article class="dir a">
-      <div class="rot">DIREÇÃO A · setor específico</div>
-      <h2>🏛️ Hub de leilões de imóveis no Rio de Janeiro</h2>
-      <p class="resumo">Centralizar leilões judiciais e extrajudiciais do RJ em um só lugar, com dados padronizados, filtros que hoje não existem (bairro + quartos) e alertas. A pesquisa de viabilidade está concluída e há um MVP navegável no ar, com dados reais.</p>
-      <div class="estado">
-        <span class="on">Relatório concluído</span>
-        <span class="on">MVP no ar</span>
-        <span>Entrevistas pendentes</span>
-      </div>
-      <div class="acoes">
-        <a href="leiloes/">Abrir Direção A →</a>
-        <a class="sec" href="mapa/">🗺️ Ver o mapa (MVP)</a>
-      </div>
-    </article>
-
-    <article class="dir b">
-      <div class="rot">DIREÇÃO B · estudo de caso</div>
-      <h2>🛵 Operação de restaurantes</h2>
-      <p class="resumo">Estudar a operação de um restaurante de ponta a ponta — pedido, cozinha, entrega, pagamento, financeiro — e onde a IA reduz fricção entre as pessoas. Dentro dessa direção há um foco mais promissor: um <b>SaaS de gestão de entregas e pagamento de motoboys</b>, ainda em aberto como recorte final.</p>
-      <div class="estado">
-        <span class="on">Estruturação inicial</span>
-        <span>Recorte em aberto</span>
-        <span>Entrevistas pendentes</span>
-      </div>
-      <div class="acoes">
-        <a href="saas-gestao-restaurantes/">Abrir Direção B →</a>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="grid grid-2">
-    <div class="card">
-      <h3>🔭 A lente que vale para as duas</h3>
-      <p>Em vez de “mais um sistema”, uma <b>camada de IA sobre o que já existe</b>: observa dados de sistemas e fontes atuais, identifica gargalos e ajuda cada pessoa a decidir melhor com menos esforço. É o enquadramento mais forte para um MBA porque não fica preso a um setor — e as duas direções são instâncias dele.</p>
-      <p style="margin-top:10px">Na Direção A, a camada transforma editais em prosa em dados filtráveis. Na Direção B, ela transforma a operação espalhada entre PDV, iFood e WhatsApp em decisão.</p>
+    <div class="highlight">
+      <div class="q">PERGUNTA DE PESQUISA CANDIDATA</div>
+      <blockquote>Como a IA pode atuar como uma camada operacional sobre sistemas existentes para reduzir carga cognitiva e aumentar a eficiência em pequenos negócios?</blockquote>
+      <p style="color:var(--muted);font-size:13.5px;margin-top:10px">As duas direções abaixo são caminhos concretos para responder a essa pergunta. A escolha deve sair da <b>intensidade das dores</b> que aparecerem em campo — não da preferência por um setor.</p>
     </div>
-    <div class="card">
-      <h3>🧭 Como a decisão será tomada</h3>
-      <p>Entrevistas e observação em campo <b>nas duas frentes</b> antes de comprometer com uma. Vence a direção onde a dor for mais intensa, mais frequente e mais cara para quem a sente.</p>
-      <p style="margin-top:10px"><b>Evite:</b> começar desenhando o produto. A dor real costuma ser diferente da imaginada — o MVP da Direção A já mostrou isso na prática (o estoque que se imaginava farto na Zona Sul é quase inexistente na fonte mais fácil).</p>
+
+    <div class="dirs">
+
+      <article class="dir a">
+        <div class="rot">DIREÇÃO A · setor específico</div>
+        <h2>🏛️ Hub de leilões de imóveis no Rio de Janeiro</h2>
+        <p class="resumo">Centralizar leilões judiciais e extrajudiciais do RJ em um só lugar, com dados padronizados, filtros que hoje não existem (bairro + quartos) e alertas. A pesquisa de viabilidade está concluída e há um MVP navegável no ar, com dados reais.</p>
+        <div class="estado">
+          <span class="on">Relatório concluído</span>
+          <span class="on">MVP no ar</span>
+          <span>Entrevistas pendentes</span>
+        </div>
+        <div class="acoes">
+          <a href="leiloes/">Abrir Direção A →</a>
+          <a class="sec" href="mapa/">🗺️ Ver o mapa (MVP)</a>
+        </div>
+      </article>
+
+      <article class="dir b">
+        <div class="rot">DIREÇÃO B · estudo de caso</div>
+        <h2>🛵 Operação de restaurantes</h2>
+        <p class="resumo">Estudar a operação de um restaurante de ponta a ponta — pedido, cozinha, entrega, pagamento, financeiro — e onde a IA reduz fricção entre as pessoas. Dentro dessa direção há um foco mais promissor: um <b>SaaS de gestão de entregas e pagamento de motoboys</b>, ainda em aberto como recorte final.</p>
+        <div class="estado">
+          <span class="on">Estruturação inicial</span>
+          <span>Recorte em aberto</span>
+          <span>Entrevistas pendentes</span>
+        </div>
+        <div class="acoes">
+          <a href="saas-gestao-restaurantes/">Abrir Direção B →</a>
+        </div>
+      </article>
+
     </div>
-  </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>🔭 A lente que vale para as duas</h3>
+        <p>Em vez de “mais um sistema”, uma <b>camada de IA sobre o que já existe</b>: observa dados de sistemas e fontes atuais, identifica gargalos e ajuda cada pessoa a decidir melhor com menos esforço. É o enquadramento mais forte para um MBA porque não fica preso a um setor — e as duas direções são instâncias dele.</p>
+        <p style="margin-top:10px">Na Direção A, a camada transforma editais em prosa em dados filtráveis. Na Direção B, ela transforma a operação espalhada entre PDV, iFood e WhatsApp em decisão.</p>
+      </div>
+      <div class="card">
+        <h3>🧭 Como a decisão será tomada</h3>
+        <p>Entrevistas e observação em campo <b>nas duas frentes</b> antes de comprometer com uma. Vence a direção onde a dor for mais intensa, mais frequente e mais cara para quem a sente.</p>
+        <p style="margin-top:10px"><b>Evite:</b> começar desenhando o produto. A dor real costuma ser diferente da imaginada — o MVP da Direção A já mostrou isso na prática (o estoque que se imaginava farto na Zona Sul é quase inexistente na fonte mais fácil).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ ORIENTAÇÃO -->
+  <section id="orientacao" class="tab">
+    <h2>Acompanhamento com o orientador</h2>
+    <p class="lead">Banco de perguntas por tema, pauta da próxima reunião e registro das decisões. A primeira conversa é sobre <b>método</b>: como transformar o que já foi construído em pesquisa defensável.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="num" id="s-done">0</div><div class="lbl">Perguntas respondidas</div></div>
+      <div class="stat"><div class="num" id="s-pct">0%</div><div class="lbl">Pauta coberta</div></div>
+      <div class="stat"><div class="num">2</div><div class="lbl">Direções em avaliação</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">MVP pronto para mostrar</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <h3>Progresso da pauta</h3>
+      <p>Baseado nas perguntas marcadas como respondidas, mais abaixo.</p>
+      <div class="progress"><i id="bar" style="width:0%"></i></div>
+    </div>
+
+    <div class="card" style="border-color:rgba(110,168,254,.35);margin-bottom:22px">
+      <h3>🎯 O que levar para o primeiro encontro</h3>
+      <p>Chegue com evidência, não com ideia. Você já tem três coisas concretas para colocar na mesa:</p>
+      <ul>
+        <li><b>Um relatório de viabilidade com fontes citadas</b> e verificação das afirmações centrais — <a href="leiloes/">Direção A · Visão geral</a></li>
+        <li><b>Um MVP navegável com dados reais</b> de duas fontes distintas — <a href="mapa/">mapa de oportunidades</a></li>
+        <li><b>Um achado que muda a pergunta</b>: a fonte fácil (Caixa) quase não tem imóvel na Zona Sul; a demanda depende da via judicial, que é justamente a que exige IA para virar dado.</li>
+      </ul>
+      <p style="margin-top:12px"><b>Pauta sugerida (30 min):</b> 5 min de contexto e as duas direções · 8 min do que já foi feito na Direção A · 15 min de dúvidas de método (os temas abaixo) · 2 min de encaminhamentos.</p>
+    </div>
+
+    <h3 style="margin-bottom:12px">Banco de perguntas por tema</h3>
+
+    <div class="grid grid-2">
+
+      <div class="card">
+        <span class="pill base">TEMA 1</span>
+        <h3>Como avançar na pesquisa</h3>
+        <ul>
+          <li>Qual metodologia se encaixa melhor no que já fiz: <b>estudo de caso</b>, <b>pesquisa-ação</b> ou <b>Design Science Research</b>? Construí o artefato antes das entrevistas — isso é um problema de método ou é justamente o desenho do DSR?</li>
+          <li>O MVP que já está no ar entra como <b>resultado</b> da pesquisa ou como <b>instrumento</b> de coleta?</li>
+          <li>Quantas entrevistas o senhor considera suficiente? Uso critério de saturação?</li>
+          <li>Preciso de termo de consentimento (TCLE) ou aprovação ética para entrevistar?</li>
+          <li>Como descrevo a coleta automatizada de dados públicos na metodologia sem fragilizar o trabalho?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="pill base">TEMA 2</span>
+        <h3>Como validar a oportunidade de negócio</h3>
+        <ul>
+          <li>Que <b>evidência</b> o senhor considera suficiente para afirmar que a dor existe e é forte o bastante?</li>
+          <li>Posso rodar um <b>teste de demanda real</b> (página de alerta com cadastro e medição de conversão), ou isso extrapola o escopo acadêmico?</li>
+          <li>O TCC deve concluir sobre a <b>viabilidade do negócio</b> ou sobre a <b>contribuição metodológica</b> (usar IA para estruturar editais)?</li>
+          <li>Vale ancorar em um framework consagrado — Jobs to be Done, Value Proposition Canvas, Customer Development?</li>
+          <li>Já existem concorrentes, um deles cobrando assinatura mensal. Isso <b>valida</b> o mercado ou <b>enfraquece</b> a proposta? Como trato isso na argumentação?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="pill base">TEMA 3</span>
+        <h3>Com quem falar — as personas do universo dos leilões</h3>
+        <p>Minha lista atual, a validar com o senhor:</p>
+        <ul>
+          <li><b>Investidor arrematante</b> — quem já comprou em leilão e repete</li>
+          <li><b>Comprador para morar</b> — o caso que originou a ideia (2 quartos na Zona Sul)</li>
+          <li><b>Quem tentou e desistiu</b> — provavelmente a fonte mais rica de dor</li>
+          <li><b>Advogado / assessor de arrematação</b> — vê o funil inteiro e os motivos de desistência</li>
+          <li><b>Leiloeiro credenciado</b> — é a fonte do dado e vive de comissão; seria aliado ou ameaçado por um agregador?</li>
+          <li><b>Banco / credor</b> — quer liquidez do ativo retomado</li>
+        </ul>
+        <p style="margin-top:10px">Está faltando alguém? Corretor especializado, servidor do TJ, síndico de prédio com unidade arrematada?</p>
+      </div>
+
+      <div class="card">
+        <span class="pill base">TEMA 4</span>
+        <h3>Como falar</h3>
+        <ul>
+          <li>O senhor revisa meu <b>roteiro semiestruturado</b> antes da primeira rodada?</li>
+          <li>Devo <b>mostrar o mapa</b> na entrevista ou entrevistar “às cegas”, para não induzir a resposta? Faz sentido dividir: primeiro sem mostrar, depois reagindo ao protótipo?</li>
+          <li>Gravar e transcrever é esperado? Como fica consentimento e LGPD nas transcrições?</li>
+          <li>Como pergunto sobre <b>disposição a pagar</b> sem enviesar a resposta?</li>
+          <li>Como chego a essas pessoas? Sindicato dos leiloeiros, grupos de investidores, escritórios especializados — o senhor tem contatos ou sugere um caminho?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="pill base">TEMA 5</span>
+        <h3>Quando falar — cronograma</h3>
+        <ul>
+          <li>Qual a <b>data limite</b> para eu fechar a escolha entre a Direção A e a B sem comprometer a entrega?</li>
+          <li>Faço entrevistas nas duas frentes em paralelo, ou escolho primeiro e aprofundo só uma?</li>
+          <li>Quantas semanas devo reservar para a fase de campo?</li>
+          <li>Quando nos encontramos de novo — antes de começar as entrevistas ou depois da primeira rodada?</li>
+          <li>Há entregas parciais obrigatórias no calendário do MBA que eu deva mirar?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="pill alt">SE SOBRAR TEMPO</span>
+        <h3>Sobre a Direção B</h3>
+        <ul>
+          <li>As duas direções estão em estágios muito diferentes: A tem dados verificados, B tem hipóteses estruturadas e zero entrevistas. Como comparo as duas de forma justa?</li>
+          <li>Vale manter as duas até o fim ou o senhor recomenda cortar cedo?</li>
+          <li>Se eu escolher a A, o restaurante ainda serve como caso secundário para generalizar a tese?</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h3 style="margin:26px 0 10px">📋 Pauta da próxima reunião</h3>
+    <p class="lead">Marque conforme cada ponto for respondido. Adicione o que quiser — fica salvo neste navegador.</p>
+    <ul class="checklist" id="pauta"></ul>
+    <div class="addrow">
+      <input type="text" id="pauta-in" placeholder="Nova pergunta para o orientador">
+      <button class="btn" id="pauta-add">Adicionar</button>
+    </div>
+
+    <h3 style="margin:26px 0 10px">✅ Decisões e encaminhamentos</h3>
+    <p class="lead">O que ficou definido com o orientador. Marque quando cumprir.</p>
+    <ul class="checklist" id="decisoes"></ul>
+    <div class="addrow">
+      <input type="text" id="dec-in" placeholder="Ex.: usar Design Science Research como método">
+      <button class="btn" id="dec-add">Registrar</button>
+    </div>
+  </section>
+
+  <!-- ============================================ NOTAS -->
+  <section id="notas" class="tab">
+    <h2>Anotações</h2>
+    <p class="lead">Registro livre das reuniões de orientação e das decisões do TCC como um todo. As anotações de cada direção ficam nas páginas delas. Salva sozinho enquanto você digita. <span class="saved" id="saved">✓ salvo</span></p>
+    <textarea id="notes" placeholder="Sugestão de estrutura por reunião:&#10;&#10;— Reunião 1 · 00/00/2026&#10;Presentes:&#10;O que apresentei:&#10;O que o orientador disse:&#10;Decisões:&#10;Próximos passos e prazos:&#10;"></textarea>
+  </section>
 
 </main>
 
 <footer class="rodape">Hub de pesquisa do TCC · Fernando Chaves · suas anotações ficam apenas neste navegador</footer>
 
+<script>window.TCC_NS = 'hub';</script>
+<script src="assets/tcc.js"></script>
+<script>
+TCC.lista('pauta', {lista:'pauta', input:'pauta-in', botao:'pauta-add', progresso:true, padroes:[
+  "Qual metodologia usar: estudo de caso, pesquisa-ação ou Design Science Research?",
+  "O MVP já construído é resultado da pesquisa ou instrumento de coleta?",
+  "Quantas entrevistas são suficientes? Preciso de TCLE / aprovação ética?",
+  "Que evidência basta para afirmar que a dor existe e é forte?",
+  "Posso rodar teste de demanda real (cadastro em página de alerta) no escopo do TCC?",
+  "Minha lista de personas está completa? Devo priorizar quem desistiu de comprar?",
+  "Mostro o protótipo na entrevista ou entrevisto às cegas?",
+  "Como chego aos entrevistados? O senhor tem contatos no meio?",
+  "Qual a data limite para escolher entre a Direção A e a B?",
+  "Entrevisto as duas frentes em paralelo ou escolho antes?",
+  "A existência de concorrentes pagos valida ou enfraquece a proposta?",
+  "Quando marcamos a próxima conversa?"
+]});
+TCC.lista('decisoes', {lista:'decisoes', input:'dec-in', botao:'dec-add', padroes:[]});
+TCC.anotacoes();
+</script>
 </body>
 </html>
