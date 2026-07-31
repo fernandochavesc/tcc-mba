@@ -4,373 +4,54 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SaaS de Gestão de Entregas e Pagamento de Motoboys — Estruturação Inicial</title>
-<style>
-  :root {
-    --bg: #0f1419;
-    --bg-elevated: #1a1f26;
-    --bg-card: #1e242c;
-    --border: #2a3038;
-    --border-strong: #3a4250;
-    --text: #e6e8eb;
-    --text-muted: #8a93a0;
-    --text-subtle: #5b6472;
-    --accent: #d97757;
-    --accent-soft: rgba(217, 119, 87, 0.12);
-    --accent-border: rgba(217, 119, 87, 0.3);
-    --warn: #e0c46c;
-    --warn-soft: rgba(224, 196, 108, 0.1);
-    --success: #7cc88a;
-    --success-soft: rgba(124, 200, 138, 0.1);
-  }
-
-  * { box-sizing: border-box; }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .container {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 64px 32px 96px;
-  }
-
-  header.hero {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 40px;
-    margin-bottom: 56px;
-  }
-
-  .eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  h1 {
-    font-size: 36px;
-    line-height: 1.2;
-    margin: 0 0 20px;
-    font-weight: 650;
-    letter-spacing: -0.02em;
-  }
-
-  .subtitle {
-    color: var(--text-muted);
-    font-size: 17px;
-    max-width: 640px;
-    margin: 0;
-  }
-
-  .meta {
-    display: flex;
-    gap: 24px;
-    margin-top: 28px;
-    font-size: 13px;
-    color: var(--text-subtle);
-  }
-
-  .meta span strong {
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  nav.toc {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 24px;
-    margin-bottom: 56px;
-  }
-
-  nav.toc .toc-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-subtle);
-    margin-bottom: 12px;
-    font-weight: 600;
-  }
-
-  nav.toc ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    counter-reset: toc;
-  }
-
-  nav.toc li {
-    counter-increment: toc;
-    padding: 6px 0;
-    font-size: 14px;
-  }
-
-  nav.toc li::before {
-    content: counter(toc, decimal-leading-zero);
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-    margin-right: 12px;
-    font-weight: 600;
-    font-size: 12px;
-  }
-
-  nav.toc a {
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-
-  nav.toc a:hover { color: var(--text); }
-
-  section {
-    margin-bottom: 56px;
-    scroll-margin-top: 24px;
-  }
-
-  h2 {
-    font-size: 24px;
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    margin: 0 0 20px;
-    padding-top: 8px;
-    color: var(--text);
-  }
-
-  h2 .num {
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-    margin-right: 12px;
-    font-size: 18px;
-    font-weight: 600;
-    display: inline-block;
-    min-width: 28px;
-  }
-
-  p {
-    margin: 0 0 18px;
-    color: var(--text);
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  strong { color: var(--text); font-weight: 600; }
-
-  .callout {
-    border-left: 3px solid var(--accent);
-    background: var(--accent-soft);
-    padding: 18px 22px;
-    border-radius: 0 8px 8px 0;
-    margin: 24px 0;
-    font-size: 15px;
-  }
-
-  .callout .callout-label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-
-  .personas {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin: 24px 0;
-  }
-
-  .persona {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 22px;
-  }
-
-  .persona-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .persona-title .tag {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-subtle);
-    font-weight: 600;
-  }
-
-  .persona h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .persona p {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
-  .paths {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin: 24px 0 8px;
-  }
-
-  .path {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 22px 24px;
-    position: relative;
-  }
-
-  .path-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 10px;
-    gap: 12px;
-  }
-
-  .path h3 {
-    margin: 0;
-    font-size: 17px;
-    font-weight: 650;
-  }
-
-  .path .risk-tag {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  .risk-low { background: var(--success-soft); color: var(--success); }
-  .risk-mid { background: var(--warn-soft); color: var(--warn); }
-  .risk-high { background: var(--accent-soft); color: var(--accent); }
-
-  .path p { font-size: 14px; color: var(--text-muted); margin: 0; }
-
-  .risks {
-    counter-reset: risk;
-  }
-
-  .risk {
-    padding: 16px 0;
-    border-top: 1px solid var(--border);
-    counter-increment: risk;
-    display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 16px;
-  }
-
-  .risk:last-child { padding-bottom: 0; }
-
-  .risk::before {
-    content: counter(risk);
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-    font-weight: 700;
-    font-size: 13px;
-    padding-top: 2px;
-  }
-
-  .risk-body p { margin: 0; font-size: 15px; }
-  .risk-body p:first-child { color: var(--text); font-weight: 500; margin-bottom: 4px; }
-  .risk-body p:last-child { color: var(--text-muted); font-size: 14px; }
-
-  .next-steps ol {
-    counter-reset: step;
-    list-style: none;
-    padding: 0;
-    margin: 24px 0 0;
-  }
-
-  .next-steps li {
-    counter-increment: step;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 22px 18px 56px;
-    margin-bottom: 12px;
-    position: relative;
-    font-size: 14.5px;
-    color: var(--text-muted);
-  }
-
-  .next-steps li::before {
-    content: counter(step);
-    position: absolute;
-    left: 22px;
-    top: 18px;
-    width: 24px;
-    height: 24px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid var(--accent-border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  footer {
-    margin-top: 80px;
-    padding-top: 28px;
-    border-top: 1px solid var(--border);
-    color: var(--text-subtle);
-    font-size: 13px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  @media (max-width: 600px) {
-    .container { padding: 40px 20px 64px; }
-    h1 { font-size: 28px; }
-    h2 { font-size: 20px; }
-    .meta { flex-direction: column; gap: 8px; }
-  }
-</style>
+<title>Direção B · Operação de restaurantes — TCC</title>
+<link rel="stylesheet" href="../assets/tcc.css">
+<style>:root{--dir:var(--amber);--dir-soft:rgba(227,179,65,.14)}</style>
 </head>
 <body>
-<div class="container">
 
-  <header class="hero">
-    <div class="eyebrow">MBA · Projeto-âncora · Estruturação inicial</div>
-    <h1>SaaS de Gestão de Entregas e Pagamento de Motoboys</h1>
-    <p class="subtitle">Documento estratégico de partida: o que sabemos, o que precisa ser validado, e quais caminhos fazem sentido perseguir antes de escrever a próxima linha de código.</p>
-    <div class="meta">
-      <span><strong>Autor:</strong> Fernando Chaves</span>
-      <span><strong>Data:</strong> 25 mai 2026</span>
-      <span><strong>Status:</strong> Hipótese inicial</span>
+<header class="top">
+  <div class="wrap">
+    <div class="crumb"><a href="../">← Índice do TCC</a></div>
+    <span class="badge">DIREÇÃO B · estudo de caso</span>
+    <h1>🛵 Operação de restaurantes</h1>
+    <p class="sub">Estudar a operação de ponta a ponta — pedido, cozinha, entrega, pagamento, financeiro — e onde a IA reduz fricção entre as pessoas. Dentro dessa direção, o recorte mais promissor até agora é um SaaS de gestão de entregas e pagamento de motoboys.</p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Seções da Direção B">
+  <div class="wrap" role="tablist">
+    <button data-t="visao" class="active" role="tab" aria-selected="true">Visão geral</button>
+    <button data-t="plano" role="tab" aria-selected="false">Plano de pesquisa</button>
+    <button data-t="personas" role="tab" aria-selected="false">Personas</button>
+    <button data-t="dores" role="tab" aria-selected="false">Dores</button>
+    <button data-t="fluxo" role="tab" aria-selected="false">Fluxo &amp; Mapeamento</button>
+    <button data-t="resultado" role="tab" aria-selected="false">Resultado da Pesquisa</button>
+    <button data-t="notas" role="tab" aria-selected="false">Anotações</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============================================ VISÃO GERAL -->
+  <section id="visao" class="tab active">
+    <h2>Visão geral</h2>
+    <p class="lead">O recorte em avaliação dentro desta direção e o documento estratégico que o estrutura.</p>
+
+    <div class="card" style="margin-bottom:22px;border-color:rgba(227,179,65,.35)">
+      <h3>🎯 O recorte ainda está em aberto</h3>
+      <p>A direção é <b>operação de restaurantes</b>. Dentro dela, o candidato mais forte hoje é o <b>SaaS de gestão de entregas e pagamento de motoboys</b> — porque nasce de uma dor observada de perto, já tem uma primeira versão funcionando num cliente real e dá acesso fácil a usuários para entrevistar.</p>
+      <p style="margin-top:10px">Mas o recorte não está fechado: a mesma direção comporta outros focos (comunicação entre salão e cozinha, previsão de demanda e compras, fechamento financeiro). O documento abaixo estrutura o recorte dos motoboys; as demais abas tratam da direção inteira.</p>
     </div>
-  </header>
 
-  <nav class="toc">
+    <div class="doc">
+      <div class="hero" style="margin-bottom:20px">
+        <div class="num">RECORTE EM AVALIAÇÃO</div>
+        <h2 style="border:none;padding-top:0;margin-top:4px">SaaS de Gestão de Entregas e Pagamento de Motoboys</h2>
+        <p>Documento estratégico de partida: o que sabemos, o que precisa ser validado, e quais caminhos fazem sentido perseguir antes de escrever a próxima linha de código.</p>
+        <p style="color:var(--muted);font-size:13px"><b>Status:</b> hipótese inicial · <b>v0.1</b> · 25 mai 2026</p>
+      </div>
+<nav class="toc">
     <div class="toc-label">Sumário</div>
     <ol>
       <li><a href="#contexto">Contexto e ponto de partida</a></li>
@@ -492,11 +173,233 @@
     </ol>
   </section>
 
-  <footer>
-    <span>Documento vivo · revisitar conforme as validações trazem evidência</span>
-    <span>v0.1 · 2026-05-25</span>
-  </footer>
+  
+    </div>
+  </section>
 
-</div>
+  <!-- ============================================ PLANO -->
+  <section id="plano" class="tab">
+    <h2>Plano de pesquisa</h2>
+    <p class="lead">Pesquisar o workflow antes de desenhar qualquer solução. A ordem importa: o produto vem por último.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="num">7</div><div class="lbl">Personas mapeadas</div></div>
+      <div class="stat"><div class="num">0</div><div class="lbl">Entrevistas feitas</div></div>
+      <div class="stat"><div class="num" id="s-done">0</div><div class="lbl">Passos concluídos</div></div>
+      <div class="stat"><div class="num" id="s-pct">0%</div><div class="lbl">Progresso</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <h3>Progresso dos próximos passos</h3>
+      <p>Baseado no que você marca na lista abaixo.</p>
+      <div class="progress"><i id="bar" style="width:0%"></i></div>
+    </div>
+
+    <div class="card">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="when">Etapa 1</div>
+          <h4>Entender o fluxo completo</h4>
+          <p>Do cliente entrando até o financeiro. Mapear cada elo da cadeia, inclusive o que acontece fora dos sistemas (papel, grito, WhatsApp).</p>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 2</div>
+          <h4>Mapear todas as personas</h4>
+          <ul>
+            <li>Quem faz o quê, quanto tempo leva, quais ferramentas usa</li>
+            <li>Onde perde tempo e onde improvisa</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 3</div>
+          <h4>Mapear dores</h4>
+          <p>Coletar exemplos literais e classificar os padrões: excesso de cliques, retrabalho, falta de comunicação, falta de previsibilidade.</p>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 4</div>
+          <h4>Fechar o recorte</h4>
+          <p>Com as dores em mãos, decidir se o foco é mesmo entregas e pagamento de motoboys ou outro elo da operação.</p>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 5</div>
+          <h4>Só então desenhar a solução</h4>
+          <p>Com as dores validadas, propor a camada de IA — e comparar a intensidade dessas dores com as da Direção A antes de decidir o TCC.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:24px 0 10px">Próximos passos</h3>
+    <ul class="checklist" id="tasks"></ul>
+    <div class="addrow">
+      <input type="text" id="task-in" placeholder="Novo passo (ex.: agendar entrevista com garçom)">
+      <button class="btn" id="task-add">Adicionar</button>
+    </div>
+  </section>
+
+  <!-- ============================================ PERSONAS -->
+  <section id="personas" class="tab">
+    <h2>Personas</h2>
+    <p class="lead">Cada persona usa uma ferramenta diferente — e o trabalho acontece <i>entre</i> elas. É aí que costuma estar a oportunidade.</p>
+
+    <h3 style="margin-bottom:10px">A operação do restaurante</h3>
+    <div class="grid grid-3" id="grade-operacao"></div>
+
+    <h3 style="margin:26px 0 10px">No recorte de entregas e motoboys</h3>
+    <div class="grid grid-3" id="grade-delivery"></div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>⚠️ Nenhuma foi validada em campo ainda</h3>
+      <p>Estas personas vieram de observação informal e do documento de estruturação, não de entrevistas. A persona do <b>motoboy</b> é a hipótese mais interessante e mais frágil: se a dor de fluxo de caixa dele for tão forte quanto se imagina, o cliente pagante do produto pode não ser o restaurante.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ DORES -->
+  <section id="dores" class="tab">
+    <h2>Dores</h2>
+    <p class="lead">Dores concretas são ouro. Registre exemplos reais que ouvir em campo — quanto mais literal, melhor.</p>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>💡 Exemplos de dores “de ouro”</h3>
+        <ul>
+          <li>“Garçons tiram foto da tela pra mandar pra cozinha.”</li>
+          <li>“O gerente abre cinco sistemas toda manhã.”</li>
+          <li>“No fim do dia eu faço a conta do motoboy na calculadora do celular.”</li>
+        </ul>
+        <p style="margin-top:10px">O padrão a procurar: onde as pessoas <b>improvisam</b>. Todo improviso é um processo que o sistema não cobre.</p>
+      </div>
+      <div class="card">
+        <h3>🩹 Padrões de dor a investigar</h3>
+        <ul>
+          <li>Excesso de informação</li>
+          <li>Falta de comunicação entre áreas</li>
+          <li>Excesso de cliques</li>
+          <li>Retrabalho</li>
+          <li>Falta de previsibilidade</li>
+          <li>Dinheiro que demora a chegar (motoboy)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>📌 Dores que eu coletei em campo</h3>
+      <p>Adicione cada dor observada nas entrevistas. Fica salvo automaticamente neste navegador.</p>
+      <ul class="checklist" id="pains" style="margin-top:14px"></ul>
+      <div class="addrow">
+        <input type="text" id="pain-in" placeholder='Ex.: "cozinheiro não vê o pedido do delivery"'>
+        <button class="btn" id="pain-add">Registrar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ FLUXO -->
+  <section id="fluxo" class="tab">
+    <h2>Fluxo &amp; Mapeamento</h2>
+    <p class="lead">O trabalho acontece entre PDV, ERP, iFood, WhatsApp, impressoras, cozinha, financeiro, estoque, planilhas e contabilidade. Mapear esse fluxo é a etapa 1.</p>
+
+    <div class="card">
+      <h3>🍽️ Fluxo completo do restaurante</h3>
+      <div class="flow">
+        <span class="step">Cliente entra</span><span class="arrow">→</span>
+        <span class="step">Pedido</span><span class="arrow">→</span>
+        <span class="step">Cozinha</span><span class="arrow">→</span>
+        <span class="step">Entrega</span><span class="arrow">→</span>
+        <span class="step">Pagamento</span><span class="arrow">→</span>
+        <span class="step">Fechamento</span><span class="arrow">→</span>
+        <span class="step">Compra de insumos</span><span class="arrow">→</span>
+        <span class="step">Financeiro</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🛵 Recorte da entrega — onde a dor observada mora</h3>
+      <div class="flow">
+        <span class="step">Pedido (iFood / 99 / WhatsApp)</span><span class="arrow">→</span>
+        <span class="step">Aceite</span><span class="arrow">→</span>
+        <span class="step">Preparo</span><span class="arrow">→</span>
+        <span class="step">Atribuição ao motoboy</span><span class="arrow">→</span>
+        <span class="step">Rota e entrega</span><span class="arrow">→</span>
+        <span class="step">Confirmação</span><span class="arrow">→</span>
+        <span class="step">Cálculo da remuneração</span><span class="arrow">→</span>
+        <span class="step">Pagamento ao motoboy</span>
+      </div>
+      <p style="margin-top:12px">A dor que originou o recorte está nos dois últimos elos: cada entrega tem distância e tempo diferentes, e a regra de pagamento precisa ser justa para o entregador e sustentável para o dono. A pergunta em aberto é se o valor está no cálculo ou nas camadas ao redor dele.</p>
+    </div>
+
+    <div class="card">
+      <h3>Para cada etapa, mapeie</h3>
+      <ul>
+        <li>Quem faz o quê?</li>
+        <li>Quanto tempo leva?</li>
+        <li>Quais ferramentas são usadas?</li>
+        <li>Onde se perde tempo?</li>
+        <li>Onde as pessoas improvisam / dão jeitinho?</li>
+        <li>Que informação atravessa de uma pessoa para outra — e como?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================ RESULTADO -->
+  <section id="resultado" class="tab">
+    <h2>Resultado da Pesquisa</h2>
+    <p class="lead">Esta aba é o destino das evidências de campo. Ainda está vazia — e essa é a informação mais importante sobre esta direção agora.</p>
+
+    <div class="vazio">
+      <h3>Nenhuma evidência de campo coletada até aqui</h3>
+      <p>Tudo o que existe hoje nesta direção é <b>hipótese estruturada</b>: o documento da aba Visão geral organiza o problema e os caminhos possíveis, mas nasceu de observação informal de um único restaurante — o do amigo — e não de pesquisa.</p>
+      <p style="margin-top:12px">O que deve preencher esta aba, na ordem:</p>
+      <ul>
+        <li><b>Intensidade da dor</b> — quantos dos 15–20 donos entrevistados descrevem o problema sem serem induzidos?</li>
+        <li><b>Quem é o cliente real</b> — o restaurante paga, ou o dinheiro vem da antecipação para o motoboy?</li>
+        <li><b>Disposição a pagar</b> — valores concretos ouvidos, não estimados.</li>
+        <li><b>Mapa de concorrência</b> — Cardápio Web, Anota AI, Goomer e afins: o que já cobrem e onde estão os buracos.</li>
+        <li><b>Defensibilidade</b> — que camada tornaria isso uma empresa em vez de uma funcionalidade.</li>
+        <li><b>Comparação com a Direção A</b> — a mesma régua aplicada às duas frentes.</li>
+      </ul>
+      <p style="margin-top:12px">Enquanto isso, a Direção A já tem resultados verificados. Vale ter consciência desse desequilíbrio ao comparar as duas: <b>a Direção B não está atrás por ser mais fraca, e sim por ainda não ter sido investigada</b>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ NOTAS -->
+  <section id="notas" class="tab">
+    <h2>Anotações</h2>
+    <p class="lead">Espaço livre para insights, transcrições de entrevista e hipóteses desta direção. Salva sozinho enquanto você digita. <span class="saved" id="saved">✓ salvo</span></p>
+    <textarea id="notes" placeholder="Escreva aqui..."></textarea>
+  </section>
+
+</main>
+
+<footer class="rodape"><a href="../">Índice do TCC</a> · Direção B · suas anotações ficam apenas neste navegador</footer>
+
+<script>window.TCC_NS = 'b';</script>
+<script src="../assets/tcc.js"></script>
+<script>
+TCC.listaTarefas([
+  "Listar restaurantes/contatos para entrevistar (começar pelo amigo)",
+  "Escrever roteiro de entrevista por persona",
+  "Fazer 1 observação em campo (acompanhar um turno inteiro)",
+  "Mapear o fluxo completo de 1 restaurante",
+  "Entrevistar 15-20 donos de restaurante com delivery próprio",
+  "Conversar com 10-15 motoboys sobre fluxo de caixa",
+  "Mapear concorrência (Cardápio Web, Anota AI, Goomer)",
+  "Comparar a intensidade das dores com a Direção A"
+]);
+TCC.listaDores([]);
+TCC.anotacoes();
+TCC.personas('grade-operacao', [
+  {n:"👑 Dono", d:"Quer:", w:["lucro","reduzir desperdício","faturamento previsível","equipe funcionando sem ele"]},
+  {n:"📋 Gerente", d:"Quer:", w:["pedidos sem atraso","escala resolvida","menos reclamações","estoque sob controle"]},
+  {n:"🧑‍🍳 Garçom", d:"Quer:", w:["lançar pedido rápido","dividir conta sem erro","não errar mesa"]},
+  {n:"🔥 Cozinha", d:"Quer:", w:["fila organizada","saber a prioridade","comunicação simples"]},
+  {n:"📦 Estoque", d:"Quer:", w:["saber o que acabou","previsão de consumo","compras na hora certa"]},
+  {n:"💰 Financeiro", d:"Quer:", w:["fechamento sem retrabalho","conciliação","impostos em dia"]},
+  {n:"🛵 Delivery", d:"Quer:", w:["integrar pedidos de vários apps","evitar atraso","reduzir cancelamentos"]}
+]);
+TCC.personas('grade-delivery', [
+  {n:"👑 Dono do restaurante", d:"Dor principal:", w:["tempo gasto fazendo conta de motoboy","conflito com entregadores","custo logístico imprevisível","não sabe se o delivery dá lucro por bairro"]},
+  {n:"📋 Gerente de motoboys", d:"Dor principal:", w:["coordenar escala e atribuir pedidos","comunicação com os entregadores","prestar contas ao dono","apagar incêndio o dia inteiro"]},
+  {n:"🛵 Motoboy", d:"Dor principal (a mais estratégica):", w:["receber no mesmo dia, não em 1-2 semanas","saber quanto vai ganhar antes de aceitar","não depender só do iFood","acesso a crédito"]}
+]);
+</script>
 </body>
 </html>

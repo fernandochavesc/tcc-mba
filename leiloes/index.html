@@ -1,243 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hub de Leilões de Imóveis no RJ — Pesquisa de Viabilidade</title>
-<style>
-  :root {
-    --paper: #FAFAF7;
-    --paper-2: #F1F2ED;
-    --ink: #22303A;
-    --ink-soft: #4A5A66;
-    --line: #DDE1D9;
-    --accent: #0E6E5C;
-    --accent-soft: #E3EFEA;
-    --gold: #B7791F;
-    --gold-soft: #F6ECD9;
-    --red: #B3403A;
-    --red-soft: #F5E3E1;
-    --code-bg: #ECEFE9;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #141B21;
-      --paper-2: #1B242C;
-      --ink: #E5E9EB;
-      --ink-soft: #9FAEB8;
-      --line: #2C3842;
-      --accent: #3FA88F;
-      --accent-soft: #1A2E2A;
-      --gold: #D9A03F;
-      --gold-soft: #33291A;
-      --red: #D9756F;
-      --red-soft: #362020;
-      --code-bg: #1B242C;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #141B21;
-    --paper-2: #1B242C;
-    --ink: #E5E9EB;
-    --ink-soft: #9FAEB8;
-    --line: #2C3842;
-    --accent: #3FA88F;
-    --accent-soft: #1A2E2A;
-    --gold: #D9A03F;
-    --gold-soft: #33291A;
-    --red: #D9756F;
-    --red-soft: #362020;
-    --code-bg: #1B242C;
-  }
-  :root[data-theme="light"] {
-    --paper: #FAFAF7;
-    --paper-2: #F1F2ED;
-    --ink: #22303A;
-    --ink-soft: #4A5A66;
-    --line: #DDE1D9;
-    --accent: #0E6E5C;
-    --accent-soft: #E3EFEA;
-    --gold: #B7791F;
-    --gold-soft: #F6ECD9;
-    --red: #B3403A;
-    --red-soft: #F5E3E1;
-    --code-bg: #ECEFE9;
-  }
-
-  html { background: var(--paper); }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
-    line-height: 1.62;
-    margin: 0;
-    font-size: 17px;
-  }
-  .wrap { max-width: 76ch; margin: 0 auto; padding: 0 24px 96px; }
-
-  /* Header with calçadão wave band */
-  header.masthead { border-bottom: 1px solid var(--line); padding: 40px 0 28px; }
-  .wave-band { height: 26px; margin-bottom: 28px; opacity: .85; }
-  .wave-band svg { display: block; width: 100%; height: 100%; }
-  .eyebrow {
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 12px; letter-spacing: .14em; text-transform: none;
-    color: var(--accent); font-weight: 600;
-  }
-  h1 {
-    font-size: clamp(28px, 5vw, 40px);
-    line-height: 1.15; margin: 10px 0 12px; text-wrap: balance; font-weight: 700;
-  }
-  .subtitle { color: var(--ink-soft); font-size: 18px; max-width: 60ch; margin: 0; }
-  .meta {
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    font-size: 13px; color: var(--ink-soft); margin-top: 18px;
-    display: flex; gap: 18px; flex-wrap: wrap;
-  }
-
-  /* TOC */
-  nav.toc {
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    font-size: 14px; border: 1px solid var(--line); border-radius: 6px;
-    padding: 18px 22px; margin: 32px 0; background: var(--paper-2);
-  }
-  nav.toc strong { display: block; margin-bottom: 8px; font-size: 12px; letter-spacing: .12em; color: var(--ink-soft); }
-  nav.toc ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
-  nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
-  nav.toc a:hover { color: var(--accent); border-color: var(--accent); }
-
-  h2 {
-    font-size: 26px; line-height: 1.2; margin: 56px 0 16px; text-wrap: balance;
-    padding-top: 24px; border-top: 1px solid var(--line);
-  }
-  h3 { font-size: 19px; margin: 32px 0 10px; text-wrap: balance; }
-  p { margin: 0 0 16px; }
-  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
-  ul, ol { padding-left: 24px; margin: 0 0 16px; }
-  li { margin-bottom: 6px; }
-  strong { font-weight: 700; }
-
-  /* Confidence chips */
-  .chip {
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    display: inline-block; font-size: 11px; font-weight: 600;
-    padding: 1px 8px 2px; border-radius: 999px; vertical-align: 1px;
-    letter-spacing: .02em; white-space: nowrap;
-  }
-  .chip.ok  { background: var(--accent-soft); color: var(--accent); }
-  .chip.obs { background: var(--gold-soft);   color: var(--gold); }
-  .chip.ref { background: var(--red-soft);    color: var(--red); }
-
-  /* Verdict cards */
-  .verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 24px 0; }
-  .verdict .card {
-    border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; background: var(--paper-2);
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .card .dim { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; letter-spacing: .1em; color: var(--ink-soft); font-weight: 600; }
-  .card .call { font-size: 17px; font-weight: 700; }
-  .card .call.green { color: var(--accent); }
-  .card .call.amber { color: var(--gold); }
-  .card .note { font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
-
-  /* Callout */
-  .callout {
-    border-left: 3px solid var(--accent); background: var(--accent-soft);
-    padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0;
-  }
-  .callout.gold { border-color: var(--gold); background: var(--gold-soft); }
-  .callout.red { border-color: var(--red); background: var(--red-soft); }
-  .callout p:last-child { margin-bottom: 0; }
-
-  /* Tables */
-  .table-scroll { overflow-x: auto; margin: 18px 0 24px; border: 1px solid var(--line); border-radius: 6px; }
-  table {
-    border-collapse: collapse; width: 100%; min-width: 640px;
-    font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 1.45;
-    font-variant-numeric: tabular-nums;
-  }
-  th {
-    text-align: left; font-size: 12px; letter-spacing: .06em; color: var(--ink-soft);
-    background: var(--paper-2); padding: 10px 12px; border-bottom: 1px solid var(--line);
-    white-space: nowrap;
-  }
-  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  td.no { color: var(--red); font-weight: 700; }
-  td.yes { color: var(--accent); font-weight: 700; }
-
-  /* Pipeline diagram */
-  .pipeline {
-    font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px;
-    display: flex; flex-direction: column; gap: 0; margin: 20px 0 24px; align-items: stretch;
-  }
-  .stage {
-    border: 1px solid var(--line); border-radius: 6px; background: var(--paper-2);
-    padding: 12px 16px;
-  }
-  .stage b { display: block; font-size: 13px; color: var(--accent); margin-bottom: 2px; }
-  .stage span { color: var(--ink-soft); font-size: 13.5px; }
-  .flow-arrow { text-align: center; color: var(--ink-soft); font-size: 15px; padding: 3px 0; }
-
-  /* Walkthrough steps */
-  ol.steps { counter-reset: st; list-style: none; padding-left: 0; margin: 18px 0 24px; display: grid; gap: 10px; }
-  ol.steps li {
-    counter-increment: st; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; margin: 0;
-  }
-  ol.steps li::before {
-    content: counter(st);
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    width: 28px; height: 28px; border-radius: 999px; background: var(--accent); color: var(--paper);
-    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-top: 2px;
-  }
-
-  code, .mono {
-    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    font-size: .85em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px;
-  }
-
-  footer.src { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 24px; font-size: 14.5px; color: var(--ink-soft); }
-  footer.src h2 { border: none; padding-top: 0; margin-top: 0; font-size: 20px; color: var(--ink); }
-  footer.src ul { padding-left: 20px; }
-
-  @media (prefers-reduced-motion: no-preference) {
-    a { transition: color .15s ease; }
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direção A · Hub de leilões de imóveis no RJ — TCC</title>
+<link rel="stylesheet" href="../assets/tcc.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="masthead">
-    <div class="wave-band" aria-hidden="true">
-      <svg viewBox="0 0 800 26" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 13 Q 25 0 50 13 T 100 13 T 150 13 T 200 13 T 250 13 T 300 13 T 350 13 T 400 13 T 450 13 T 500 13 T 550 13 T 600 13 T 650 13 T 700 13 T 750 13 T 800 13" fill="none" stroke="var(--ink)" stroke-width="2.4" opacity=".55"/>
-        <path d="M0 21 Q 25 8 50 21 T 100 21 T 150 21 T 200 21 T 250 21 T 300 21 T 350 21 T 400 21 T 450 21 T 500 21 T 550 21 T 600 21 T 650 21 T 700 21 T 750 21 T 800 21" fill="none" stroke="var(--accent)" stroke-width="2.4" opacity=".8"/>
-      </svg>
-    </div>
-    <div class="eyebrow">Pesquisa de viabilidade · TCC MBA em IA &amp; Negócios</div>
-    <h1>Hub de Leilões de Imóveis no Rio de Janeiro</h1>
-    <p class="subtitle">Onde os leilões judiciais e extrajudiciais do RJ são publicados, quem já agrega esses dados, e como coletá-los, padronizá-los e transformá-los em filtros e notificações.</p>
-    <div class="meta">
-      <span>Pesquisa realizada em 25/07/2026</span>
-      <span>24 fontes lidas · 118 afirmações extraídas · 25 verificadas adversarialmente</span>
-    </div>
-  </header>
 
-  <nav class="toc">
-    <strong>Conteúdo</strong>
-    <ol>
-      <li><a href="#parecer">Sumário executivo — parecer de viabilidade</a></li>
-      <li><a href="#base">Como funciona um leilão de imóvel no Brasil</a></li>
-      <li><a href="#fontes">Mapa de fontes primárias no RJ</a></li>
-      <li><a href="#concorrencia">Plataformas existentes (concorrência)</a></li>
-      <li><a href="#coleta">Viabilidade da coleta de dados</a></li>
-      <li><a href="#mvp">Arquitetura proposta do MVP</a></li>
-      <li><a href="#riscos">Riscos e próximos passos</a></li>
-    </ol>
-  </nav>
+<header class="top">
+  <div class="wrap">
+    <div class="crumb"><a href="../">← Índice do TCC</a></div>
+    <span class="badge">DIREÇÃO A · setor específico</span>
+    <h1>🏛️ Hub de leilões de imóveis no Rio de Janeiro</h1>
+    <p class="sub">Centralizar leilões judiciais e extrajudiciais do RJ com dados padronizados, filtros que hoje não existem e alertas. Pesquisa de viabilidade concluída em 25/07/2026 e MVP navegável no ar.</p>
+  </div>
+</header>
 
-  <p><span class="chip ok">Verificado</span> confirmado por 2–3 verificadores independentes contra a fonte primária &nbsp;·&nbsp; <span class="chip obs">Observado</span> extraído diretamente da fonte em 25/07/2026, sem rodada adversarial &nbsp;·&nbsp; <span class="chip ref">Refutado</span> a verificação derrubou a hipótese — e o erro é um achado.</p>
+<nav class="tabs" aria-label="Seções da Direção A">
+  <div class="wrap" role="tablist">
+    <button data-t="visao" class="active" role="tab" aria-selected="true">Visão geral</button>
+    <button data-t="plano" role="tab" aria-selected="false">Plano de pesquisa</button>
+    <button data-t="personas" role="tab" aria-selected="false">Personas</button>
+    <button data-t="dores" role="tab" aria-selected="false">Dores</button>
+    <button data-t="fluxo" role="tab" aria-selected="false">Fluxo &amp; Mapeamento</button>
+    <button data-t="resultado" role="tab" aria-selected="false">Resultado da Pesquisa</button>
+    <button data-t="notas" role="tab" aria-selected="false">Anotações</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============================================ VISÃO GERAL -->
+  <section id="visao" class="tab active">
+    <h2>Visão geral</h2>
+    <p class="lead">Relatório de viabilidade completo: onde os leilões do RJ são publicados, quem já agrega esses dados, o que é possível coletar e como seria o produto. <a href="../mapa/">Ver o MVP no mapa →</a></p>
+    <div class="doc">
+<nav class="toc">
+        <strong>Conteúdo do relatório</strong>
+        <ol>
+          <li><a href="#parecer">Sumário executivo — parecer de viabilidade</a></li>
+          <li><a href="#base">Como funciona um leilão de imóvel no Brasil</a></li>
+          <li><a href="#fontes">Mapa de fontes primárias no RJ</a></li>
+          <li><a href="#concorrencia">Plataformas existentes (concorrência)</a></li>
+          <li><a href="#coleta">Viabilidade da coleta de dados</a></li>
+          <li><a href="#mvp">Arquitetura proposta do MVP</a></li>
+          <li><a href="#riscos">Riscos e próximos passos</a></li>
+        </ol>
+      </nav>
+<p><span class="chip ok">Verificado</span> confirmado por 2–3 verificadores independentes contra a fonte primária &nbsp;·&nbsp; <span class="chip obs">Observado</span> extraído diretamente da fonte em 25/07/2026, sem rodada adversarial &nbsp;·&nbsp; <span class="chip ref">Refutado</span> a verificação derrubou a hipótese — e o erro é um achado.</p>
 
   <h2 id="parecer">1. Sumário executivo — parecer de viabilidade</h2>
 
@@ -593,7 +405,287 @@
     </ul>
     <p>Relatório gerado por pesquisa profunda assistida por IA em 25/07/2026 · Cópia em Markdown salva em <code>MBA/Projeto de Pesquisa/pesquisa-viabilidade-hub-leiloes-rj.md</code></p>
   </footer>
-</div>
+    </div>
+  </section>
 
+  <!-- ============================================ PLANO -->
+  <section id="plano" class="tab">
+    <h2>Plano de pesquisa</h2>
+    <p class="lead">A descoberta desta direção começou pelas fontes (o gargalo declarado) e chegou a um MVP. O que falta é a parte humana: ouvir quem compra.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="num">2</div><div class="lbl">Etapas concluídas</div></div>
+      <div class="stat"><div class="num">18</div><div class="lbl">Lotes reais no mapa</div></div>
+      <div class="stat"><div class="num" id="s-done">0</div><div class="lbl">Passos concluídos</div></div>
+      <div class="stat"><div class="num" id="s-pct">0%</div><div class="lbl">Progresso</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <h3>Progresso dos próximos passos</h3>
+      <p>Baseado no que você marca na lista abaixo.</p>
+      <div class="progress"><i id="bar" style="width:0%"></i></div>
+    </div>
+
+    <div class="card">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="when">Etapa 1 · concluída</div>
+          <h4>Mapear as fontes e a concorrência</h4>
+          <p>Onde os leilões do RJ são publicados, quem agrega hoje e o que falta nesses agregadores. Resultado na aba Visão geral, com fontes citadas e verificação adversarial das afirmações centrais.</p>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 2 · concluída</div>
+          <h4>Provar a coleta com dados reais</h4>
+          <p>MVP funcionando com duas fontes: lista oficial da Caixa (capital inteira) e lotes judiciais da Zona Sul vindos dos leiloeiros credenciados do TJRJ. Prova que o “desafio técnico de acesso a dados” é superável.</p>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 3 · em aberto</div>
+          <h4>Ouvir quem compra</h4>
+          <ul>
+            <li>Como as pessoas descobrem um leilão hoje?</li>
+            <li>Quanto tempo perdem garimpando e onde desistem?</li>
+            <li>O que as impede de dar o lance: informação ou medo jurídico?</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 4 · em aberto</div>
+          <h4>Comparar a intensidade da dor com a Direção B</h4>
+          <p>Mesma régua nas duas frentes: frequência, custo e improviso. A direção do TCC sai dessa comparação.</p>
+        </div>
+        <div class="tl-item">
+          <div class="when">Etapa 5 · condicional</div>
+          <h4>Se esta direção vencer: aprofundar o produto</h4>
+          <p>Alertas por busca salva, automação da coleta e cobertura dos leiloeiros restantes — o roteiro detalhado está no fim da aba Visão geral.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:24px 0 10px">Próximos passos</h3>
+    <ul class="checklist" id="tasks"></ul>
+    <div class="addrow">
+      <input type="text" id="task-in" placeholder="Novo passo (ex.: agendar conversa com leiloeiro)">
+      <button class="btn" id="task-add">Adicionar</button>
+    </div>
+  </section>
+
+  <!-- ============================================ PERSONAS -->
+  <section id="personas" class="tab">
+    <h2>Personas</h2>
+    <p class="lead">Quem usaria o hub — e quem apenas produz o dado. A distinção importa: leiloeiros e bancos não são clientes, são fontes, e têm interesse próprio em serem encontrados.</p>
+
+    <h3 style="margin-bottom:10px">Usuários do produto</h3>
+    <div class="grid grid-3" id="grade-usuarios"></div>
+
+    <h3 style="margin:26px 0 10px">Fontes do dado (não são clientes)</h3>
+    <div class="grid grid-3" id="grade-fontes"></div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>⚠️ A validar nas entrevistas</h3>
+      <p>Estas personas vieram da pesquisa de fontes e da análise dos concorrentes, não de campo. As perguntas em aberto: qual delas sente a dor com mais frequência, quem já paga por informação hoje (a assinatura de R$ 74,90/mês de um concorrente sugere que alguém paga), e se “quem procura para morar” é um usuário real ou uma minoria romântica dentro de um mercado dominado por investidores.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ DORES -->
+  <section id="dores" class="tab">
+    <h2>Dores</h2>
+    <p class="lead">Algumas dores já estão comprovadas pelos dados que coletamos; outras são hipóteses que só entrevistas resolvem. Manter os dois grupos separados é o que mantém a pesquisa honesta.</p>
+
+    <div class="grid grid-2">
+      <div class="card" style="border-color:rgba(63,185,80,.35)">
+        <h3>✅ Dores comprovadas pela coleta</h3>
+        <ul>
+          <li><b>São ~78 sites de leiloeiros</b> credenciados no TJRJ, cada um com seu próprio catálogo — ninguém acompanha todos.</li>
+          <li><b>Nenhum agregador filtra por número de quartos</b> — o dado não existe estruturado em lugar nenhum.</li>
+          <li><b>O mesmo imóvel aparece em vários leiloeiros</b> com preços e datas diferentes (4 casos entre 18 lotes).</li>
+          <li><b>Os dados vivem em prosa</b>: tipo, quartos e metragem estão soltos no meio do texto do edital.</li>
+          <li><b>A fonte mais fácil não cobre a Zona Sul</b>: o estoque da Caixa está na periferia.</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(227,179,65,.35)">
+        <h3>🔍 Hipóteses a validar em campo</h3>
+        <ul>
+          <li>“Descobri o leilão dois dias antes da praça” — a janela de decisão é curta demais?</li>
+          <li>“Não sei se o imóvel está ocupado sem ler o laudo inteiro” — o medo jurídico trava mais que a falta de oferta?</li>
+          <li>“Desisti porque não entendi o edital” — o obstáculo é informação ou letramento jurídico?</li>
+          <li>Quem procura para morar chega a olhar leilão, ou desiste antes?</li>
+          <li>Alguém pagaria por alerta, ou o valor está na assessoria da compra?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>🩹 Padrões de dor a investigar</h3>
+      <p>Fragmentação da fonte · dado preso em texto · janela curta de decisão · risco jurídico opaco · duplicidade entre canais · ausência de histórico (o que foi arrematado e por quanto).</p>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>📌 Dores que eu coletei em campo</h3>
+      <p>Registre cada frase literal que ouvir nas entrevistas. Quanto mais literal, melhor. Fica salvo automaticamente neste navegador.</p>
+      <ul class="checklist" id="pains" style="margin-top:14px"></ul>
+      <div class="addrow">
+        <input type="text" id="pain-in" placeholder='Ex.: "eu só descobri o leilão quando já tinha acabado"'>
+        <button class="btn" id="pain-add">Registrar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ FLUXO -->
+  <section id="fluxo" class="tab">
+    <h2>Fluxo &amp; Mapeamento</h2>
+    <p class="lead">Três fluxos importam aqui: o do imóvel até virar lote (judicial e extrajudicial), e o do dado até virar alerta. O produto vive no encontro dos três.</p>
+
+    <div class="card">
+      <h3>⚖️ Caminho judicial — CPC arts. 879–903</h3>
+      <div class="flow">
+        <span class="step">Execução</span><span class="arrow">→</span>
+        <span class="step">Penhora</span><span class="arrow">→</span>
+        <span class="step">Avaliação</span><span class="arrow">→</span>
+        <span class="step">Edital</span><span class="arrow">→</span>
+        <span class="step">1ª praça</span><span class="arrow">→</span>
+        <span class="step">2ª praça</span><span class="arrow">→</span>
+        <span class="step">Arrematação</span><span class="arrow">→</span>
+        <span class="step">Carta de arrematação</span><span class="arrow">→</span>
+        <span class="step">Imissão na posse</span>
+      </div>
+      <p style="margin-top:12px">O dado público nasce no <b>edital</b> e é publicado no site do leiloeiro credenciado — não em um portal do tribunal. Entre o edital e a 1ª praça está a janela em que o comprador precisa ser avisado.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏦 Caminho extrajudicial — Lei 9.514/97</h3>
+      <div class="flow">
+        <span class="step">Inadimplência</span><span class="arrow">→</span>
+        <span class="step">Intimação no cartório (RGI)</span><span class="arrow">→</span>
+        <span class="step">Consolidação da propriedade</span><span class="arrow">→</span>
+        <span class="step">1º leilão</span><span class="arrow">→</span>
+        <span class="step">2º leilão</span><span class="arrow">→</span>
+        <span class="step">Venda direta pelo banco</span>
+      </div>
+      <p style="margin-top:12px">O cartório não publica a data do leilão — quem publica é o leiloeiro contratado pelo banco. Por isso os portais dos bancos (com destaque para a Caixa) são a fonte prática deste caminho, e não os cartórios.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔄 Caminho do dado — o que o hub faz</h3>
+      <div class="flow">
+        <span class="step">Fontes (leiloeiros + bancos)</span><span class="arrow">→</span>
+        <span class="step">Coleta</span><span class="arrow">→</span>
+        <span class="step">Extração por IA</span><span class="arrow">→</span>
+        <span class="step">Normalização + geocodificação</span><span class="arrow">→</span>
+        <span class="step">Deduplicação</span><span class="arrow">→</span>
+        <span class="step">Mapa e filtros</span><span class="arrow">→</span>
+        <span class="step">Alerta</span>
+      </div>
+      <p style="margin-top:12px">As cinco primeiras etapas já rodam de verdade — o detalhamento técnico está na aba Visão geral, seção 6. A última é a Fase 3 do roteiro.</p>
+    </div>
+
+    <div class="card">
+      <h3>Para cada etapa, mapear nas entrevistas</h3>
+      <ul>
+        <li>Como a pessoa descobre que o leilão existe?</li>
+        <li>Quanto tempo passa entre descobrir e decidir?</li>
+        <li>Quais ferramentas ela usa (site, planilha, WhatsApp, assessor)?</li>
+        <li>Onde ela perde tempo e onde improvisa?</li>
+        <li>O que a faz desistir?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================ RESULTADO -->
+  <section id="resultado" class="tab">
+    <h2>Resultado da Pesquisa</h2>
+    <p class="lead">O que a pesquisa e o MVP já provaram — com os números reais coletados em 25/07/2026 e as ressalvas do que ainda não foi verificado.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="num">78</div><div class="lbl">Leiloeiros na lista oficial (CGJ/TJRJ)</div></div>
+      <div class="stat"><div class="num">25</div><div class="lbl">Sites monitorados no MVP</div></div>
+      <div class="stat"><div class="num">18</div><div class="lbl">Lotes judiciais na Zona Sul</div></div>
+      <div class="stat"><div class="num">4.906</div><div class="lbl">Imóveis da Caixa na capital</div></div>
+    </div>
+
+    <div class="card">
+      <h3>1. A fragmentação é regulatória, não acidental</h3>
+      <p>O TJRJ não tem portal de leilões. A Resolução CNJ 236/2016 <b>obriga cada leiloeiro credenciado a manter site próprio</b>, e a lista da Corregedoria traz ~78 deles. A dificuldade de achar um imóvel não é falha de mercado: é consequência direta do desenho da norma — e é exatamente a lacuna que um agregador preenche.</p>
+    </div>
+
+    <div class="card">
+      <h3>2. Uma hipótese caiu — e isso mudou a arquitetura</h3>
+      <p>A suposição de que os editais são publicados primariamente no Diário Oficial (DJERJ) foi <b>refutada</b> na verificação. Um edital real de julho/2026 declara publicação no site do leiloeiro e no sindicato, sem menção ao diário; o CPC (art. 887, §2º) manda publicar “na rede mundial de computadores, em sítio designado pelo juízo”. Construir o coletor em cima do diário oficial teria sido um erro de projeto.</p>
+    </div>
+
+    <div class="card">
+      <h3>3. A fonte fácil não atende o caso de uso</h3>
+      <p>A lista da Caixa é a fonte mais estruturada que existe (traz até número de quartos e permite download). Mas o estoque dela está na periferia: <b>Santa Cruz tem 1.330 imóveis; Flamengo tem zero e Botafogo tem um</b>. Imóvel de Zona Sul chega ao mercado pela via <b>judicial</b> — a via difícil. Filtrando “3+ quartos na Zona Sul” no MVP: <b>0 resultados da Caixa contra 3 judiciais</b>.</p>
+    </div>
+
+    <div class="card">
+      <h3>4. O filtro que falta em todo mundo é o que exige IA</h3>
+      <p>Nenhum dos agregadores analisados (Zuk, Leilão Imóvel, Mega Leilões, Mapa do Leilão, Sodré Santoro) oferece filtro por número de quartos. O motivo é técnico: esse dado não existe em campo estruturado, só na prosa do edital. Extrair com LLM atinge cerca de 90% de acurácia em documentos jurídicos brasileiros, contra 59% de expressões regulares — é a diferença entre ter e não ter o filtro.</p>
+    </div>
+
+    <div class="card">
+      <h3>5. Deduplicação não é refinamento, é requisito</h3>
+      <p>Com apenas 5 leiloeiros coletados, <b>4 dos 18 lotes já apareciam em mais de um site</b>, com valores e datas divergentes. Sem dedupe, o hub mostraria o mesmo imóvel três vezes — precisamente a confusão que ele promete resolver.</p>
+    </div>
+
+    <div class="card">
+      <h3>6. A cauda longa das fontes é o argumento da automação</h3>
+      <p>Dos 78 sites da lista CGJ: 14 usam a plataforma “suporteleiloes”, 11 usam a “lel.br” — esses 25 já são coletados com dois adaptadores. Os outros são 6 no Superbid, 42 sites customizados, 3 que bloqueiam acesso automatizado e 1 fora do ar. Escrever 42 adaptadores não escala; um extrator genérico por LLM, sim. É a justificativa concreta da Fase 2.</p>
+    </div>
+
+    <div class="card" style="border-color:rgba(227,179,65,.35)">
+      <h3>⚠️ Ressalvas honestas</h3>
+      <ul>
+        <li>Os números dos concorrentes (estoques, filtros) vêm de leitura direta das páginas em 25/07/2026 e <b>não passaram pela verificação adversarial</b> — a rodada foi interrompida por limite de processamento. No relatório eles estão marcados com o selo “Observado”.</li>
+        <li>A extração de quartos e área foi feita de forma assistida nesta fase e registrada em arquivo versionado; a automação é a Fase 2.</li>
+        <li>A cobertura é de 25 dos 78 leiloeiros — o número de lotes reflete essa fatia, não o mercado inteiro.</li>
+        <li>Nenhuma entrevista com usuários foi feita ainda. Tudo aqui é sobre a <b>oferta</b> de dados; a <b>demanda</b> permanece hipótese.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🧭 O que isso significa para o TCC</h3>
+      <p>Os dois “contras” que travavam esta direção foram testados. “Acesso e padronização de dados são desafio técnico”: confirmado como desafio — e resolvido em MVP funcional. “Exige aprender direito, cartórios e execução judicial”: o essencial cabe em duas páginas, e o produto não pratica ato jurídico nenhum (informa e notifica; o lance acontece no site do leiloeiro oficial).</p>
+      <p style="margin-top:10px">Sobra a pergunta que só o campo responde: <b>a dor de quem compra é forte o suficiente?</b></p>
+      <div class="acoes" style="margin-top:14px"><a class="btn" href="../mapa/" style="display:inline-block;text-decoration:none">🗺️ Abrir o mapa com os dados</a></div>
+    </div>
+  </section>
+
+  <!-- ============================================ NOTAS -->
+  <section id="notas" class="tab">
+    <h2>Anotações</h2>
+    <p class="lead">Espaço livre para insights, transcrições de entrevista e hipóteses desta direção. Salva sozinho enquanto você digita. <span class="saved" id="saved">✓ salvo</span></p>
+    <textarea id="notes" placeholder="Escreva aqui..."></textarea>
+  </section>
+
+</main>
+
+<footer class="rodape"><a href="../">Índice do TCC</a> · Direção A · suas anotações ficam apenas neste navegador</footer>
+
+<script>window.TCC_NS = 'a';</script>
+<script src="../assets/tcc.js"></script>
+<script>
+TCC.listaTarefas([
+  "Entrevistar 5 investidores que já arremataram imóvel",
+  "Entrevistar 5 pessoas procurando imóvel para morar na Zona Sul",
+  "Conversar com 2 leiloeiros credenciados sobre como divulgam os lotes",
+  "Conversar com 1 advogado especializado em arrematação",
+  "Acompanhar um leilão eletrônico do início ao fim",
+  "Testar disposição a pagar por alerta (referência: R$ 74,90/mês de um concorrente)",
+  "Medir quantos lotes novos surgem por semana na Zona Sul",
+  "Comparar a intensidade das dores com a Direção B"
+]);
+TCC.listaDores([]);
+TCC.anotacoes();
+TCC.personas('grade-usuarios', [
+  {n:"🏠 Quem procura para morar", d:"Quer:", w:["filtrar por bairro e número de quartos","saber se está ocupado antes de se interessar","entender o risco em linguagem simples","ser avisado a tempo de participar"]},
+  {n:"💼 Investidor pessoa física", d:"Quer:", w:["deságio alto sobre a avaliação","alerta assim que o edital sai","estimar custo total (dívidas, ITBI, reforma)","girar o imóvel rápido"]},
+  {n:"🏢 Investidor profissional", d:"Quer:", w:["volume e cobertura completa","histórico do que foi arrematado e por quanto","análise de preço por bairro","exportar dados"]},
+  {n:"⚖️ Advogado / assessor", d:"Quer:", w:["edital, matrícula e ônus reunidos","prazos e número do processo","checar pendências antes do lance","atender vários clientes ao mesmo tempo"]}
+]);
+TCC.personas('grade-fontes', [
+  {n:"🔨 Leiloeiro credenciado", d:"Publica porque:", w:["é obrigado por norma a manter site próprio","quanto mais gente vê, melhor o lance","vive de comissão sobre a arrematação"]},
+  {n:"🏦 Banco / credor", d:"Publica porque:", w:["precisa liquidar o ativo retomado","mantém portal próprio (Caixa é o maior)","também usa leiloeiros parceiros"]},
+  {n:"🏛️ Tribunal (TJRJ)", d:"Papel:", w:["credencia os leiloeiros e mantém a lista oficial","não opera portal de leilões","publica atos processuais, não catálogo"]}
+]);
+</script>
 </body>
 </html>

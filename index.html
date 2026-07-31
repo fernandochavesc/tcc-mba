@@ -4,406 +4,76 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TCC · MBA em IA & Negócios — Hub de Pesquisa</title>
-<style>
-  :root{
-    --bg:#0e1116; --surface:#161b22; --surface2:#1c232d; --border:#2a323d;
-    --text:#e6edf3; --muted:#93a1b1; --accent:#6ea8fe; --accent2:#8b7cf6;
-    --green:#3fb950; --amber:#e3b341; --red:#f85149; --radius:14px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
-  a{color:var(--accent);text-decoration:none}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-
-  header{background:linear-gradient(135deg,#1a2233 0%,#0e1116 60%);border-bottom:1px solid var(--border);padding:40px 0 32px}
-  header .wrap{display:flex;flex-direction:column;gap:14px}
-  .badge{align-self:flex-start;background:rgba(110,168,254,.14);color:var(--accent);
-    padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.4px}
-  h1{font-size:31px;font-weight:750;letter-spacing:-.5px}
-  h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .sub{color:var(--muted);font-size:15px;max-width:660px}
-
-  nav{position:sticky;top:0;z-index:10;background:rgba(14,17,22,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-  nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 20px}
-  nav button{background:none;border:none;color:var(--muted);font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;font-family:inherit}
-  nav button:hover{color:var(--text);background:var(--surface2)}
-  nav button.active{color:var(--accent);background:rgba(110,168,254,.12)}
-
-  main{padding:32px 0 80px}
-  section{display:none;animation:fade .3s ease}
-  section.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  h2{font-size:22px;font-weight:700;margin-bottom:4px}
-  .lead{color:var(--muted);margin-bottom:22px;font-size:14px;max-width:720px}
-
-  .grid{display:grid;gap:16px}
-  .grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-  .grid-2{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
-  .card h3{font-size:16px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-  .card p{color:var(--muted);font-size:13.5px}
-  .card ul{margin:8px 0 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
-  .card ul li{margin-bottom:3px}
-  .tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:6px;background:var(--surface2);color:var(--muted);margin-top:12px;margin-right:6px}
-  .pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:10px}
-  .pill.rec{background:rgba(63,185,80,.16);color:var(--green)}
-  .pill.alt{background:rgba(227,179,65,.16);color:var(--amber)}
-  .pill.base{background:rgba(139,124,246,.16);color:var(--accent2)}
-
-  .highlight{background:linear-gradient(135deg,rgba(110,168,254,.10),rgba(139,124,246,.08));
-    border:1px solid rgba(110,168,254,.35);border-radius:var(--radius);padding:22px;margin-bottom:24px}
-  .highlight .q{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.5px;text-transform:uppercase}
-  .highlight blockquote{font-size:18px;font-weight:600;margin-top:8px;line-height:1.4}
-
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px}
-  .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-  .stat .num{font-size:26px;font-weight:750;color:var(--accent)}
-  .stat .lbl{font-size:12.5px;color:var(--muted);margin-top:2px}
-  .progress{height:8px;background:var(--surface2);border-radius:999px;overflow:hidden;margin-top:14px}
-  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px}
-
-  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:6px}
-  .flow .step{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:9px 14px;font-size:13.5px;font-weight:600}
-  .flow .arrow{color:var(--accent);font-weight:700}
-
-  .timeline{position:relative;padding-left:26px}
-  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
-  .tl-item{position:relative;padding:0 0 22px 0}
-  .tl-item::before{content:"";position:absolute;left:-22px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
-  .tl-item h4{font-size:15px;font-weight:700}
-  .tl-item .when{font-size:12px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-  .tl-item p{color:var(--muted);font-size:13.5px;margin-top:3px}
-  .tl-item ul{margin:6px 0 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
-
-  .checklist{list-style:none;display:flex;flex-direction:column;gap:8px}
-  .checklist li{display:flex;align-items:flex-start;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
-  .checklist input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
-  .checklist label{font-size:14px;cursor:pointer}
-  .checklist li.done label{color:var(--muted);text-decoration:line-through}
-  .addrow{display:flex;gap:8px;margin-top:14px}
-  input[type=text],textarea{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:11px 13px;font-size:14px;font-family:inherit;width:100%}
-  input[type=text]:focus,textarea:focus{outline:none;border-color:var(--accent)}
-  .btn{background:var(--accent);color:#0b1220;border:none;border-radius:10px;padding:11px 16px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap}
-  .btn:hover{opacity:.9}
-  .del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;margin-left:auto}
-  .del:hover{color:var(--red)}
-  textarea{min-height:240px;resize:vertical}
-  .saved{font-size:12px;color:var(--green);opacity:0;transition:opacity .3s}
-  .saved.show{opacity:1}
-
-  footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);font-size:13px;text-align:center}
-  @media(max-width:600px){h1{font-size:25px}}
-</style>
+<title>TCC · MBA em IA &amp; Negócios — Fernando Chaves</title>
+<link rel="stylesheet" href="assets/tcc.css">
 </head>
 <body>
-<header>
+
+<header class="top">
   <div class="wrap">
-    <span class="badge">TCC · FASE INICIAL DE PESQUISA</span>
-    <h1>IA como <span>camada operacional</span> em pequenos negócios</h1>
-    <p class="sub">Hub para organizar a pesquisa do TCC: a pergunta central, as ideias em disputa, personas, mapeamento de fluxo e os próximos passos. Tudo que você marcar ou escrever fica salvo neste navegador.</p>
+    <span class="badge">TCC · MBA em IA &amp; Negócios · fase de descoberta</span>
+    <h1>Duas direções em avaliação para o <span class="grad">TCC</span></h1>
+    <p class="sub">Este é o índice da pesquisa. Cada direção tem sua própria página, com visão geral, plano de pesquisa, personas, dores, fluxo, resultados e anotações de campo.</p>
   </div>
 </header>
 
-<nav>
-  <div class="wrap">
-    <button data-t="dash" class="active">Visão geral</button>
-    <button data-t="pergunta">Pergunta & Ideias</button>
-    <button data-t="personas">Personas</button>
-    <button data-t="fluxo">Fluxo & Mapeamento</button>
-    <button data-t="dores">Dores</button>
-    <button data-t="plano">Plano de pesquisa</button>
-    <button data-t="notas">Anotações</button>
-  </div>
-</nav>
-
 <main class="wrap">
 
-  <!-- DASHBOARD -->
-  <section id="dash" class="active">
-    <h2>Onde você está agora</h2>
-    <p class="lead">Você está na fase de descoberta: ainda não é hora de desenhar produto, e sim de entender fluxos, personas e dores. A decisão entre as ideias deve sair da intensidade das dores que aparecerem nas entrevistas.</p>
+  <div class="highlight">
+    <div class="q">PERGUNTA DE PESQUISA CANDIDATA</div>
+    <blockquote>Como a IA pode atuar como uma camada operacional sobre sistemas existentes para reduzir carga cognitiva e aumentar a eficiência em pequenos negócios?</blockquote>
+    <p style="color:var(--muted);font-size:13.5px;margin-top:10px">As duas direções abaixo são caminhos concretos para responder a essa pergunta. A escolha deve sair da <b>intensidade das dores</b> que aparecerem em campo — não da preferência por um setor.</p>
+  </div>
 
-    <div class="highlight">
-      <div class="q">Pergunta de pesquisa candidata</div>
-      <blockquote>Como a IA pode atuar como uma camada operacional sobre sistemas existentes para reduzir carga cognitiva e aumentar a eficiência em pequenos negócios?</blockquote>
-      <p style="margin-top:10px;color:var(--muted);font-size:13.5px">O restaurante entra como <b>estudo de caso</b> — não como o escopo final. Isso mantém a pesquisa rica academicamente e não te prende ao setor de alimentação.</p>
-    </div>
+  <div class="dirs">
 
-    <div class="stats">
-      <div class="stat"><div class="num">3</div><div class="lbl">Direções em avaliação</div></div>
-      <div class="stat"><div class="num">7</div><div class="lbl">Personas mapeadas</div></div>
-      <div class="stat"><div class="num" id="s-done">0</div><div class="lbl">Passos concluídos</div></div>
-      <div class="stat"><div class="num" id="s-pct">0%</div><div class="lbl">Progresso do plano</div></div>
+    <article class="dir a">
+      <div class="rot">DIREÇÃO A · setor específico</div>
+      <h2>🏛️ Hub de leilões de imóveis no Rio de Janeiro</h2>
+      <p class="resumo">Centralizar leilões judiciais e extrajudiciais do RJ em um só lugar, com dados padronizados, filtros que hoje não existem (bairro + quartos) e alertas. A pesquisa de viabilidade está concluída e há um MVP navegável no ar, com dados reais.</p>
+      <div class="estado">
+        <span class="on">Relatório concluído</span>
+        <span class="on">MVP no ar</span>
+        <span>Entrevistas pendentes</span>
+      </div>
+      <div class="acoes">
+        <a href="leiloes/">Abrir Direção A →</a>
+        <a class="sec" href="mapa/">🗺️ Ver o mapa (MVP)</a>
+      </div>
+    </article>
+
+    <article class="dir b">
+      <div class="rot">DIREÇÃO B · estudo de caso</div>
+      <h2>🛵 Operação de restaurantes</h2>
+      <p class="resumo">Estudar a operação de um restaurante de ponta a ponta — pedido, cozinha, entrega, pagamento, financeiro — e onde a IA reduz fricção entre as pessoas. Dentro dessa direção há um foco mais promissor: um <b>SaaS de gestão de entregas e pagamento de motoboys</b>, ainda em aberto como recorte final.</p>
+      <div class="estado">
+        <span class="on">Estruturação inicial</span>
+        <span>Recorte em aberto</span>
+        <span>Entrevistas pendentes</span>
+      </div>
+      <div class="acoes">
+        <a href="saas-gestao-restaurantes/">Abrir Direção B →</a>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>🔭 A lente que vale para as duas</h3>
+      <p>Em vez de “mais um sistema”, uma <b>camada de IA sobre o que já existe</b>: observa dados de sistemas e fontes atuais, identifica gargalos e ajuda cada pessoa a decidir melhor com menos esforço. É o enquadramento mais forte para um MBA porque não fica preso a um setor — e as duas direções são instâncias dele.</p>
+      <p style="margin-top:10px">Na Direção A, a camada transforma editais em prosa em dados filtráveis. Na Direção B, ela transforma a operação espalhada entre PDV, iFood e WhatsApp em decisão.</p>
     </div>
     <div class="card">
-      <h3>Progresso do plano de pesquisa</h3>
-      <p>Baseado no que você marca na aba <b>Plano de pesquisa</b>.</p>
-      <div class="progress"><i id="bar" style="width:0%"></i></div>
+      <h3>🧭 Como a decisão será tomada</h3>
+      <p>Entrevistas e observação em campo <b>nas duas frentes</b> antes de comprometer com uma. Vence a direção onde a dor for mais intensa, mais frequente e mais cara para quem a sente.</p>
+      <p style="margin-top:10px"><b>Evite:</b> começar desenhando o produto. A dor real costuma ser diferente da imaginada — o MVP da Direção A já mostrou isso na prática (o estoque que se imaginava farto na Zona Sul é quase inexistente na fonte mais fácil).</p>
     </div>
-
-    <div class="grid grid-3" style="margin-top:20px">
-      <div class="card"><h3>🧭 Princípio</h3><p>Você não substitui sistemas inteiros — você elimina fricção entre pessoas, processos e ferramentas. A pesquisa deve refletir isso.</p></div>
-      <div class="card"><h3>🔬 Método agora</h3><p>Entrevistas e observação em campo nas duas frentes (leilões e restaurantes) antes de comprometer com uma.</p></div>
-      <div class="card"><h3>⚠️ Evite</h3><p>Começar desenhando o produto. A dor real pode ser diferente da imaginada (excesso de cliques, retrabalho, falta de previsibilidade).</p></div>
-    </div>
-
-    <h2 style="margin-top:32px">Documentos da pesquisa</h2>
-    <p class="lead">Aprofundamentos já produzidos para cada direção em avaliação.</p>
-    <div class="grid grid-2">
-      <div class="card" style="border-color:rgba(63,185,80,.4)">
-        <span class="pill rec">DIREÇÃO A · Demo no ar</span>
-        <h3>🗺️ Mapa de oportunidades — Caixa RJ (Spike 0)</h3>
-        <p>4.906 imóveis da capital no mapa, com filtros por bairro, quartos, preço e modalidade — e a busca-alvo da Zona Sul evidenciando a lacuna judicial.</p>
-        <p style="margin-top:12px"><a href="https://fernandochavesc.github.io/tcc-mba/mapa/"><b>Abrir mapa →</b></a></p>
-      </div>
-      <div class="card">
-        <span class="pill base">DIREÇÃO A · Relatório</span>
-        <h3>🏛️ Hub de leilões de imóveis no RJ — viabilidade</h3>
-        <p>Fontes primárias (TJRJ, bancos, leiloeiros), concorrentes, viabilidade técnica e jurídica da coleta (LGPD) e arquitetura de MVP, com parecer final.</p>
-        <p style="margin-top:12px"><a href="https://fernandochavesc.github.io/tcc-mba/leiloes/"><b>Abrir relatório →</b></a></p>
-      </div>
-      <div class="card">
-        <span class="pill alt">DIREÇÃO B · Estruturação</span>
-        <h3>🛵 SaaS de gestão de entregas e pagamento de motoboys</h3>
-        <p>Contexto, atores, hipóteses a validar, direções estratégicas, onde a IA agrega valor e riscos — o projeto-âncora do estudo de caso de restaurantes.</p>
-        <p style="margin-top:12px"><a href="https://fernandochavesc.github.io/tcc-mba/saas-gestao-restaurantes/"><b>Abrir página →</b></a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERGUNTA & IDEIAS -->
-  <section id="pergunta">
-    <h2>Pergunta & Ideias</h2>
-    <p class="lead">Três direções, do específico ao amplo. A recomendação é usar a mais ampla como tese e o restaurante como caso concreto.</p>
-
-    <div class="grid grid-2">
-      <div class="card">
-        <span class="pill base">DIREÇÃO A · Setor específico</span>
-        <h3>Leilões judiciais</h3>
-        <p><b>Prós:</b></p>
-        <ul><li>Mercado pouco explorado</li><li>Alta margem e alto valor agregado</li><li>Produto digital escalável</li></ul>
-        <p style="margin-top:8px"><b>Contras:</b></p>
-        <ul><li>Exige aprender direito, cartórios e execução judicial</li><li>Acesso e padronização de dados são desafio técnico</li></ul>
-        <p style="margin-top:10px"><a href="https://fernandochavesc.github.io/tcc-mba/leiloes/"><b>🏛️ Pesquisa de viabilidade feita →</b></a></p>
-      </div>
-      <div class="card">
-        <span class="pill alt">DIREÇÃO B · Estudo de caso</span>
-        <h3>Operação de restaurantes</h3>
-        <p><b>Prós:</b></p>
-        <ul><li>Você já tem acesso a usuários (seu amigo e outros)</li><li>Observação em campo é fácil</li><li>Muitas personas e fluxos para estudar</li><li>Validação rápida de hipóteses</li></ul>
-        <p style="margin-top:8px"><b>Contras:</b></p>
-        <ul><li>Mercado mais competitivo</li><li>Muitos sistemas já existem — o diferencial precisa ser muito claro</li></ul>
-        <p style="margin-top:10px"><a href="https://fernandochavesc.github.io/tcc-mba/saas-gestao-restaurantes/"><b>🛵 Estruturação do SaaS de entregas →</b></a></p>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:16px;border-color:rgba(63,185,80,.4)">
-      <span class="pill rec">DIREÇÃO C · Recomendada como tese</span>
-      <h3>Camada de IA sobre sistemas existentes em pequenos negócios</h3>
-      <p>Em vez de "mais um ERP", uma camada inteligente que observa os dados dos sistemas existentes, identifica gargalos e ajuda cada persona a decidir melhor com menos esforço. O restaurante é o primeiro caso; depois expande para clínicas, hotéis, academias, salões, oficinas.</p>
-      <p style="margin-top:10px"><b>Por que é mais forte para um MBA:</b></p>
-      <ul><li>Problema mais geral e relevante</li><li>Não fica preso a um setor</li><li>Alinhado ao seu jeito de pensar produto: reduzir fricção, não substituir sistemas</li></ul>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <h3>🔀 Reformulação central</h3>
-      <p>De <i>"vou construir um software para restaurantes"</i> para <b>"como IA e UX reduzem a carga operacional melhorando os fluxos entre diferentes personas?"</b> — muito mais rico academicamente.</p>
-    </div>
-  </section>
-
-  <!-- PERSONAS -->
-  <section id="personas">
-    <h2>Personas</h2>
-    <p class="lead">Cada persona usa uma ferramenta diferente — e o trabalho acontece <i>entre</i> elas. É aí que costuma estar a oportunidade.</p>
-    <div class="grid grid-3" id="persona-grid"></div>
-  </section>
-
-  <!-- FLUXO -->
-  <section id="fluxo">
-    <h2>Fluxo & Mapeamento</h2>
-    <p class="lead">O trabalho acontece entre PDV, ERP, iFood, WhatsApp, impressoras, cozinha, financeiro, estoque, planilhas e contabilidade. Mapear esse fluxo é a etapa 1.</p>
-
-    <div class="card">
-      <h3>Fluxo completo de um restaurante</h3>
-      <div class="flow">
-        <span class="step">Cliente entra</span><span class="arrow">→</span>
-        <span class="step">Pedido</span><span class="arrow">→</span>
-        <span class="step">Cozinha</span><span class="arrow">→</span>
-        <span class="step">Entrega</span><span class="arrow">→</span>
-        <span class="step">Pagamento</span><span class="arrow">→</span>
-        <span class="step">Fechamento</span><span class="arrow">→</span>
-        <span class="step">Compra de insumos</span><span class="arrow">→</span>
-        <span class="step">Financeiro</span>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <h3>Para cada etapa, mapeie</h3>
-      <ul>
-        <li>Quem faz o quê?</li>
-        <li>Quanto tempo leva?</li>
-        <li>Quais ferramentas são usadas?</li>
-        <li>Onde se perde tempo?</li>
-        <li>Onde as pessoas improvisam / dão jeitinho?</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- DORES -->
-  <section id="dores">
-    <h2>Dores</h2>
-    <p class="lead">Dores concretas são ouro. Registre exemplos reais que ouvir em campo — quanto mais literal, melhor.</p>
-
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>💡 Exemplos de dores "de ouro"</h3>
-        <ul>
-          <li>"Garçons tiram foto da tela pra mandar pra cozinha."</li>
-          <li>"O gerente abre cinco sistemas toda manhã."</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>🩹 Padrões de dor a investigar</h3>
-        <ul>
-          <li>Excesso de informação</li>
-          <li>Falta de comunicação entre áreas</li>
-          <li>Excesso de cliques</li>
-          <li>Retrabalho</li>
-          <li>Falta de previsibilidade</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <h3>📌 Dores que eu coletei em campo</h3>
-      <p>Adicione cada dor observada nas entrevistas. Fica salvo automaticamente.</p>
-      <ul class="checklist" id="pains" style="margin-top:14px"></ul>
-      <div class="addrow">
-        <input type="text" id="pain-in" placeholder='Ex.: "cozinheiro não vê o pedido do delivery"'>
-        <button class="btn" id="pain-add">Registrar</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLANO -->
-  <section id="plano">
-    <h2>Plano de pesquisa</h2>
-    <p class="lead">Pesquisar o workflow antes de desenhar qualquer solução. Marque cada passo conforme avança.</p>
-
-    <div class="card" style="margin-bottom:20px">
-      <div class="timeline">
-        <div class="tl-item"><div class="when">Etapa 1</div><h4>Entender o fluxo completo</h4><p>Do cliente entrando até o financeiro. Mapear cada elo da cadeia.</p></div>
-        <div class="tl-item"><div class="when">Etapa 2</div><h4>Mapear todas as personas</h4><ul><li>Quem faz o quê, quanto tempo, quais ferramentas</li><li>Onde perde tempo e onde improvisa</li></ul></div>
-        <div class="tl-item"><div class="when">Etapa 3</div><h4>Mapear dores</h4><p>Coletar exemplos literais e classificar os padrões (cliques, retrabalho, comunicação...).</p></div>
-        <div class="tl-item"><div class="when">Etapa 4</div><h4>Só então desenhar a solução</h4><p>Com as dores validadas, propor a camada de IA — o produto vem por último.</p></div>
-      </div>
-    </div>
-
-    <h3 style="font-size:16px;font-weight:700;margin-bottom:10px">Próximos passos</h3>
-    <ul class="checklist" id="tasks"></ul>
-    <div class="addrow">
-      <input type="text" id="task-in" placeholder="Novo passo (ex.: agendar entrevista com garçom)">
-      <button class="btn" id="task-add">Adicionar</button>
-    </div>
-  </section>
-
-  <!-- NOTAS -->
-  <section id="notas">
-    <h2>Anotações</h2>
-    <p class="lead">Espaço livre pra insights, transcrições de entrevista e hipóteses. Salva sozinho enquanto você digita. <span class="saved" id="saved">✓ salvo</span></p>
-    <textarea id="notes" placeholder="Escreva aqui..."></textarea>
-  </section>
+  </div>
 
 </main>
 
-<footer class="wrap">Hub de pesquisa do TCC · seus dados ficam apenas neste navegador</footer>
+<footer class="rodape">Hub de pesquisa do TCC · Fernando Chaves · suas anotações ficam apenas neste navegador</footer>
 
-<script>
-// ---- Personas ----
-const personas=[
-  {n:"👑 Dono", w:["lucro","desperdício","faturamento","equipe"]},
-  {n:"📋 Gerente", w:["pedidos atrasados","funcionários","reclamações","estoque"]},
-  {n:"🧑‍🍳 Garçom", w:["lançar pedido rápido","dividir conta","não errar mesa"]},
-  {n:"🔥 Cozinha", w:["fila organizada","prioridade","comunicação simples"]},
-  {n:"📦 Estoque", w:["saber o que acabou","previsão","compras"]},
-  {n:"🛵 Delivery", w:["integrar pedidos","evitar atraso","reduzir cancelamentos"]},
-  {n:"💰 Financeiro", w:["fechamento","conciliação","impostos"]}
-];
-const pg=document.getElementById('persona-grid');
-personas.forEach(p=>{
-  const el=document.createElement('div');el.className='card';
-  el.innerHTML=`<h3>${p.n}</h3><p>Quer:</p><ul>${p.w.map(x=>`<li>${x}</li>`).join('')}</ul>`;
-  pg.appendChild(el);
-});
-
-// ---- util localStorage list ----
-function makeList(key, listId, inputId, addId, defaults){
-  let items = JSON.parse(localStorage.getItem(key)||'null') || defaults.map(t=>({t,done:false}));
-  const list=document.getElementById(listId);
-  function save(){localStorage.setItem(key,JSON.stringify(items));render();}
-  function render(){
-    list.innerHTML='';
-    items.forEach((item,i)=>{
-      const li=document.createElement('li');if(item.done)li.className='done';
-      const id=listId+i;
-      li.innerHTML=`<input type="checkbox" id="${id}" ${item.done?'checked':''}>
-        <label for="${id}">${item.t.replace(/</g,'&lt;')}</label>
-        <button class="del" title="Remover">✕</button>`;
-      li.querySelector('input').onchange=()=>{items[i].done=!items[i].done;save();};
-      li.querySelector('.del').onclick=()=>{items.splice(i,1);save();};
-      list.appendChild(li);
-    });
-    if(key==='mba_ia_tasks')updateStats(items);
-  }
-  const add=()=>{const inp=document.getElementById(inputId);if(inp.value.trim()){items.push({t:inp.value.trim(),done:false});inp.value='';save();}};
-  document.getElementById(addId).onclick=add;
-  document.getElementById(inputId).addEventListener('keydown',e=>{if(e.key==='Enter')add();});
-  render();
-}
-
-function updateStats(items){
-  const done=items.filter(t=>t.done).length,total=items.length;
-  const pct=total?Math.round(done/total*100):0;
-  document.getElementById('s-done').textContent=done;
-  document.getElementById('s-pct').textContent=pct+'%';
-  document.getElementById('bar').style.width=pct+'%';
-}
-
-makeList('mba_ia_tasks','tasks','task-in','task-add',[
-  "Listar restaurantes/contatos para entrevistar (começar pelo amigo)",
-  "Escrever roteiro de entrevista por persona",
-  "Fazer 1 observação em campo (acompanhar um turno)",
-  "Mapear o fluxo completo de 1 restaurante",
-  "Fazer contato inicial no mundo dos leilões judiciais",
-  "Comparar intensidade das dores das duas frentes",
-  "Escolher a direção do TCC com base nas dores"
-]);
-
-makeList('mba_ia_pains','pains','pain-in','pain-add',[]);
-
-// ---- Notas ----
-const KEY_N='mba_ia_notes';
-const ta=document.getElementById('notes'), savedEl=document.getElementById('saved');
-ta.value=localStorage.getItem(KEY_N)||'';
-let tmr;
-ta.addEventListener('input',()=>{
-  localStorage.setItem(KEY_N,ta.value);
-  savedEl.classList.add('show');clearTimeout(tmr);
-  tmr=setTimeout(()=>savedEl.classList.remove('show'),1200);
-});
-
-// ---- Nav ----
-document.querySelectorAll('nav button').forEach(b=>{
-  b.onclick=()=>{
-    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
-    document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    document.getElementById(b.dataset.t).classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-  };
-});
-</script>
 </body>
 </html>
