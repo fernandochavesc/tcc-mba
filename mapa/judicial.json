@@ -3,142 +3,35 @@
  "gerado_em": "",
  "lotes": [
   {
-   "id": "LUIZTENORIOD-1206",
-   "titulo": "Imóvel em Laranjeiras (Rua Pereira da Silva)",
-   "endereco": "Rua Pereira da Silva, nº 856 – Laranjeiras",
-   "bairro": "LARANJEIRAS",
-   "quartos": null,
-   "avaliacao": 1500000.0,
-   "valor_minimo": null,
-   "rodadas": [],
-   "modalidade": "Judicial · Venda Direta",
-   "status_leilao": "Aberto para lances",
-   "vara": null,
-   "processo": "01000731420255010078",
-   "leiloeiro": "Luiz Tenorio De Paula",
-   "link": "https://www.depaulaonline.com.br/oferta/leilao/imoveis/casas/1210/id-1206/lote-3-imovel-situado-na-rua-pereira-da-silva-n%C2%BA-856-laranjeiras-rio-de-janeiro-rj",
-   "edital_url": null,
-   "foto": null,
-   "tipo": "Casa",
-   "area": null,
-   "endereco_geo": "Rua Pereira da Silva 856, Laranjeiras, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.930731,
-    -43.186903
-   ]
-  },
-  {
-   "id": "RODRIGOLOPES-3589",
-   "titulo": "Apartamento em Copacabana",
-   "endereco": "Avenida Nossa Senhora de Copacabana, nº 1003 - Apto 1101 sem vaga de garagem.",
+   "id": "FABIANOAYUPP-2394",
+   "titulo": "COPACABANA - SALA COMERCIAL NA RUA SANTA CLARA N°75",
+   "endereco": "Rua Santa Clara, nº 75 – Sala 1006, Copacabana",
    "bairro": "COPACABANA",
    "quartos": null,
-   "avaliacao": 448971.12,
-   "valor_minimo": 448971.12,
+   "avaliacao": 411750.0,
+   "valor_minimo": null,
    "rodadas": [
     {
      "n": 1,
-     "data": "27/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 448971.12
-    },
-    {
-     "n": 2,
-     "data": "29/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 225000.0
+     "data": "25/08/2026",
+     "hora": "11:50",
+     "lance_minimo": 411750.0
     }
    ],
    "modalidade": "Leilão Judicial",
    "status_leilao": "Aberto para lances",
-   "vara": "JUÍZO DE DIREITO DA QUADRAGÉSIMA NONA VARA CÍVEL",
-   "processo": "08662519020228190001",
-   "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1199/id-3589/apartamento-em-copacabana",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3588/arquivos/sl-bem-3588-6a205f30145fd-6a205f3014c86.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3588/arquivos/sl-bem-3588-6a205ee4e4ad9-6a205ee4ebd2f.jpg",
-   "tipo": "Apartamento",
-   "area": 35,
-   "endereco_geo": "Avenida Nossa Senhora de Copacabana 1003, Copacabana, Rio de Janeiro, RJ",
+   "vara": null,
+   "processo": "01007497320195010012",
+   "leiloeiro": "Fabiano Ayupp Magalhães",
+   "link": "https://www.fabianoayuppleiloeiro.com.br/oferta/leilao/imoveis/ponto-comercial/862/id-2394/copacabana-sala-comercial-na-rua-santa-clara-n-75",
+   "edital_url": "https://static.suporteleiloes.com.br/fabianoayuppleiloeirocombr/bens/2331/arquivos/sl-bem-2331-6a552e1b5526d-6a552e1b55864.pdf",
+   "foto": null,
+   "tipo": "Sala Comercial",
+   "area": null,
+   "endereco_geo": "Rua Santa Clara 75, Copacabana, Rio de Janeiro, RJ",
    "latlng": [
-    -22.985585,
-    -43.190111
-   ]
-  },
-  {
-   "id": "RODRIGOLOPES-3591",
-   "titulo": "Apartamento no Catete",
-   "endereco": "Rua Silveira Martins, nº 140 - Apto 502",
-   "bairro": "CATETE",
-   "quartos": null,
-   "avaliacao": 532500.63,
-   "valor_minimo": 532500.63,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "27/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 532500.63
-    },
-    {
-     "n": 2,
-     "data": "29/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 267000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": "JUÍZO DE DIREITO DA QUADRAGÉSIMA NONA VARA CÍVEL",
-   "processo": "08662519020228190001",
-   "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1201/id-3591/apartamento-no-catete",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3590/arquivos/sl-bem-3590-6a20636782a8e-6a2063678385a.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3590/arquivos/sl-bem-3590-6a2063252de6b-6a20632531656.jpg",
-   "tipo": "Apartamento",
-   "area": 53,
-   "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.925727,
-    -43.178359
-   ]
-  },
-  {
-   "id": "RODRIGOLOPES-3592",
-   "titulo": "Apartamento no Catete",
-   "endereco": "Rua Silveira Martins, nº 140 - Apto 503",
-   "bairro": "CATETE",
-   "quartos": null,
-   "avaliacao": 334118.04,
-   "valor_minimo": 334118.04,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "27/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 334118.04
-    },
-    {
-     "n": 2,
-     "data": "29/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 168000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": "JUÍZO DE DIREITO DA QUADRAGÉSIMA NONA VARA CÍVEL",
-   "processo": "08662519020228190001",
-   "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1202/id-3592/apartamento-no-catete",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3591/arquivos/sl-bem-3591-6a206496a9cc6-6a206496ab443.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3591/arquivos/sl-bem-3591-6a20644ebe16b-6a20644ec00fe.jpg",
-   "tipo": "Apartamento",
-   "area": 36,
-   "endereco_geo": "Rua Silveira Martins 140, Catete, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.925727,
-    -43.178359
+    -22.971421,
+    -43.187523
    ]
   },
   {
@@ -256,79 +149,41 @@
    ]
   },
   {
-   "id": "RODRIGOLOPES-2721",
-   "titulo": "Apartamento em Botafogo",
-   "endereco": "Rua Voluntários da Pátria, nº 381 - Apto 305",
-   "bairro": "BOTAFOGO",
-   "quartos": null,
-   "avaliacao": 1030339.95,
-   "valor_minimo": 1030339.95,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "28/07/2026",
-     "hora": "12:30",
-     "lance_minimo": 1030339.95
-    },
-    {
-     "n": 2,
-     "data": "30/07/2026",
-     "hora": "12:30",
-     "lance_minimo": 516000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": "JUÍZO DE DIREITO DA VIGÉSIMA OITAVA VARA CÍVEL",
-   "processo": "00466876220028190001",
-   "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/326/id-2721/apartamento-em-botafogo",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/2719/arquivos/sl-bem-2719-6a31842dc107c-6a31842dc19d8.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/2719/arquivos/sl-bem-2719-66ba3f2d6ccb2-66ba3f2d76160.jpg",
-   "tipo": "Apartamento",
-   "area": 109,
-   "endereco_geo": "Rua Voluntários da Pátria 381, Botafogo, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.955274,
-    -43.194044
-   ]
-  },
-  {
-   "id": "RODRIGOLOPES-3590",
-   "titulo": "Casa em Laranjeiras",
-   "endereco": "Rua Senador Correia, nº 37",
+   "id": "RODRIGOLOPES-3649",
+   "titulo": "Apartamento em Laranjeiras",
+   "endereco": "Rua das Laranjeiras, nº 347 - Apto 407",
    "bairro": "LARANJEIRAS",
-   "quartos": null,
-   "avaliacao": 3016125.36,
-   "valor_minimo": 3016125.36,
+   "quartos": 3,
+   "avaliacao": 950000.0,
+   "valor_minimo": 950000.0,
    "rodadas": [
     {
      "n": 1,
-     "data": "27/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 3016125.36
+     "data": "08/09/2026",
+     "hora": "12:20",
+     "lance_minimo": 950000.0
     },
     {
      "n": 2,
-     "data": "29/07/2026",
-     "hora": "12:50",
-     "lance_minimo": 1509000.0
+     "data": "10/09/2026",
+     "hora": "12:20",
+     "lance_minimo": 475000.0
     }
    ],
    "modalidade": "Leilão Judicial",
    "status_leilao": "Aberto para lances",
    "vara": "JUÍZO DE DIREITO DA QUADRAGÉSIMA NONA VARA CÍVEL",
-   "processo": "08662519020228190001",
+   "processo": "00854596420208190001",
    "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/casas/1200/id-3590/casa-em-laranjeiras",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3589/arquivos/sl-bem-3589-6a20612757596-6a206127591c3.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3589/arquivos/sl-bem-3589-6a2060e25fdca-6a2060e263234.jpg",
-   "tipo": "Casa",
-   "area": 281,
-   "endereco_geo": "Rua Senador Correia 37, Laranjeiras, Rio de Janeiro, RJ",
+   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1259/id-3649/apartamento-em-laranjeiras",
+   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3648/arquivos/sl-bem-3648-6a70dd6b437d5-6a70dd6b43ea0.pdf",
+   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3648/arquivos/sl-bem-3648-6a70dd3033e25-6a70dd303a786.jpg",
+   "tipo": "Apartamento",
+   "area": null,
+   "endereco_geo": "Rua das Laranjeiras 347, Laranjeiras, Rio de Janeiro, RJ",
    "latlng": [
-    -22.934789,
-    -43.180056
+    -22.935924,
+    -43.189314
    ]
   },
   {
@@ -342,7 +197,7 @@
    "rodadas": [
     {
      "n": 1,
-     "data": "31/07/2026",
+     "data": "26/11/2026",
      "hora": "16:00",
      "lance_minimo": 6445174.15
     }
@@ -371,35 +226,65 @@
    ]
   },
   {
-   "id": "RODRIGODASIL-586",
-   "titulo": "COBERTURA BOTAFOGO",
-   "endereco": "Apartamento 1101 (cobertura), situado na Praia de Botafogo, nº 198, Botafogo, Rio de Janeiro/RJ, do edifício Corcovado e terraço de cobertura, com direito a um box, e sua correspondente fração de 2/22 do terreno, com 822 m², na freguesia da Lagoa.",
-   "bairro": "BOTAFOGO",
+   "id": "RENATOGUEDES-VL208095",
+   "titulo": "Prédio na Rua Pereira da Silva (Laranjeiras)",
+   "endereco": "Rua Pereira da Silva, nº 856 – Laranjeiras (matrícula 524.623)",
+   "bairro": "LARANJEIRAS",
    "quartos": null,
-   "avaliacao": 10000000.0,
-   "valor_minimo": null,
+   "avaliacao": 1500000.0,
+   "valor_minimo": 600000.0,
    "rodadas": [
     {
      "n": 1,
-     "data": "30/07/2026",
-     "hora": "14:03",
-     "lance_minimo": 10000000.0
+     "data": "04/09/2026",
+     "hora": "16:00",
+     "lance_minimo": 600000.0
     }
    ],
    "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": null,
-   "processo": "00234884420218190001",
-   "leiloeiro": "Rodrigo Da Silva Costa",
-   "link": "https://www.rodrigocostaleiloeiro.com.br/oferta/leilao/imoveis/apartamentos/261/id-586/cobertura-botafogo",
+   "status_leilao": "Aberto para Lance",
+   "vara": "JUSTIÇA DO TRABALHO DO RIO DE JANEIRO/RJ – CAEX - COORDENADORIA DE APOIO À EXECUÇÃO",
+   "processo": null,
+   "leiloeiro": "Renato Guedes Rocha",
+   "link": "https://www.rioleiloes.com.br/lote/208095",
    "edital_url": null,
    "foto": null,
-   "tipo": "Apartamento",
+   "fontes_extras": [
+    {
+     "leiloeiro": "Carlo Ferrari",
+     "link": "https://www.carloferrarileiloes.com.br/lote/208187"
+    },
+    {
+     "leiloeiro": "Deonizia Kiratch",
+     "link": "https://www.deonizialeiloes.com.br/lote/208156"
+    },
+    {
+     "leiloeiro": "Luiz Tenorio De Paula",
+     "link": "https://www.depaulaonline.com.br/oferta/leilao/imoveis/casas/1210/id-1206/lote-3-imovel-situado-na-rua-pereira-da-silva-n%C2%BA-856-laranjeiras-rio-de-janeiro-rj"
+    },
+    {
+     "leiloeiro": "Fábio Manoel Guimarães",
+     "link": "https://www.fabioleiloes.com.br/lote/208107"
+    },
+    {
+     "leiloeiro": "Giordano Bruno Coan Amador",
+     "link": "https://www.giordanoleiloes.com.br/lote/208088"
+    },
+    {
+     "leiloeiro": "Hidirlene Duszeiko",
+     "link": "https://www.hdleiloes.com.br/lote/208115"
+    },
+    {
+     "leiloeiro": "Rodrigo Aparecido Rigolon Da Silva",
+     "link": "https://www.rigolonleiloes.com.br/lote/208173"
+    }
+   ],
+   "tipo": "Prédio",
    "area": null,
-   "endereco_geo": "Praia de Botafogo 198, Botafogo, Rio de Janeiro, RJ",
+   "endereco_geo": "Rua Pereira da Silva 856, Laranjeiras, Rio de Janeiro, RJ",
    "latlng": [
-    -22.941593,
-    -43.18041
+    -22.930731,
+    -43.186903
    ]
   },
   {
@@ -432,38 +317,6 @@
    "latlng": [
     -22.963427,
     -43.175254
-   ]
-  },
-  {
-   "id": "RODRIGODASIL-514",
-   "titulo": "PRÉDIO COMERCIAL FLAMENGO",
-   "endereco": "Direito e Ação sobre o Prédio comercial, situado na Rua Buarque de Macedo 26, Flamengo, nesta cidade, com 3 pavimentos, salas 201, 301 e 401. Observação: a Loja não faz parte do leilão.",
-   "bairro": "FLAMENGO",
-   "quartos": null,
-   "avaliacao": 2200000.0,
-   "valor_minimo": null,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "03/08/2026",
-     "hora": "14:03",
-     "lance_minimo": 2200000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": null,
-   "processo": "03455250720128190001",
-   "leiloeiro": "Rodrigo Da Silva Costa",
-   "link": "https://www.rodrigocostaleiloeiro.com.br/oferta/leilao/imoveis/ponto-comercial/176/id-514/predio-comercial-flamengo",
-   "edital_url": null,
-   "foto": null,
-   "tipo": "Prédio Comercial",
-   "area": null,
-   "endereco_geo": "Rua Buarque de Macedo 26, Flamengo, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.929046,
-    -43.175714
    ]
   },
   {
@@ -527,38 +380,6 @@
    "latlng": [
     -22.94642,
     -43.183198
-   ]
-  },
-  {
-   "id": "JONASRYMER-1298",
-   "titulo": "Cobertura duplex com 303m² e 2 vagas em Copacabana",
-   "endereco": "Praça Eugenio Jardim, nº 14, cob. 1101, Copacabana/RJ.",
-   "bairro": "COPACABANA",
-   "quartos": 3,
-   "avaliacao": 4100000.0,
-   "valor_minimo": 4100000.0,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "27/07/2026",
-     "hora": "12:00",
-     "lance_minimo": 4100000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": null,
-   "processo": null,
-   "leiloeiro": "Jonas Rymer",
-   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/apartamentos/213/id-1298/cobertura-duplex-com-303m-e-2-vagas-em-copacabana",
-   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1261/arquivos/sl-bem-1261-6a480616572f7-6a4806165869a.pdf",
-   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1261/arquivos/sl-bem-1261-6a43cd9fe7fa1-6a43cd9feba2a.jpg",
-   "tipo": "Apartamento",
-   "area": 303,
-   "endereco_geo": "Praça Eugenio Jardim 14, Copacabana, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.976272,
-    -43.194032
    ]
   },
   {

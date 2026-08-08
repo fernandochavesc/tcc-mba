@@ -415,7 +415,7 @@
 
     <div class="stats">
       <div class="stat"><div class="num">2</div><div class="lbl">Etapas concluídas</div></div>
-      <div class="stat"><div class="num">18</div><div class="lbl">Lotes reais no mapa</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl">Lotes reais no mapa</div></div>
       <div class="stat"><div class="num" id="s-done">0</div><div class="lbl">Passos concluídos</div></div>
       <div class="stat"><div class="num" id="s-pct">0%</div><div class="lbl">Progresso</div></div>
     </div>
@@ -596,9 +596,9 @@
 
     <div class="stats">
       <div class="stat"><div class="num">78</div><div class="lbl">Leiloeiros na lista oficial (CGJ/TJRJ)</div></div>
-      <div class="stat"><div class="num">25</div><div class="lbl">Sites monitorados no MVP</div></div>
-      <div class="stat"><div class="num">18</div><div class="lbl">Lotes judiciais na Zona Sul</div></div>
-      <div class="stat"><div class="num">4.906</div><div class="lbl">Imóveis da Caixa na capital</div></div>
+      <div class="stat"><div class="num">32</div><div class="lbl">Sites monitorados no MVP</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl">Lotes judiciais na Zona Sul</div></div>
+      <div class="stat"><div class="num">3.767</div><div class="lbl">Imóveis da Caixa na capital</div></div>
     </div>
 
     <div class="card">
@@ -623,12 +623,12 @@
 
     <div class="card">
       <h3>5. Deduplicação não é refinamento, é requisito</h3>
-      <p>Com apenas 5 leiloeiros coletados, <b>4 dos 18 lotes já apareciam em mais de um site</b>, com valores e datas divergentes. Sem dedupe, o hub mostraria o mesmo imóvel três vezes — precisamente a confusão que ele promete resolver.</p>
+      <p>Na coleta de 08/08/2026, <b>11 dos 23 anúncios eram repetições</b> — e um único imóvel, um prédio na Rua Pereira da Silva (Laranjeiras), estava anunciado ao mesmo tempo por <b>8 leiloeiros credenciados diferentes</b>, com lance mínimo divergente entre eles (R$ 600 mil na maioria, R$ 440 mil em um). É um leilão da Justiça do Trabalho distribuído a vários leiloeiros. Sem deduplicação, o hub mostraria oito vezes o mesmo prédio, com preços conflitantes — exatamente a confusão que ele promete resolver.</p>
     </div>
 
     <div class="card">
       <h3>6. A cauda longa das fontes é o argumento da automação</h3>
-      <p>Dos 78 sites da lista CGJ: 14 usam a plataforma “suporteleiloes”, 11 usam a “lel.br” — esses 25 já são coletados com dois adaptadores. Os outros são 6 no Superbid, 42 sites customizados, 3 que bloqueiam acesso automatizado e 1 fora do ar. Escrever 42 adaptadores não escala; um extrator genérico por LLM, sim. É a justificativa concreta da Fase 2.</p>
+      <p>Dos 78 sites da lista CGJ: 14 usam a plataforma “suporteleiloes”, 11 a “lel.br” e 7 a “vlance” — esses <b>32 já são coletados com três adaptadores</b>. A vlance rendeu um achado técnico: ela carrega os lotes por JavaScript (o HTML chega vazio), mas expõe uma API REST não documentada que devolve categoria, cidade e estado já estruturados, o que dispensou navegador headless. Sobram 6 no Superbid, 34 sites customizados, 3 que bloqueiam acesso automatizado e 1 fora do ar. Escrever 34 adaptadores não escala; um extrator genérico por LLM, sim. É a justificativa concreta da Fase 2.</p>
     </div>
 
     <div class="card" style="border-color:rgba(227,179,65,.35)">
@@ -636,7 +636,7 @@
       <ul>
         <li>Os números dos concorrentes (estoques, filtros) vêm de leitura direta das páginas em 25/07/2026 e <b>não passaram pela verificação adversarial</b> — a rodada foi interrompida por limite de processamento. No relatório eles estão marcados com o selo “Observado”.</li>
         <li>A extração de quartos e área foi feita de forma assistida nesta fase e registrada em arquivo versionado; a automação é a Fase 2.</li>
-        <li>A cobertura é de 25 dos 78 leiloeiros — o número de lotes reflete essa fatia, não o mercado inteiro.</li>
+        <li>A cobertura é de 32 dos 78 leiloeiros — o número de lotes reflete essa fatia, não o mercado inteiro.</li>
         <li>Nenhuma entrevista com usuários foi feita ainda. Tudo aqui é sobre a <b>oferta</b> de dados; a <b>demanda</b> permanece hipótese.</li>
       </ul>
     </div>

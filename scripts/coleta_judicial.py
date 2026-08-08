@@ -3,9 +3,9 @@
 credenciados do TJRJ (lista CGJ em scripts/leiloeiros.json) e filtra os
 bairros-alvo (Zona Sul).
 
-Plataformas suportadas: "suporteleiloes" e "lel.br" (as duas mais comuns na
-lista CGJ). Sites em outras plataformas ficam registrados no inventário para
-fases futuras.
+Plataformas suportadas: "suporteleiloes", "lel.br" e "vlance" (as três mais
+comuns na lista CGJ, cobrindo 32 dos 78 sites). Sites em outras plataformas
+ficam registrados no inventário para fases futuras.
 
 Uso:
   python3 scripts/coleta_judicial.py [saida.json]
@@ -66,6 +66,17 @@ def busca(url: str) -> str:
         if out.returncode != 0 or not out.stdout:
             raise RuntimeError(f"fetch falhou: {url}")
         return out.stdout.decode("utf-8", errors="replace")
+
+
+def busca_json(url: str, payload=None):
+    """GET (payload=None) ou POST com corpo JSON, devolvendo o objeto decodificado."""
+    dados = json.dumps(payload).encode() if payload is not None else None
+    cab = {"User-Agent": UA, "Accept": "application/json"}
+    if dados:
+        cab["Content-Type"] = "application/json"
+    req = urllib.request.Request(url, data=dados, headers=cab)
+    with urllib.request.urlopen(req, timeout=45) as r:
+        return json.loads(r.read().decode("utf-8", errors="replace"))
 
 
 def sem_acento(s: str) -> str:
@@ -300,6 +311,89 @@ def coleta_lelbr(nome, base, todos, alvo):
         time.sleep(PAUSA)
 
 
+# ---------------------------------------------------------------------- vlance
+# Plataforma "vlance": os lotes não vêm no HTML (carregados por JS), mas há uma
+# API REST — GET /core/api/get-leiloes e POST /core/api/get-lotes — que devolve
+# categoria, cidade e estado já estruturados, o que dispensa navegador headless.
+
+def coleta_vlance(nome, base, todos, alvo):
+    # 1) mapa dos leilões: id → datas de 1ª e 2ª praça
+    leiloes, pg = {}, 1
+    while True:
+        try:
+            d = busca_json(f"{base}/core/api/get-leiloes?pg={pg}&itens_pagina=40")
+        except Exception as e:
+            print(f"  {nome}: get-leiloes falhou: {e}", file=sys.stderr)
+            break
+        for l in d.get("items", []):
+            leiloes[l.get("id")] = (l.get("dt_formatada"), l.get("hr_formatada"),
+                                    l.get("dt_segundoleilao_data"), l.get("dt_segundoleilao_hora"))
+        if pg >= int(d.get("totalPages") or 1):
+            break
+        pg += 1
+        time.sleep(PAUSA)
+
+    # 2) lotes paginados, filtrando imóveis na capital
+    achados, vistos = 0, set()
+    pg = 1
+    while True:
+        try:
+            d = busca_json(f"{base}/core/api/get-lotes", {"pg": pg, "itens_pagina": 40})
+        except Exception as e:
+            print(f"  {nome}: get-lotes falhou: {e}", file=sys.stderr)
+            break
+        for lote in d.get("items", []):
+            if "IMOVE" not in sem_acento(lote.get("nm_categoria") or ""):
+                continue
+            if (lote.get("nm_estado") or "").upper() != "RJ":
+                continue
+            if sem_acento(lote.get("nm_cidade") or "") != "RIO DE JANEIRO":
+                continue
+            if lote.get("lote_id") in vistos:   # a paginação pode repetir itens
+                continue
+            vistos.add(lote.get("lote_id"))
+            achados += 1
+            descricao = texto_de_html(lote.get("nm_descricao", ""))
+            titulo = (lote.get("nm_titulo_lote") or "Imóvel").strip()
+            bairro = acha_bairro(titulo, descricao[:600])
+            d1, h1, d2, h2 = leiloes.get(lote.get("leilao_id"), (None, None, None, None))
+            rodadas = []
+            if d1:
+                rodadas.append({"n": 1, "data": d1, "hora": (h1 or "")[:5],
+                                "lance_minimo": num(lote.get("vl_lanceinicial"))})
+            if d2:
+                rodadas.append({"n": 2, "data": d2, "hora": (h2 or "")[:5],
+                                "lance_minimo": num(lote.get("vl_lanceinicialsegundoleilao"))})
+            registro = {
+                "id": f"{sem_acento(nome).replace(' ', '')[:12]}-VL{lote.get('lote_id')}",
+                "titulo": titulo,
+                "endereco": descricao.split("\n")[0][:160],
+                "bairro": bairro,
+                "descricao": descricao[:1500],
+                "quartos": None,
+                "avaliacao": num(lote.get("vl_lanceminimo")),
+                "valor_minimo": num(lote.get("vl_lanceinicial")),
+                "rodadas": rodadas,
+                "modalidade": "Leilão Judicial",
+                "status_leilao": lote.get("nm_statuslote"),
+                "vara": lote.get("nm_titulo_leilao"),
+                "processo": None,
+                "leiloeiro": nome,
+                "link": f"{base}/lote/{lote.get('lote_id')}",
+                "edital_url": None,
+                "foto": None,
+            }
+            todos.append(registro)
+            if bairro:
+                alvo.append(registro)
+                print(f"    ✓ ALVO {bairro}: {titulo[:60]} ({len(rodadas)} rodadas)")
+        if pg >= int(d.get("totalPages") or 1):
+            break
+        pg += 1
+        time.sleep(PAUSA)
+    print(f"  {nome}: {achados} imóveis na capital")
+
+
 # ------------------------------------------------------------------------ main
 
 def main():
@@ -315,6 +409,9 @@ def main():
         elif plat == "lel.br":
             print(f"[lel.br] {nome} ({dom})")
             coleta_lelbr(nome, base, todos, alvo)
+        elif plat == "vlance":
+            print(f"[vlance] {nome} ({dom})")
+            coleta_vlance(nome, base, todos, alvo)
     dedup = {}
     for r in alvo:
         dedup[r["id"]] = r
