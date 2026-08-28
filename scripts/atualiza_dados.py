@@ -41,6 +41,8 @@ ALIAS_BAIRRO = {
     "FREG DE JACAREPAGUA": "JACAREPAGUA",
     "FREG JACAREPAGUA": "JACAREPAGUA",
     "FREG DE SANTA CRUZ": "SANTA CRUZ",
+    "FREGUE DE SANTA CRUZ": "SANTA CRUZ",
+    "FREGUESIA DE CAMPO G": "CAMPO GRANDE",
     "FREG. DE SANTA CRUZ": "SANTA CRUZ",
     "FREGUESIA SANTA CRUZ": "SANTA CRUZ",
     "FREG DO ENGENHO NOVO": "ENGENHO NOVO",
@@ -48,10 +50,25 @@ ALIAS_BAIRRO = {
 }
 
 
-def baixar_csv() -> str:
-    req = urllib.request.Request(URL_CSV, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=90) as r:
-        return r.read().decode("latin1")
+def baixar_csv(tentativas: int = 4) -> str:
+    """Baixa a lista da Caixa. O servidor recusa downloads em sequência, então
+    tenta de novo com espera crescente antes de desistir."""
+    erro = None
+    for n in range(1, tentativas + 1):
+        try:
+            req = urllib.request.Request(URL_CSV, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=90) as r:
+                texto = r.read().decode("latin1")
+            if "UF" in texto[:4000]:
+                return texto
+            erro = "resposta sem o cabeçalho esperado"
+        except Exception as e:
+            erro = e
+        if n < tentativas:
+            espera = 15 * n
+            print(f"  tentativa {n} falhou ({erro}); nova tentativa em {espera}s…")
+            time.sleep(espera)
+    raise SystemExit(f"não foi possível baixar a lista da Caixa: {erro}")
 
 
 def num_br(texto: str):
@@ -92,7 +109,9 @@ def main():
 
     linhas = bruto.splitlines()
     # Acha a linha de cabeçalho (começa com "N° do imóvel")
-    inicio = next(i for i, l in enumerate(linhas) if "imóvel" in l and "UF" in l)
+    inicio = next((i for i, l in enumerate(linhas) if "imóvel" in l and "UF" in l), None)
+    if inicio is None:
+        raise SystemExit("CSV da Caixa sem linha de cabeçalho — download provavelmente truncado")
     data_geracao = ""
     m = re.search(r"(\d{2}/\d{2}/\d{4})", "\n".join(linhas[:inicio]))
     if m:

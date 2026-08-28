@@ -1,5 +1,5 @@
 {
- "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 08/08/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
+ "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 27/08/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
  "RODRIGOLOPES-3589": {
   "tipo": "Apartamento",
   "area": 35,
@@ -175,6 +175,66 @@
   "merge_em": "RENATOGUEDES-VL208095"
  },
  "RODRIGOAPARE-VL208173": {
+  "merge_em": "RENATOGUEDES-VL208095"
+ },
+ "FABIANOAYUPP-2421": {
+  "tipo": "Casa",
+  "area": 1105,
+  "quartos": null,
+  "valor_minimo": null,
+  "endereco": "Rua Sebastião de Lacerda, nº 70 (esquina com Rua Leite Leal) – Laranjeiras",
+  "endereco_geo": "Rua Sebastiao de Lacerda 70, Laranjeiras, Rio de Janeiro, RJ",
+  "_nota": "prédio e terreno, matrícula 2284, 9º Ofício do RGI; área do título (~1.105 m²) refere-se ao conjunto"
+ },
+ "RODRIGOLOPES-3651": {
+  "tipo": "Apartamento",
+  "area": 39,
+  "quartos": null,
+  "endereco_geo": "Rua Lauro Muller 26, Botafogo, Rio de Janeiro, RJ"
+ },
+ "RODRIGOLOPES-3657": {
+  "tipo": "Apartamento",
+  "area": 21,
+  "quartos": null,
+  "endereco_geo": "Praia de Botafogo 356, Botafogo, Rio de Janeiro, RJ",
+  "_nota": "mesmo edifício (Condomínio Solymar) do lote encerrado JONASRYMER-1297, mas unidade diferente (apto 127); a fonte não informa o número de quartos"
+ },
+ "JONASRYMER-1360": {
+  "tipo": "Apartamento",
+  "area": 463,
+  "quartos": null,
+  "endereco": "Praia do Flamengo, nº 284 – Apto 301",
+  "endereco_geo": "Praia do Flamengo 284, Flamengo, Rio de Janeiro, RJ",
+  "_nota": "edifício histórico (antiga residência da família Guinle); a fonte não informa o número de quartos"
+ },
+ "JONASRYMER-1344": {
+  "tipo": "Loja",
+  "area": 7,
+  "quartos": null,
+  "endereco": "Rua Senador Vergueiro, nº 203 – box 9, loja B",
+  "endereco_geo": "Rua Senador Vergueiro 203, Flamengo, Rio de Janeiro, RJ"
+ },
+ "JONASRYMER-1346": {
+  "tipo": "Loja",
+  "area": 49,
+  "quartos": null,
+  "endereco": "Avenida Nossa Senhora de Copacabana, nº 959 – Loja J (matrícula 106.698)",
+  "endereco_geo": "Avenida Nossa Senhora de Copacabana 959, Copacabana, Rio de Janeiro, RJ",
+  "_dedupe": "mesmo bem anunciado por 3 leiloeiros (leilão da CAEX/TRT 1ª Região, proc. 0100309-16.2016.5.01.0034), com a mesma avaliação e lance mínimo"
+ },
+ "CARLOFERRARI-VL212255": {
+  "merge_em": "JONASRYMER-1346"
+ },
+ "FABIOMANOELG-VL212108": {
+  "merge_em": "JONASRYMER-1346"
+ },
+ "FABIANOAYUPP-2387": {
+  "merge_em": "RENATOGUEDES-VL208095"
+ },
+ "JULIANASEVID-2573": {
+  "merge_em": "RENATOGUEDES-VL208095"
+ },
+ "LUIZTENORIOD-1282": {
   "merge_em": "RENATOGUEDES-VL208095"
  }
 }
