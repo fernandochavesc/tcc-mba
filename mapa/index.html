@@ -38,6 +38,8 @@
   .corpo{flex:1;display:flex;min-height:0}
   #mapa{flex:1;min-width:0;min-height:320px}
   .leaflet-container{background:#0b0e13}
+  /* leve escurecimento para casar com a paleta da interface */
+  .leaflet-tile-pane{filter:brightness(.82) contrast(1.05)}
 
   aside{width:360px;max-width:45%;border-left:1px solid var(--border);background:var(--surface);
     display:flex;flex-direction:column;min-height:0}
@@ -347,9 +349,15 @@ async function init(){
   $('fonte').textContent = `Caixa (lista de ${DADOS.data_geracao}, ${DADOS.imoveis.length.toLocaleString('pt-BR')} imóveis) + ${JUD.length} lotes judiciais de leiloeiros TJRJ (Zona Sul)`;
 
   mapa = L.map('mapa', { zoomControl: true }).setView([-22.92, -43.45], 11);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    maxZoom: 18
+  // Mapa-base escuro da Esri (sem chave de API; o basemap do CARTO passou a
+  // exigir chave em 2026). Base e rótulos vêm em camadas separadas.
+  const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+  L.tileLayer(ESRI + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a> &mdash; &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxNativeZoom: 16, maxZoom: 19
+  }).addTo(mapa);
+  L.tileLayer(ESRI + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    maxNativeZoom: 16, maxZoom: 19, pane: 'tilePane'
   }).addTo(mapa);
 
   const legenda = L.control({position: 'bottomleft'});
