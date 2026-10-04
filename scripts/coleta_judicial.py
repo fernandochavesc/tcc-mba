@@ -165,8 +165,12 @@ def parse_lote_suporte(url, html, leiloeiro):
     leilao = json_da_var(html, "leilao") or {}
     descricao = texto_de_html(lote.get("descricao", ""))
     endereco = descricao.split("\n")[0].strip() if descricao else ""
-    m1 = re.search(r"Primeiro leil[ãa]o\s*</div>.{0,200}?(\d{2}/\d{2}/\d{4}) - (\d{2}:\d{2})", html, re.S)
-    m2 = re.search(r"Segundo leil[ãa]o\s*</div>.{0,200}?(\d{2}/\d{2}/\d{4}) - (\d{2}:\d{2})", html, re.S)
+    # O rótulo da praça já apareceu em <div> e em <span class="info-esq">, com e
+    # sem hífen entre data e hora; sem aceitar os dois a 2ª praça some e o lote
+    # cai no fallback de rodada única (era assim até 04/10/2026).
+    praca = r"\s*:?\s*</(?:div|span)>.{0,200}?(\d{2}/\d{2}/\d{4})\s*-?\s*(\d{2}:\d{2})"
+    m1 = re.search(r"Primeiro\s+leil[ãa]o" + praca, html, re.S | re.I)
+    m2 = re.search(r"Segundo\s+leil[ãa]o" + praca, html, re.S | re.I)
     mvara = re.search(r"<strong>Cart[óo]rio:</strong>\s*([^<]+)", html)
     mproc = re.search(r'id="processo" value="(\d+)"', html)
     medital = re.search(r'href="(https://static\.suporteleiloes\.com\.br/[^"]+\.pdf)"', html)

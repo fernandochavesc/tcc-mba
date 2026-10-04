@@ -219,8 +219,12 @@ function desenha(){
   camadaJud.addTo(mapa);
 
   const nb = porBairro.size;
-  $('contagem').innerHTML = `<b>${itens.length}</b> Caixa em <b>${nb}</b> bairros · <b style="color:#3fb950">${juds.length}</b> judiciais` +
-    (itens.length - comPin > 0 ? ` (${itens.length - comPin} sem pin)` : '');
+  // o "sem pin" é da Caixa (bairro sem centróide); colado no número dos
+  // judiciais, lia-se como se fossem lotes judiciais sem coordenada
+  const semPin = itens.length - comPin;
+  $('contagem').innerHTML = `<b>${itens.length}</b> Caixa` +
+    (semPin > 0 ? ` (${semPin} sem pin)` : '') +
+    ` em <b>${nb}</b> bairros · <b style="color:#3fb950">${juds.length}</b> judiciais`;
   if (bairroAberto) abrePainel(bairroAberto, true);
 }
 

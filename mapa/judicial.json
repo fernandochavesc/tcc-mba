@@ -3,149 +3,35 @@
  "gerado_em": "",
  "lotes": [
   {
-   "id": "FABIANOAYUPP-2421",
-   "titulo": "LARANJEIRAS - CASA NA RUA SEBASTIÃO LACERDA Nº 70 COM APROXIMADAMENTE 1105M²",
-   "endereco": "Rua Sebastião de Lacerda, nº 70 (esquina com Rua Leite Leal) – Laranjeiras",
-   "bairro": "LARANJEIRAS",
+   "id": "FABIANOAYUPP-2394",
+   "titulo": "COPACABANA - SALA COMERCIAL NA RUA SANTA CLARA N°75",
+   "endereco": "Rua Santa Clara, nº 75 – Sala 1006, Copacabana",
+   "bairro": "COPACABANA",
    "quartos": null,
-   "avaliacao": 6000000.0,
+   "avaliacao": 411750.0,
    "valor_minimo": null,
    "rodadas": [
     {
-     "n": 1,
-     "data": "10/09/2026",
+     "n": 2,
+     "data": "06/10/2026",
      "hora": "11:50",
-     "lance_minimo": 6000000.0
+     "lance_minimo": 411750.0
     }
    ],
    "modalidade": "Leilão Judicial",
    "status_leilao": "Aberto para lances",
    "vara": null,
-   "processo": "01001710320235010067",
+   "processo": "01007497320195010012",
    "leiloeiro": "Fabiano Ayupp Magalhães",
-   "link": "https://www.fabianoayuppleiloeiro.com.br/oferta/leilao/imoveis/casas/889/id-2421/laranjeiras-casa-na-rua-sebastiao-lacerda-n%C2%BA-70-com-aproximadamente-1105m",
-   "edital_url": "https://static.suporteleiloes.com.br/fabianoayuppleiloeirocombr/bens/2358/arquivos/sl-bem-2358-6a7dc1059cd32-6a7dc1059d56e.pdf",
+   "link": "https://www.fabianoayuppleiloeiro.com.br/oferta/leilao/imoveis/ponto-comercial/862/id-2394/copacabana-sala-comercial-na-rua-santa-clara-n-75",
+   "edital_url": "https://static.suporteleiloes.com.br/fabianoayuppleiloeirocombr/bens/2331/arquivos/sl-bem-2331-6a552e1c5d0a0-6a552e1c6018d.pdf",
    "foto": null,
-   "tipo": "Casa",
-   "area": 1105,
-   "endereco_geo": "Rua Sebastiao de Lacerda 70, Laranjeiras, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.936586,
-    -43.188213
-   ]
-  },
-  {
-   "id": "RODRIGOLOPES-3649",
-   "titulo": "Apartamento em Laranjeiras",
-   "endereco": "Rua das Laranjeiras, nº 347 - Apto 407",
-   "bairro": "LARANJEIRAS",
-   "quartos": 3,
-   "avaliacao": 950000.0,
-   "valor_minimo": 950000.0,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "08/09/2026",
-     "hora": "12:20",
-     "lance_minimo": 950000.0
-    },
-    {
-     "n": 2,
-     "data": "10/09/2026",
-     "hora": "12:20",
-     "lance_minimo": 475000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": "JUÍZO DE DIREITO DA QUADRAGÉSIMA NONA VARA CÍVEL",
-   "processo": "00854596420208190001",
-   "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1259/id-3649/apartamento-em-laranjeiras",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3648/arquivos/sl-bem-3648-6a70dd6b437d5-6a70dd6b43ea0.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3648/arquivos/sl-bem-3648-6a70dd3033e25-6a70dd303a786.jpg",
-   "tipo": "Apartamento",
+   "tipo": "Sala Comercial",
    "area": null,
-   "endereco_geo": "Rua das Laranjeiras 347, Laranjeiras, Rio de Janeiro, RJ",
+   "endereco_geo": "Rua Santa Clara 75, Copacabana, Rio de Janeiro, RJ",
    "latlng": [
-    -22.935924,
-    -43.189314
-   ]
-  },
-  {
-   "id": "RODRIGOLOPES-3651",
-   "titulo": "Apartamento em Botafogo",
-   "endereco": "Rua Lauro Muller, nº 26 - Apto 1001",
-   "bairro": "BOTAFOGO",
-   "quartos": null,
-   "avaliacao": 541158.4,
-   "valor_minimo": 541158.4,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "14/09/2026",
-     "hora": "12:10",
-     "lance_minimo": 541158.4
-    },
-    {
-     "n": 2,
-     "data": "16/09/2026",
-     "hora": "12:10",
-     "lance_minimo": 271000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": "JUÍZO DE DIREITO DA NONA VARA CÍVEL",
-   "processo": "02458807220138190001",
-   "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1261/id-3651/apartamento-em-botafogo",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3650/arquivos/sl-bem-3650-6a71ee225eeb3-6a71ee225f4e3.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3650/arquivos/sl-bem-3650-6a71eded6d8d7-6a71eded704e7.jpg",
-   "tipo": "Apartamento",
-   "area": 39,
-   "endereco_geo": "Rua Lauro Muller 26, Botafogo, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.956133,
-    -43.17542
-   ]
-  },
-  {
-   "id": "RODRIGOLOPES-3657",
-   "titulo": "Apartamento em Botafogo",
-   "endereco": "Praia de Botafogo, nº 356 - Apto 127",
-   "bairro": "BOTAFOGO",
-   "quartos": null,
-   "avaliacao": 355000.42,
-   "valor_minimo": 355000.42,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "28/09/2026",
-     "hora": "12:20",
-     "lance_minimo": 355000.42
-    },
-    {
-     "n": 2,
-     "data": "30/09/2026",
-     "hora": "12:20",
-     "lance_minimo": 178000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": "JUÍZO DE DIREITO DA DÉCIMA QUARTA VARA CÍVEL",
-   "processo": "01454162620028190001",
-   "leiloeiro": "Rodrigo Lopes Portella",
-   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1267/id-3657/apartamento-em-botafogo",
-   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3656/arquivos/sl-bem-3656-6a722d82b06d4-6a722d82b0f7e.pdf",
-   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3656/arquivos/sl-bem-3656-6a722d4e89705-6a722d4e8c2f7.jpg",
-   "tipo": "Apartamento",
-   "area": 21,
-   "endereco_geo": "Praia de Botafogo 356, Botafogo, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.94642,
-    -43.183198
+    -22.971421,
+    -43.187523
    ]
   },
   {
@@ -188,101 +74,35 @@
    ]
   },
   {
-   "id": "RENATOGUEDES-VL208095",
-   "titulo": "Prédio na Rua Pereira da Silva (Laranjeiras)",
-   "endereco": "Rua Pereira da Silva, nº 856 – Laranjeiras (matrícula 524.623)",
-   "bairro": "LARANJEIRAS",
-   "quartos": null,
-   "avaliacao": 1500000.0,
-   "valor_minimo": 600000.0,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "04/09/2026",
-     "hora": "16:00",
-     "lance_minimo": 600000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para Lance",
-   "vara": "JUSTIÇA DO TRABALHO DO RIO DE JANEIRO/RJ – CAEX - COORDENADORIA DE APOIO À EXECUÇÃO",
-   "processo": null,
-   "leiloeiro": "Renato Guedes Rocha",
-   "link": "https://www.rioleiloes.com.br/lote/208095",
-   "edital_url": null,
-   "foto": null,
-   "fontes_extras": [
-    {
-     "leiloeiro": "Carlo Ferrari",
-     "link": "https://www.carloferrarileiloes.com.br/lote/208187"
-    },
-    {
-     "leiloeiro": "Deonizia Kiratch",
-     "link": "https://www.deonizialeiloes.com.br/lote/208156"
-    },
-    {
-     "leiloeiro": "Luiz Tenorio De Paula",
-     "link": "https://www.depaulaonline.com.br/oferta/leilao/imoveis/casas/1286/id-1282/imovel-em-laranjeiras-rj"
-    },
-    {
-     "leiloeiro": "Fabiano Ayupp Magalhães",
-     "link": "https://www.fabianoayuppleiloeiro.com.br/oferta/leilao/imoveis/imoveis/855/id-2387/lote-3-imovel-situado-na-rua-pereira-da-silva-n%C2%BA-856-laranjeiras-rio-de-janeiro-rj"
-    },
-    {
-     "leiloeiro": "Fábio Manoel Guimarães",
-     "link": "https://www.fabioleiloes.com.br/lote/208107"
-    },
-    {
-     "leiloeiro": "Giordano Bruno Coan Amador",
-     "link": "https://www.giordanoleiloes.com.br/lote/208088"
-    },
-    {
-     "leiloeiro": "Juliana Sevidanes De Araújo",
-     "link": "https://www.leiloesja.com.br/oferta/venda-direta/imoveis/ponto-comercial/148/id-2573/imovel-situado-na-rua-pereira-da-silva-no-856-laranjeiras-rio-de-janeiro-rj"
-    },
-    {
-     "leiloeiro": "Rodrigo Aparecido Rigolon Da Silva",
-     "link": "https://www.rigolonleiloes.com.br/lote/208173"
-    }
-   ],
-   "tipo": "Prédio",
-   "area": null,
-   "endereco_geo": "Rua Pereira da Silva 856, Laranjeiras, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.930731,
-    -43.186903
-   ]
-  },
-  {
-   "id": "RODRIGODASIL-590",
+   "id": "RODRIGODASIL-618",
    "titulo": "APARTAMENTO COPACABANA",
-   "endereco": "Apartamento 406, situado na Rua Ministro Viveiros de Castro, nº 32, Copacabana, Rio de Janeiro/RJ. Segundo o espelho do IPTU, o imóvel localiza-se de fundos e mede 31m2.",
+   "endereco": "Rua Siqueira Campos, nº 143, apto 740, Copacabana/RJ",
    "bairro": "COPACABANA",
    "quartos": null,
-   "avaliacao": 480000.0,
+   "avaliacao": 390000.0,
    "valor_minimo": null,
    "rodadas": [
     {
-     "n": 2,
-     "data": "03/09/2026",
+     "n": 1,
+     "data": "23/11/2026",
      "hora": "14:03",
-     "lance_minimo": 480000.0
+     "lance_minimo": 390000.0
     }
    ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
+   "modalidade": "Leilão Extrajudicial",
+   "status_leilao": "Em breve",
    "vara": null,
-   "processo": "01517772920208190001",
+   "processo": null,
    "leiloeiro": "Rodrigo Da Silva Costa",
-   "link": "https://www.rodrigocostaleiloeiro.com.br/oferta/leilao/imoveis/apartamentos/265/id-590/apartamento-copacabana",
+   "link": "https://www.rodrigocostaleiloeiro.com.br/oferta/leilao/imoveis/apartamentos/295/id-618/apartamento-copacabana",
    "edital_url": null,
    "foto": null,
    "tipo": "Apartamento",
-   "area": 31,
-   "endereco_geo": "Rua Ministro Viveiros de Castro 32, Copacabana, Rio de Janeiro, RJ",
+   "area": 44,
+   "endereco_geo": "Rua Siqueira Campos 143, Copacabana, Rio de Janeiro, RJ",
    "latlng": [
-    -22.963427,
-    -43.175254
+    -22.966667,
+    -43.187584
    ]
   },
   {
@@ -349,7 +169,7 @@
   },
   {
    "id": "JONASRYMER-1360",
-   "titulo": "Apartamento com 463m² no Flamengo",
+   "titulo": "Apartamento com 463m² e vaga no Flamengo",
    "endereco": "Praia do Flamengo, nº 284 – Apto 301",
    "bairro": "FLAMENGO",
    "quartos": null,
@@ -361,6 +181,12 @@
      "data": "05/10/2026",
      "hora": "12:00",
      "lance_minimo": 4100000.0
+    },
+    {
+     "n": 2,
+     "data": "08/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 2050000.0
     }
    ],
    "modalidade": "Leilão Judicial",
@@ -380,19 +206,25 @@
    ]
   },
   {
-   "id": "JONASRYMER-1344",
-   "titulo": "Loja em galeria de rua com 7m² no Flamengo",
-   "endereco": "Rua Senador Vergueiro, nº 203 – box 9, loja B",
+   "id": "JONASRYMER-1415",
+   "titulo": "Apartamento com 40m² no Flamengo",
+   "endereco": "Praia do Flamengo, nº 12, apto 306, Ed. Rio Carioca, Flamengo/RJ",
    "bairro": "FLAMENGO",
-   "quartos": null,
-   "avaliacao": 52205.94,
-   "valor_minimo": 52205.94,
+   "quartos": 1,
+   "avaliacao": 627898.69,
+   "valor_minimo": 627898.69,
    "rodadas": [
     {
      "n": 1,
-     "data": "21/09/2026",
+     "data": "26/10/2026",
      "hora": "12:00",
-     "lance_minimo": 52205.94
+     "lance_minimo": 627898.69
+    },
+    {
+     "n": 2,
+     "data": "29/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 313949.34
     }
    ],
    "modalidade": "Leilão Judicial",
@@ -400,57 +232,243 @@
    "vara": null,
    "processo": null,
    "leiloeiro": "Jonas Rymer",
-   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/ponto-comercial/259/id-1344/loja-em-galeria-de-rua-com-7m-de-area-edificada-no-flamengo",
-   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1306/arquivos/sl-bem-1306-6a7b387ccf838-6a7b387cd036c.pdf",
-   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1306/arquivos/sl-bem-1306-6a7b362019d57-6a7b362021791.jpg",
-   "tipo": "Loja",
-   "area": 7,
-   "endereco_geo": "Rua Senador Vergueiro 203, Flamengo, Rio de Janeiro, RJ",
+   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/apartamentos/330/id-1415/apartamento-com-40m-no-flamengo",
+   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1370/arquivos/sl-bem-1370-6ab3fcf4f0d94-6ab3fcf4f1478.pdf",
+   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1370/arquivos/sl-bem-1370-6ab3f0a2eaee8-6ab3f0a2f1427.jpg",
+   "tipo": "Apartamento",
+   "area": 40,
+   "endereco_geo": "Praia do Flamengo 12, Flamengo, Rio de Janeiro, RJ",
    "latlng": [
-    -22.939411,
-    -43.176556
+    -22.927731,
+    -43.173628
    ]
   },
   {
-   "id": "JONASRYMER-1346",
-   "titulo": "Loja com 49m² em Copacabana",
-   "endereco": "Avenida Nossa Senhora de Copacabana, nº 959 – Loja J (matrícula 106.698)",
+   "id": "JONASRYMER-1431",
+   "titulo": "Apartamento com 141m² e vaga em Copacabana",
+   "endereco": "Rua Domingos Ferreira, nº 10, apto 1002, Copacabana/RJ",
    "bairro": "COPACABANA",
    "quartos": null,
-   "avaliacao": 310000.0,
-   "valor_minimo": 124000.0,
+   "avaliacao": 1560000.0,
+   "valor_minimo": 1560000.0,
    "rodadas": [
     {
      "n": 1,
-     "data": "11/09/2026",
-     "hora": "15:00",
-     "lance_minimo": 124000.0
+     "data": "19/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 1560000.0
+    },
+    {
+     "n": 2,
+     "data": "22/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 780000.0
     }
    ],
-   "modalidade": "Judicial · Venda Direta",
+   "modalidade": "Leilão Judicial",
    "status_leilao": "Aberto para lances",
    "vara": null,
    "processo": null,
    "leiloeiro": "Jonas Rymer",
-   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/ponto-comercial/261/id-1346/loja-em-copacabana",
-   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1309/arquivos/sl-bem-1309-6a7f42a3c98cd-6a7f42a3cac02.pdf",
-   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1309/arquivos/sl-bem-1309-6a7f41d373f97-6a7f41d376b33.jpg",
-   "fontes_extras": [
+   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/apartamentos/346/id-1431/apartamento-com-141m-e-vaga-em-copacabana",
+   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1386/arquivos/sl-bem-1386-6abac4605d071-6abac4605da00.pdf",
+   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1386/arquivos/sl-bem-1386-6aba78f6d34ed-6aba78f6d7586.jpg",
+   "tipo": "Apartamento",
+   "area": 141,
+   "endereco_geo": "Rua Domingos Ferreira 10, Copacabana, Rio de Janeiro, RJ",
+   "latlng": [
+    -22.972625,
+    -43.186844
+   ]
+  },
+  {
+   "id": "JONASRYMER-1432",
+   "titulo": "Apto com 117m² em Copacabana",
+   "endereco": "Av. Nossa Senhora de Copacabana, nº 903, apto 301, Ed. Dona Emília, Copacabana/RJ",
+   "bairro": "COPACABANA",
+   "quartos": null,
+   "avaliacao": 1200000.0,
+   "valor_minimo": 1200000.0,
+   "rodadas": [
     {
-     "leiloeiro": "Carlo Ferrari",
-     "link": "https://www.carloferrarileiloes.com.br/lote/212255"
+     "n": 1,
+     "data": "19/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 1200000.0
     },
     {
-     "leiloeiro": "Fábio Manoel Guimarães",
-     "link": "https://www.fabioleiloes.com.br/lote/212108"
+     "n": 2,
+     "data": "22/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 600000.0
     }
    ],
-   "tipo": "Loja",
-   "area": 49,
-   "endereco_geo": "Avenida Nossa Senhora de Copacabana 959, Copacabana, Rio de Janeiro, RJ",
+   "modalidade": "Leilão Judicial",
+   "status_leilao": "Aberto para lances",
+   "vara": null,
+   "processo": null,
+   "leiloeiro": "Jonas Rymer",
+   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/apartamentos/347/id-1432/apto-com-117m-em-copacabana",
+   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1387/arquivos/sl-bem-1387-6ababc76ad3df-6ababc76add66.pdf",
+   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1387/arquivos/sl-bem-1387-6ababaf6e3b30-6ababaf6e946e.jpg",
+   "tipo": "Apartamento",
+   "area": 117,
+   "endereco_geo": "Avenida Nossa Senhora de Copacabana 903, Copacabana, Rio de Janeiro, RJ",
    "latlng": [
-    -22.97493,
-    -43.189503
+    -22.975402,
+    -43.189711
+   ]
+  },
+  {
+   "id": "JONASRYMER-1435",
+   "titulo": "Apartamento com 76m² e duas vagas em Copacabana",
+   "endereco": "Rua Décio Vilares, nº 265, apto 304, Ed. Abraham Medina, Copacabana/RJ",
+   "bairro": "COPACABANA",
+   "quartos": 2,
+   "avaliacao": 939706.95,
+   "valor_minimo": 939706.95,
+   "rodadas": [
+    {
+     "n": 1,
+     "data": "26/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 939706.95
+    },
+    {
+     "n": 2,
+     "data": "29/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 469853.48
+    }
+   ],
+   "modalidade": "Leilão Judicial",
+   "status_leilao": "Aberto para lances",
+   "vara": null,
+   "processo": null,
+   "leiloeiro": "Jonas Rymer",
+   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/apartamentos/350/id-1435/apartamento-com-76m-e-duas-vagas-em-copacabana",
+   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1346/arquivos/sl-bem-1346-6abd172be9fdb-6abd172beb226.pdf",
+   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1346/arquivos/sl-bem-1346-6aa98bb4b7f72-6aa98bb4be4c3.jpg",
+   "tipo": "Apartamento",
+   "area": 76,
+   "endereco_geo": "Rua Décio Vilares 265, Copacabana, Rio de Janeiro, RJ",
+   "latlng": [
+    -22.965974,
+    -43.190489
+   ]
+  },
+  {
+   "id": "JONASRYMER-1429",
+   "titulo": "Terreno com aproximadamente 900m² e 1.178m² de área edificada",
+   "endereco": "Rua Leite Leal, nº 32, Laranjeiras/RJ",
+   "bairro": "LARANJEIRAS",
+   "quartos": null,
+   "avaliacao": 4000000.0,
+   "valor_minimo": 4000000.0,
+   "rodadas": [
+    {
+     "n": 1,
+     "data": "19/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 4000000.0
+    },
+    {
+     "n": 2,
+     "data": "22/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 2000000.0
+    }
+   ],
+   "modalidade": "Leilão Judicial",
+   "status_leilao": "Aberto para lances",
+   "vara": null,
+   "processo": null,
+   "leiloeiro": "Jonas Rymer",
+   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/lote/344/id-1429/imovel-com-1-178m-em-laranjeiras",
+   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1376/arquivos/sl-bem-1376-6abd11705acce-6abd11705bfb3.pdf",
+   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1376/arquivos/sl-bem-1376-6aba6f3864e71-6aba6f3868d35.jpg",
+   "tipo": "Terreno",
+   "area": 1178,
+   "endereco_geo": "Rua Leite Leal 32, Laranjeiras, Rio de Janeiro, RJ",
+   "latlng": [
+    -22.935803,
+    -43.188889
+   ]
+  },
+  {
+   "id": "JONASRYMER-1421",
+   "titulo": "Loja com 21m² em Botafogo",
+   "endereco": "Rua Marechal Francisco de Moura, nº 125, loja C, Botafogo/RJ",
+   "bairro": "BOTAFOGO",
+   "quartos": null,
+   "avaliacao": 90000.0,
+   "valor_minimo": null,
+   "rodadas": [
+    {
+     "n": 1,
+     "data": "26/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 90000.0
+    },
+    {
+     "n": 2,
+     "data": "29/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 45000.0
+    }
+   ],
+   "modalidade": "Leilão Judicial",
+   "status_leilao": "Aberto para lances",
+   "vara": null,
+   "processo": null,
+   "leiloeiro": "Jonas Rymer",
+   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/ponto-comercial/336/id-1421/loja-com-21m-em-botafogo",
+   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1383/arquivos/sl-bem-1383-6aba95ee3a803-6aba95ee3b004.pdf",
+   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1383/arquivos/sl-bem-1383-6ab6cdda6d57b-6ab6cdda7251a.jpg",
+   "tipo": "Loja",
+   "area": 21,
+   "endereco_geo": "Rua Marechal Francisco de Moura 125, Botafogo, Rio de Janeiro, RJ",
+   "latlng": [
+    -22.949332,
+    -43.193643
+   ]
+  },
+  {
+   "id": "JONASRYMER-1425",
+   "titulo": "Loja com 27m² em galeria no Flamengo",
+   "endereco": "Rua Senador Vergueiro, nº 45, loja 3, Flamengo/RJ",
+   "bairro": "FLAMENGO",
+   "quartos": null,
+   "avaliacao": 220000.0,
+   "valor_minimo": 220000.0,
+   "rodadas": [
+    {
+     "n": 1,
+     "data": "19/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 220000.0
+    },
+    {
+     "n": 2,
+     "data": "22/10/2026",
+     "hora": "12:00",
+     "lance_minimo": 110000.0
+    }
+   ],
+   "modalidade": "Leilão Judicial",
+   "status_leilao": "Aberto para lances",
+   "vara": null,
+   "processo": null,
+   "leiloeiro": "Jonas Rymer",
+   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/ponto-comercial/340/id-1425/loja-com-27m-em-galeria-no-flamengo",
+   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1380/arquivos/sl-bem-1380-6aba92ec892e3-6aba92ec89d8d.pdf",
+   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1380/arquivos/sl-bem-1380-6ab6b8730f6e9-6ab6b87315839.jpg",
+   "tipo": "Loja",
+   "area": 27,
+   "endereco_geo": "Rua Senador Vergueiro 45, Flamengo, Rio de Janeiro, RJ",
+   "latlng": [
+    -22.934485,
+    -43.175474
    ]
   },
   {
@@ -477,12 +495,6 @@
    "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/ponto-comercial/89/id-1182/sala-em-botafogo",
    "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1146/arquivos/sl-bem-1146-69ebaf28d0c3d-69ebaf28d1936.pdf",
    "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1146/arquivos/sl-bem-1146-69ebadb025865-69ebadb02a9ed.jpg",
-   "fontes_extras": [
-    {
-     "leiloeiro": "Rodrigo Lopes Portella",
-     "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/sala-comercial/1181/id-3571/sala-comercial-em-botafogo"
-    }
-   ],
    "tipo": "Sala Comercial",
    "area": null,
    "endereco_geo": "Rua Voluntários da Pátria 126, Botafogo, Rio de Janeiro, RJ",

@@ -1,5 +1,5 @@
 {
- "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 27/08/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
+ "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 04/10/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
  "RODRIGOLOPES-3589": {
   "tipo": "Apartamento",
   "area": 35,
@@ -236,5 +236,74 @@
  },
  "LUIZTENORIOD-1282": {
   "merge_em": "RENATOGUEDES-VL208095"
+ },
+ "RODRIGODASIL-618": {
+  "tipo": "Apartamento",
+  "area": 44,
+  "quartos": null,
+  "endereco": "Rua Siqueira Campos, nº 143, apto 740, Copacabana/RJ",
+  "endereco_geo": "Rua Siqueira Campos 143, Copacabana, Rio de Janeiro, RJ",
+  "valor_minimo": null,
+  "_nota": "Sem edital na fonte; quartos não informados. Plataforma classifica como extrajudicial."
+ },
+ "JONASRYMER-1415": {
+  "tipo": "Apartamento",
+  "area": 40,
+  "quartos": 1,
+  "endereco": "Praia do Flamengo, nº 12, apto 306, Ed. Rio Carioca, Flamengo/RJ",
+  "endereco_geo": "Praia do Flamengo 12, Flamengo, Rio de Janeiro, RJ",
+  "_nota": "Conjugado: a descrição diz 'sala, quarto, cozinha e banheiro' → 1 quarto."
+ },
+ "JONASRYMER-1421": {
+  "tipo": "Loja",
+  "area": 21,
+  "quartos": null,
+  "endereco": "Rua Marechal Francisco de Moura, nº 125, loja C, Botafogo/RJ",
+  "endereco_geo": "Rua Marechal Francisco de Moura 125, Botafogo, Rio de Janeiro, RJ",
+  "valor_minimo": null
+ },
+ "JONASRYMER-1425": {
+  "tipo": "Loja",
+  "area": 27,
+  "quartos": null,
+  "endereco": "Rua Senador Vergueiro, nº 45, loja 3, Flamengo/RJ",
+  "endereco_geo": "Rua Senador Vergueiro 45, Flamengo, Rio de Janeiro, RJ",
+  "matricula": "9º RGI nº 65.509"
+ },
+ "JONASRYMER-1429": {
+  "tipo": "Terreno",
+  "area": 1178,
+  "quartos": null,
+  "endereco": "Rua Leite Leal, nº 32, Laranjeiras/RJ",
+  "endereco_geo": "Rua Leite Leal 32, Laranjeiras, Rio de Janeiro, RJ",
+  "matricula": "9º RGI nº 259.753A",
+  "inscricao_imobiliaria": "0122380-9",
+  "_nota": "Terreno ~900m² com 1.178m² edificados; execuções fiscais do Município, 12ª Vara de Fazenda Pública. Verificar se é o mesmo bem do FABIANOAYUPP-2421 (Sebastião de Lacerda 70, esquina com Leite Leal, 1.105m², trabalhista) — áreas e processos divergem, provavelmente lotes vizinhos."
+ },
+ "JONASRYMER-1431": {
+  "tipo": "Apartamento",
+  "area": 141,
+  "quartos": null,
+  "endereco": "Rua Domingos Ferreira, nº 10, apto 1002, Copacabana/RJ",
+  "endereco_geo": "Rua Domingos Ferreira 10, Copacabana, Rio de Janeiro, RJ",
+  "matricula": "5º RGI nº 100.785",
+  "inscricao_imobiliaria": "0063037-6",
+  "_nota": "Quartos não constam nem no anúncio nem no edital — só área (141m²) e a vaga."
+ },
+ "JONASRYMER-1432": {
+  "tipo": "Apartamento",
+  "area": 117,
+  "quartos": null,
+  "endereco": "Av. Nossa Senhora de Copacabana, nº 903, apto 301, Ed. Dona Emília, Copacabana/RJ",
+  "endereco_geo": "Avenida Nossa Senhora de Copacabana 903, Copacabana, Rio de Janeiro, RJ",
+  "_nota": "Quartos não constam nem no anúncio nem no edital; o laudo descreve só o prédio e a região."
+ },
+ "JONASRYMER-1435": {
+  "tipo": "Apartamento",
+  "area": 76,
+  "quartos": 2,
+  "endereco": "Rua Décio Vilares, nº 265, apto 304, Ed. Abraham Medina, Copacabana/RJ",
+  "endereco_geo": "Rua Décio Vilares 265, Copacabana, Rio de Janeiro, RJ",
+  "_nota": "Dois quartos (um suíte, com varanda); o quarto de serviço não entra na contagem. Duas vagas."
  }
 }

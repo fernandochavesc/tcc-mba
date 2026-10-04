@@ -49,6 +49,12 @@ ALIAS_BAIRRO = {
     "FREGUESIA (ILHA DO GOVERNADOR)": "FREGUESIA ILHA DO GOVERNADOR",
 }
 
+# A lista traz alguns imóveis de outros municípios marcados como "RIO DE JANEIRO"
+# na coluna cidade; o bairro denuncia a troca (conferido: a Estrada Velha de
+# Santa Rita fica em Nova Iguaçu). Sem isso o imóvel vira uma bolha a 25 km da
+# capital, fora do recorte do mapa.
+FORA_DA_CAPITAL = {"NOVA IGUACU"}
+
 
 def baixar_csv(tentativas: int = 4) -> str:
     """Baixa a lista da Caixa. O servidor recusa downloads em sequência, então
@@ -127,7 +133,7 @@ def main():
         _id, uf, cidade, bairro, endereco, preco, avaliacao, desconto, financ, desc, modalidade, link = (
             c.strip() for c in row[:12]
         )
-        if slug(cidade) != "RIO DE JANEIRO":
+        if slug(cidade) != "RIO DE JANEIRO" or slug(bairro) in FORA_DA_CAPITAL:
             continue
         mq = re.search(r"(\d+)\s*qto", desc)
         ma = re.search(r"([\d.]+)\s*de área privativa", desc)
