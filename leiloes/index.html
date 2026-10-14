@@ -592,13 +592,13 @@
   <!-- ============================================ RESULTADO -->
   <section id="resultado" class="tab">
     <h2>Resultado da Pesquisa</h2>
-    <p class="lead">O que a pesquisa e o MVP já provaram — com os números reais da coleta de 04/10/2026 (terceira rodada) e as ressalvas do que ainda não foi verificado.</p>
+    <p class="lead">O que a pesquisa e o MVP já provaram — com os números reais da coleta de 14/10/2026 (quarta rodada) e as ressalvas do que ainda não foi verificado.</p>
 
     <div class="stats">
       <div class="stat"><div class="num">78</div><div class="lbl">Leiloeiros na lista oficial (CGJ/TJRJ)</div></div>
       <div class="stat"><div class="num">32</div><div class="lbl">Sites monitorados no MVP</div></div>
-      <div class="stat"><div class="num">14</div><div class="lbl">Lotes judiciais na Zona Sul</div></div>
-      <div class="stat"><div class="num">2.863</div><div class="lbl">Imóveis da Caixa na capital</div></div>
+      <div class="stat"><div class="num">15</div><div class="lbl">Lotes judiciais na Zona Sul</div></div>
+      <div class="stat"><div class="num">3.362</div><div class="lbl">Imóveis da Caixa na capital</div></div>
     </div>
 
     <div class="card">
@@ -613,28 +613,35 @@
 
     <div class="card">
       <h3>3. A fonte fácil não atende o caso de uso</h3>
-      <p>A lista da Caixa é a fonte mais estruturada que existe (traz até número de quartos e permite download). Mas o estoque dela está na periferia: <b>Santa Cruz tem 862 imóveis; a Zona Sul inteira tem um</b> — um terreno em São Conrado. Nos quatro bairros-alvo (Botafogo, Flamengo, Copacabana, Laranjeiras) são <b>zero</b>. Imóvel de Zona Sul chega ao mercado pela via <b>judicial</b> — a via difícil. Filtrando “3+ quartos na Zona Sul” no MVP: <b>0 resultados da Caixa contra 1 judicial</b>.</p>
-      <p style="margin-top:10px">Em agosto a Zona Sul tinha 7 imóveis na lista da Caixa e Botafogo tinha 1. Em cinco semanas virou um só, em São Conrado — a tendência não só se manteve, se acentuou.</p>
-      <p style="margin-top:10px">O caso de uso de referência do TCC — <b>apartamento de 2 quartos na Zona Sul</b> — aparece exatamente uma vez nesta coleta, e pela via judicial: 76 m² com duas vagas na Rua Décio Vilares (Copacabana), avaliado em R$ 939.707. O preço de entrada real, porém, é outro: <b>8 dos 17 lotes têm 2ª praça a 50% da avaliação</b>, três dias depois da primeira. Esse apartamento vai a R$ 469.853 em 29/10. É o número que decide a compra, e ele não aparece em lugar nenhum se você só olhar o preço anunciado.</p>
+      <p>A lista da Caixa é a fonte mais estruturada que existe (traz até número de quartos e permite download). Mas o estoque dela está na periferia: <b>Santa Cruz tem 993 imóveis; a Zona Sul inteira tem um</b> — o mesmo terreno em São Conrado de duas coletas atrás. Nos quatro bairros-alvo (Botafogo, Flamengo, Copacabana, Laranjeiras) são <b>zero</b>. Imóvel de Zona Sul chega ao mercado pela via <b>judicial</b> — a via difícil. Filtrando “3+ quartos na Zona Sul” no MVP: <b>0 resultados da Caixa contra 1 judicial</b>.</p>
+      <p style="margin-top:10px">Em agosto a Zona Sul tinha 7 imóveis na lista da Caixa e Botafogo tinha 1. Em outubro é um só, em São Conrado, nas duas coletas do mês — a tendência não só se manteve, se acentuou e se estabilizou.</p>
+      <p style="margin-top:10px">O caso de uso de referência do TCC — <b>apartamento de 2 quartos na Zona Sul</b> — aparece exatamente uma vez nesta coleta, e pela via judicial: 76 m² com duas vagas na Rua Décio Vilares (Copacabana), avaliado em R$ 939.707. O preço de entrada real, porém, é outro: <b>9 dos 18 anúncios têm 2ª praça</b>, poucos dias depois da primeira. Esse apartamento vai a R$ 469.853 em 29/10 — metade da avaliação. É o número que decide a compra, e ele não aparece em lugar nenhum se você só olhar o preço anunciado.</p>
+      <p style="margin-top:10px"><b>Mas a regra dos 50% não é universal, e isso só apareceu na quarta coleta.</b> Em 8 das 9 segundas praças o piso é exatamente metade da avaliação; na nona, uma sala em Copacabana, a 2ª praça mantém os mesmos R$ 370 mil da primeira. O motivo está no edital: não é um leilão de execução comum, é da <b>4ª Vara de Família</b> (ação de alimentos), e a juíza fixou um piso único para as duas datas. O CPC (art. 891) só veda o “preço vil” — os 50% são convenção fixada caso a caso, não piso legal. Um produto que calculasse o desconto por fórmula erraria aqui, e erraria no número que mais importa.</p>
     </div>
 
     <div class="card">
       <h3>4. O filtro que falta em todo mundo é o que exige IA</h3>
       <p>Nenhum dos agregadores analisados (Zuk, Leilão Imóvel, Mega Leilões, Mapa do Leilão, Sodré Santoro) oferece filtro por número de quartos. O motivo é técnico: esse dado não existe em campo estruturado, só na prosa do edital. Extrair com LLM atinge cerca de 90% de acurácia em documentos jurídicos brasileiros, contra 59% de expressões regulares — é a diferença entre ter e não ter o filtro.</p>
       <p style="margin-top:10px"><b>Mas há um teto que a IA não rompe.</b> Nesta coleta, só 4 dos 8 lotes residenciais permitem saber quantos quartos o imóvel tem. Em dois apartamentos de Copacabana o número não está no anúncio <i>nem no PDF do edital</i> — o laudo descreve a área, o prédio e o bairro, e não os cômodos. Quando o dado não foi escrito, nenhum extrator o inventa. Na prática isso significa que “não informado” precisa ser um estado de primeira classe no filtro (e não um imóvel escondido do usuário), e que cobrir os 100% exigiria uma fonte complementar — IPTU ou a matrícula do RGI.</p>
+      <p style="margin-top:10px">A quarta coleta mediu o teto por outro ângulo: dos <b>18 anúncios, 3 não têm edital publicado</b> e <b>1 é um PDF escaneado</b> — só imagens, zero camada de texto (verificado na estrutura do arquivo: 63 imagens, nenhuma fonte). Ou seja, <b>4 em 18 estão fora do alcance de qualquer extrator que leia texto</b>; o escaneado exigiria OCR ou modelo de visão, o que muda o custo da Fase 2. É um número pequeno, mas é o tipo de cauda que decide se o filtro é confiável ou apenas quase sempre certo.</p>
     </div>
 
     <div class="card">
       <h3>5. Deduplicação não é refinamento, é requisito</h3>
       <p>Na coleta de 27/08/2026, <b>14 dos 27 anúncios eram repetições</b> — mais da metade. Um único imóvel, o prédio da Rua Pereira da Silva (Laranjeiras), estava anunciado ao mesmo tempo por <b>9 leiloeiros credenciados diferentes</b>, com lance mínimo divergente entre eles (R$ 600 mil na maioria, R$ 440 mil em um). O padrão se repetiu com uma loja em Copacabana, anunciada por 3 leiloeiros. Nos dois casos é um leilão da Justiça do Trabalho (CAEX) distribuído a vários profissionais. Sem deduplicação, o hub mostraria nove vezes o mesmo prédio, com preços conflitantes — exatamente a confusão que ele promete resolver.</p>
       <p style="margin-top:10px">A terceira coleta (04/10/2026) mostrou que a taxa é <b>instável</b>: encerrado o leilão do prédio de Laranjeiras, as repetições caíram para <b>3 em 17 anúncios</b>. Ou seja, a duplicação não é um ruído de fundo constante — ela vem em blocos, quando um certame grande é distribuído a vários leiloeiros. Um hub que calibrasse a deduplicação pela média do mês erraria feio na semana seguinte.</p>
+      <p style="margin-top:10px">A quarta coleta (14/10/2026) acrescentou um tipo de duplicação que não é entre leiloeiros, e sim <b>no tempo</b>. A cobertura da Praia de Botafogo 198, avaliada em R$ 10 milhões, apareceu na coleta de 25/07 com praça marcada para 30/07, <b>sumiu de três coletas seguidas</b> (08/08, 28/08 e 04/10) e <b>reapareceu agora</b>, com praça em 02/12 e exatamente a mesma avaliação. Durante dois meses e meio o imóvel simplesmente não existia para quem olhasse os sites.</p>
+      <p style="margin-top:10px">Isso tem duas consequências de produto. A primeira é que o hub precisa de <b>memória</b>: um agregador que só mostra o retrato de hoje não consegue dizer “este imóvel já foi a leilão e não vendeu”, que é justamente o sinal mais útil para quem compra. A segunda é que o relistamento é um <b>gatilho de notificação</b> por si só — “o imóvel que você seguia voltou ao leilão” é um alerta que nenhum concorrente analisado oferece, porque nenhum deles guarda histórico de lote.</p>
       <p style="margin-top:10px">A coleta também expôs <b>qual deve ser a chave de identidade</b>. Dois lotes em Laranjeiras pareciam o mesmo bem — “Rua Leite Leal, 32” e “Rua Sebastião de Lacerda, 70, esquina com Leite Leal” — mas os editais mostram matrículas, áreas (1.178 m² × 1.105 m²) e processos diferentes (execução fiscal municipal × trabalhista). Endereço não serve como identificador: o que identifica um imóvel é a <b>matrícula no RGI</b> e a inscrição imobiliária, que só aparecem no PDF do edital.</p>
     </div>
 
     <div class="card">
       <h3>6. O estoque gira rápido demais para um catálogo estático</h3>
       <p>Entre 27/08 e 02/10 a lista da Caixa na capital caiu de <b>3.681 para 2.863 imóveis</b>. A variação líquida esconde o movimento real: <b>1.728 imóveis saíram e 910 entraram</b> — só 1.953 permaneceram. Em cinco semanas, <b>47% do estoque virou</b>. A composição mudou junto: “Venda Direta Online” caiu de 2.623 para 1.220 enquanto “Venda Online” subiu de 293 para 1.378, e a modalidade “Licitação Aberta” (241 imóveis) sumiu da lista.</p>
-      <p style="margin-top:10px">Isso ataca diretamente a alternativa mais barata ao produto — “é só olhar os sites de vez em quando”. Com metade do estoque trocando a cada mês, quem consulta esporadicamente não vê o mercado: vê um recorte velho. É o argumento empírico a favor da <b>notificação</b> em vez do catálogo, e vale tanto para o comprador quanto para o próprio hub, que precisa recoletar com frequência alta.</p>
+      <p style="margin-top:10px">A medição seguinte confirmou e apertou o número: entre 02/10 e 13/10, em <b>apenas 11 dias</b>, 331 imóveis saíram e 830 entraram — o estoque subiu de volta para 3.362 e o giro foi de <b>41% em menos de duas semanas</b>. Não é um episódio, é o regime normal da fonte.</p>
+      <p style="margin-top:10px">A terceira coleta sugeria uma mudança de composição (“Venda Direta Online” caindo e “Venda Online” subindo). A quarta <b>desmentiu a leitura de tendência</b>: tudo voltou ao ponto de partida — Venda Direta Online 1.220 → 2.366, Venda Online 1.378 → 430 — e a modalidade “Licitação Aberta”, que havia sumido, reapareceu com 192 imóveis. A modalidade oscila em ciclos de campanha, não evolui numa direção. Fica o aprendizado de método: <b>duas medições não fazem uma tendência</b>, e esta pesquisa agora tem quatro pontos no tempo justamente para não cair nisso.</p>
+      <p style="margin-top:10px">Isso ataca diretamente a alternativa mais barata ao produto — “é só olhar os sites de vez em quando”. Com 40% a 50% do estoque trocando a cada poucas semanas, quem consulta esporadicamente não vê o mercado: vê um recorte velho. É o argumento empírico a favor da <b>notificação</b> em vez do catálogo, e vale tanto para o comprador quanto para o próprio hub, que precisa recoletar com frequência alta.</p>
+      <p style="margin-top:10px">Vale o contraste: o lado <b>judicial</b> gira muito mais devagar — entre 04/10 e 14/10 só 2 lotes se encerraram e 3 entraram. São dois ritmos diferentes num produto só, e isso sugere cadências de coleta distintas para cada fonte.</p>
     </div>
 
     <div class="card">
@@ -648,7 +655,8 @@
         <li>Os números dos concorrentes (estoques, filtros) vêm de leitura direta das páginas em 25/07/2026 e <b>não passaram pela verificação adversarial</b> — a rodada foi interrompida por limite de processamento. No relatório eles estão marcados com o selo “Observado”.</li>
         <li>A extração de quartos e área foi feita de forma assistida nesta fase e registrada em arquivo versionado; a automação é a Fase 2.</li>
         <li>A cobertura é de 32 dos 78 leiloeiros — o número de lotes reflete essa fatia, não o mercado inteiro.</li>
-        <li>O número de quartos é conhecido em 4 dos 8 lotes residenciais; nos demais o dado não existe na fonte (nem no edital). As comparações por quartos valem para o subconjunto informado.</li>
+        <li>O número de quartos é conhecido em 4 dos 9 lotes residenciais; nos demais o dado não existe na fonte (nem no edital). As comparações por quartos valem para o subconjunto informado.</li>
+        <li>O <b>tipo</b> do imóvel também diverge entre fontes: numa sala de Copacabana o anúncio diz “Sala Comercial” (e a unidade é “Sala 801”), enquanto o laudo do edital diz “Apartamento de 34 m²”. Mantivemos a classificação do anúncio e registramos a divergência — mas isso mostra que nem o filtro mais básico é um dado limpo na origem.</li>
         <li><b>Correção de instrumento (04/10/2026):</b> o coletor vinha perdendo a 2ª praça porque a plataforma suporteleiloes mudou o HTML do rótulo. As coletas de 25/07 e 27/08 registraram só a 1ª praça de parte dos lotes. Corrigido e recoletado; os números desta página já refletem a correção.</li>
         <li>Nenhuma entrevista com usuários foi feita ainda. Tudo aqui é sobre a <b>oferta</b> de dados; a <b>demanda</b> permanece hipótese.</li>
       </ul>

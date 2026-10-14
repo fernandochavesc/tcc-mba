@@ -39,6 +39,11 @@ ALIAS_BAIRRO = {
     "FREG DE GUARATIBA": "GUARATIBA",
     "FREGUESIA  GUARATIBA": "GUARATIBA",
     "FREG DE JACAREPAGUA": "JACAREPAGUA",
+    "FRE DE CAMPO GRANDE": "CAMPO GRANDE",
+    # Nossa Senhora da Ajuda é a freguesia histórica da Ilha do Governador
+    # (conferido: Estrada do Dendê fica no Tauá/Moneró e a Rua Graná, no Cocotá).
+    "NOSSA SRA DA AJUDA": "ILHA DO GOVERNADOR",
+    "FREG N S D AJUDA": "ILHA DO GOVERNADOR",
     "FREG JACAREPAGUA": "JACAREPAGUA",
     "FREG DE SANTA CRUZ": "SANTA CRUZ",
     "FREGUE DE SANTA CRUZ": "SANTA CRUZ",

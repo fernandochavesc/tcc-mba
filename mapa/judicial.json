@@ -3,35 +3,41 @@
  "gerado_em": "",
  "lotes": [
   {
-   "id": "FABIANOAYUPP-2394",
-   "titulo": "COPACABANA - SALA COMERCIAL NA RUA SANTA CLARA N°75",
-   "endereco": "Rua Santa Clara, nº 75 – Sala 1006, Copacabana",
+   "id": "RODRIGOLOPES-3773",
+   "titulo": "Apartamento em Copacabana",
+   "endereco": "Avenida Rainha Elizabeth, nº 151, apto 1001, Copacabana/RJ",
    "bairro": "COPACABANA",
    "quartos": null,
-   "avaliacao": 411750.0,
-   "valor_minimo": null,
+   "avaliacao": 2700000.0,
+   "valor_minimo": 2700000.0,
    "rodadas": [
     {
+     "n": 1,
+     "data": "03/11/2026",
+     "hora": "12:40",
+     "lance_minimo": 2700000.0
+    },
+    {
      "n": 2,
-     "data": "06/10/2026",
-     "hora": "11:50",
-     "lance_minimo": 411750.0
+     "data": "05/11/2026",
+     "hora": "12:40",
+     "lance_minimo": 1350000.0
     }
    ],
    "modalidade": "Leilão Judicial",
    "status_leilao": "Aberto para lances",
-   "vara": null,
-   "processo": "01007497320195010012",
-   "leiloeiro": "Fabiano Ayupp Magalhães",
-   "link": "https://www.fabianoayuppleiloeiro.com.br/oferta/leilao/imoveis/ponto-comercial/862/id-2394/copacabana-sala-comercial-na-rua-santa-clara-n-75",
-   "edital_url": "https://static.suporteleiloes.com.br/fabianoayuppleiloeirocombr/bens/2331/arquivos/sl-bem-2331-6a552e1c5d0a0-6a552e1c6018d.pdf",
-   "foto": null,
-   "tipo": "Sala Comercial",
+   "vara": "JUÍZO DE DIREITO DA VIGÉSIMA QUINTA VARA CÍVEL",
+   "processo": "00169073419898190001",
+   "leiloeiro": "Rodrigo Lopes Portella",
+   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/apartamentos/1383/id-3773/apartamento-em-copacabana",
+   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3772/arquivos/sl-bem-3772-6ace4980db624-6ace4980dea52.pdf",
+   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3772/arquivos/sl-bem-3772-6ace493cc6e05-6ace493ccc838.jpg",
+   "tipo": "Apartamento",
    "area": null,
-   "endereco_geo": "Rua Santa Clara 75, Copacabana, Rio de Janeiro, RJ",
+   "endereco_geo": "Avenida Rainha Elizabeth 151, Copacabana, Rio de Janeiro, RJ",
    "latlng": [
-    -22.971421,
-    -43.187523
+    -22.984696,
+    -43.18992
    ]
   },
   {
@@ -71,6 +77,76 @@
    "latlng": [
     -22.945204,
     -43.185911
+   ]
+  },
+  {
+   "id": "RODRIGOLOPES-3771",
+   "titulo": "Sala Comercial em Copacabana",
+   "endereco": "Rua Barata Ribeiro, nº 105, sala 801, Copacabana/RJ",
+   "bairro": "COPACABANA",
+   "quartos": null,
+   "avaliacao": 373016.36,
+   "valor_minimo": 370000.0,
+   "rodadas": [
+    {
+     "n": 1,
+     "data": "24/11/2026",
+     "hora": "12:00",
+     "lance_minimo": 370000.0
+    },
+    {
+     "n": 2,
+     "data": "26/11/2026",
+     "hora": "12:00",
+     "lance_minimo": 370000.0
+    }
+   ],
+   "modalidade": "Leilão Judicial",
+   "status_leilao": "Aberto para lances",
+   "vara": "JUÍZO DE DIREITO DA QUARTA VARA DE FAMÍLIA",
+   "processo": "02175393620138190001",
+   "leiloeiro": "Rodrigo Lopes Portella",
+   "link": "https://www.portellaleiloes.com.br/oferta/leilao/imoveis/sala-comercial/1381/id-3771/sala-comercial-em-copacabana",
+   "edital_url": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3770/arquivos/sl-bem-3770-6ac6725f9f167-6ac6725f9f8c8.pdf",
+   "foto": "https://static.suporteleiloes.com.br/portellaleiloescombr/bens/3770/arquivos/sl-bem-3770-6ac6721e635d2-6ac6721e65faf.jpg",
+   "tipo": "Sala Comercial",
+   "area": 34,
+   "endereco_geo": "Rua Barata Ribeiro 105, Copacabana, Rio de Janeiro, RJ",
+   "latlng": [
+    -22.964007,
+    -43.17836
+   ]
+  },
+  {
+   "id": "RODRIGODASIL-586",
+   "titulo": "COBERTURA BOTAFOGO",
+   "endereco": "Apartamento 1101 (cobertura), situado na Praia de Botafogo, nº 198, Botafogo, Rio de Janeiro/RJ, do edifício Corcovado e terraço de cobertura, com direito a um box, e sua correspondente fração de 2/22 do terreno, com 822 m², na freguesia da Lagoa.",
+   "bairro": "BOTAFOGO",
+   "quartos": null,
+   "avaliacao": 10000000.0,
+   "valor_minimo": null,
+   "rodadas": [
+    {
+     "n": 1,
+     "data": "02/12/2026",
+     "hora": "14:03",
+     "lance_minimo": 10000000.0
+    }
+   ],
+   "modalidade": "Leilão Judicial",
+   "status_leilao": "Em breve",
+   "vara": null,
+   "processo": "00234884420218190001",
+   "leiloeiro": "Rodrigo Da Silva Costa",
+   "link": "https://www.rodrigocostaleiloeiro.com.br/oferta/leilao/imoveis/apartamentos/261/id-586/cobertura-botafogo",
+   "edital_url": null,
+   "foto": null,
+   "tipo": "Apartamento",
+   "area": null,
+   "endereco_geo": "Praia de Botafogo 198, Botafogo, Rio de Janeiro, RJ",
+   "latlng": [
+    -22.941593,
+    -43.18041
    ]
   },
   {
@@ -165,44 +241,6 @@
    "latlng": [
     -22.985948,
     -43.19236
-   ]
-  },
-  {
-   "id": "JONASRYMER-1360",
-   "titulo": "Apartamento com 463m² e vaga no Flamengo",
-   "endereco": "Praia do Flamengo, nº 284 – Apto 301",
-   "bairro": "FLAMENGO",
-   "quartos": null,
-   "avaliacao": 4100000.0,
-   "valor_minimo": 4100000.0,
-   "rodadas": [
-    {
-     "n": 1,
-     "data": "05/10/2026",
-     "hora": "12:00",
-     "lance_minimo": 4100000.0
-    },
-    {
-     "n": 2,
-     "data": "08/10/2026",
-     "hora": "12:00",
-     "lance_minimo": 2050000.0
-    }
-   ],
-   "modalidade": "Leilão Judicial",
-   "status_leilao": "Aberto para lances",
-   "vara": null,
-   "processo": null,
-   "leiloeiro": "Jonas Rymer",
-   "link": "https://www.rymerleiloes.com.br/oferta/leilao/imoveis/apartamentos/275/id-1360/apartamento-com-463m-no-flamengo",
-   "edital_url": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1321/arquivos/sl-bem-1321-6a88a76b05e50-6a88a76b06989.pdf",
-   "foto": "https://static.suporteleiloes.com.br/rymerleiloescombr/bens/1321/arquivos/sl-bem-1321-6a8c5290528ee-6a8c5290557c1.jpg",
-   "tipo": "Apartamento",
-   "area": 463,
-   "endereco_geo": "Praia do Flamengo 284, Flamengo, Rio de Janeiro, RJ",
-   "latlng": [
-    -22.934663,
-    -43.174636
    ]
   },
   {

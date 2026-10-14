@@ -1,5 +1,5 @@
 {
- "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 04/10/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
+ "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 14/10/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
  "RODRIGOLOPES-3589": {
   "tipo": "Apartamento",
   "area": 35,
@@ -117,7 +117,7 @@
   "quartos": null,
   "valor_minimo": null,
   "endereco_geo": "Praia de Botafogo 198, Botafogo, Rio de Janeiro, RJ",
-  "_nota": "cobertura do Edifício Corcovado; fração 2/22 de terreno com 822m² (não é a área do imóvel)"
+  "_nota": "cobertura do Edifício Corcovado; fração 2/22 de terreno com 822m² (não é a área do imóvel) RELISTADO: apareceu na coleta de 25/07/2026 com praça em 30/07, sumiu das coletas de 08/08, 28/08 e 04/10, e voltou em 14/10 com praça em 02/12/2026 pela mesma avaliação de R$ 10 mi. Caso documentado de duplicação temporal — o mesmo bem reentra no mercado meses depois."
  },
  "RODRIGODASIL-590": {
   "tipo": "Apartamento",
@@ -305,5 +305,21 @@
   "endereco": "Rua Décio Vilares, nº 265, apto 304, Ed. Abraham Medina, Copacabana/RJ",
   "endereco_geo": "Rua Décio Vilares 265, Copacabana, Rio de Janeiro, RJ",
   "_nota": "Dois quartos (um suíte, com varanda); o quarto de serviço não entra na contagem. Duas vagas."
+ },
+ "RODRIGOLOPES-3771": {
+  "tipo": "Sala Comercial",
+  "area": 34,
+  "quartos": null,
+  "endereco": "Rua Barata Ribeiro, nº 105, sala 801, Copacabana/RJ",
+  "endereco_geo": "Rua Barata Ribeiro 105, Copacabana, Rio de Janeiro, RJ",
+  "_nota": "FONTES DIVERGEM no tipo: o anúncio diz 'Sala Comercial' (e a unidade é 'Sala 801'), mas o laudo do edital diz 'um Apartamento de 34 m2'. Mantido Sala Comercial (dois sinais contra um), com a divergência registrada; o laudo foi por via indireta, o perito não conseguiu vistoriar por dentro. ATENÇÃO: 2ª praça NÃO é 50% — é leilão da 4ª Vara de Família (ação de alimentos) e a juíza fixou piso único de R$ 370.000 para as duas datas (24/11 e 26/11)."
+ },
+ "RODRIGOLOPES-3773": {
+  "tipo": "Apartamento",
+  "area": null,
+  "quartos": null,
+  "endereco": "Avenida Rainha Elizabeth, nº 151, apto 1001, Copacabana/RJ",
+  "endereco_geo": "Avenida Rainha Elizabeth 151, Copacabana, Rio de Janeiro, RJ",
+  "_nota": "Edital é PDF ESCANEADO (zero fontes, 63 imagens) — sem camada de texto, área e quartos ficam inacessíveis sem OCR. 25ª Vara Cível, processo de 1989 (0016907-34.1989.8.19.0001). 2ª praça em 05/11 a 50% (R$ 1.350.000)."
  }
 }
