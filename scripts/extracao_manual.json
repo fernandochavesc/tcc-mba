@@ -1,5 +1,5 @@
 {
- "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 14/10/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
+ "_nota": "Extração assistida por LLM (Claude) em 25/07/2026, atualizada em 02/11/2026 a partir das descrições/laudos dos lotes coletados por coleta_judicial.py. Campos: quartos (null = não informado na fonte), area (m²), tipo, modalidade corrigida (o flag 'judicial' da plataforma suporteleiloes é inconsistente), endereco/endereco_geo (normalizados p/ exibição e geocodificação), merge_em (dedupe do mesmo bem entre leiloeiros), valor_minimo null quando a fonte traz 0. Em produção esta etapa vira chamada de LLM com structured output.",
  "RODRIGOLOPES-3589": {
   "tipo": "Apartamento",
   "area": 35,
@@ -23,7 +23,8 @@
   "tipo": "Apartamento",
   "area": 500,
   "quartos": null,
-  "endereco_geo": "Avenida Atlântica 2172, Copacabana, Rio de Janeiro, RJ"
+  "endereco_geo": "Avenida Atlântica 2172, Copacabana, Rio de Janeiro, RJ",
+  "_nota": "RELISTADO: coletado em 25/07 e 08/08 com praças em 10/08 e 12/08 (avaliação R$ 10.875.810,62); ausente de 27/08 a 14/10; voltou em 02/11 com praças em 30/11 e 02/12 e avaliação atualizada para R$ 11.517.487,47. Matrícula 54815 do 5º RGI; IPTU 1588532-0 com débito de R$ 203.228,07 (2020–2024 e 2026); indisponibilidade averbada. 2ª praça a 60% da avaliação por decisão do juízo ('não sendo aceito lance inferior a 60%'), nas duas listagens — segunda regra diferente de 50% na série. Quartos não constam do anúncio nem do edital (500 m²)."
  },
  "RODRIGOLOPES-3631": {
   "tipo": "Casa",
@@ -48,7 +49,8 @@
   "tipo": "Casa",
   "area": 281,
   "quartos": null,
-  "endereco_geo": "Rua Senador Correia 37, Laranjeiras, Rio de Janeiro, RJ"
+  "endereco_geo": "Rua Senador Correia 37, Laranjeiras, Rio de Janeiro, RJ",
+  "_nota": "RELISTADO: coletado em 25/07/2026 com praças em 27/07 e 29/07; ausente nas coletas de 08/08 a 14/10; voltou em 02/11 com praças em 30/11 e 02/12 e a mesma avaliação (R$ 3.016.125,36). Matrícula 485347 do 9º RGI; IPTU 0.336.751-3; casa térrea de 1938, 281 m². Quartos não constam do anúncio nem do edital. 2ª praça 'preço vil' (site: R$ 1.509.000 = 50%)."
  },
  "RODRIGOLOPES-3625": {
   "tipo": "Sala Comercial",
@@ -321,5 +323,43 @@
   "endereco": "Avenida Rainha Elizabeth, nº 151, apto 1001, Copacabana/RJ",
   "endereco_geo": "Avenida Rainha Elizabeth 151, Copacabana, Rio de Janeiro, RJ",
   "_nota": "Edital é PDF ESCANEADO (zero fontes, 63 imagens) — sem camada de texto, área e quartos ficam inacessíveis sem OCR. 25ª Vara Cível, processo de 1989 (0016907-34.1989.8.19.0001). 2ª praça em 05/11 a 50% (R$ 1.350.000)."
+ },
+ "HIDIRLENEDUS-VL222997": {
+  "tipo": "Apartamento",
+  "area": 160,
+  "quartos": 3,
+  "endereco": "Rua República do Peru, nº 72, apto 1207, Copacabana/RJ",
+  "endereco_geo": "Rua República do Peru 72, Copacabana, Rio de Janeiro, RJ",
+  "edital_url": "https://s3-sa-east-1.amazonaws.com/906de634c48fb7d34136160b4c353ae4/public/anexo/4497321791634684.pdf",
+  "_nota": "Duplex; 3 quartos (1 suíte) conforme anúncio e edital; inscrição municipal 0688460-5; CRI 101964. Leilão da 3ª Vara Federal/RJ. 2ª praça (30/11) com lance mínimo de R$ 1.333.360 = 83% da avaliação: o edital reserva aos coproprietários alheios à execução 66,67% do bem (art. 843, § 2º, do CPC) e aplica os 50% do 'preço vil' só à fração executada — terceira regra de 2ª praça diferente de 50% na série. O edital só existe como anexo na API da vlance (campo 'anexos'), que o adaptador ainda não lê; URL registrada à mão. O PDF usa fontes Identity-H: ler_edital.py devolve lixo, pypdf lê o texto inteiro. Coletado em 02/11/2026."
+ },
+ "JONASRYMER-1466": {
+  "tipo": "Apartamento",
+  "area": 134,
+  "quartos": null,
+  "endereco_geo": "Rua Bambina 114, Botafogo, Rio de Janeiro, RJ",
+  "_nota": "Direitos possessórios: sem matrícula individualizada (inscrição imobiliária 3039085-0; a matrícula 35.246 anexa é do terreno). Execução fiscal. Quartos não constam do anúncio nem do edital. 2ª praça 26/11 a 50% (art. 891, parágrafo único, do CPC). Coletado em 02/11/2026."
+ },
+ "RODRIGOLOPES-3759": {
+  "tipo": "Apartamento",
+  "area": 21,
+  "quartos": 1,
+  "endereco_geo": "Praia de Botafogo 356, Botafogo, Rio de Janeiro, RJ",
+  "_fonte_quartos": "conjugado: 'cômodo pequeno subdividido entre quarto e sala' (anúncio e laudo)",
+  "_nota": "Conjugado de 21 m² em mau estado; prédio com até 58 apartamentos por andar e 10 elevadores. Matrícula 18.117 do 3º RGI (o próprio edital grafa 18.177 em outro trecho); IPTU 0.651.472-3. Execução fiscal municipal de 1998. 2ª praça 18/11 'preço vil' (site: R$ 173.000 = 50%). Coletado em 02/11/2026."
+ },
+ "RODRIGOLOPES-3774": {
+  "tipo": "Apartamento",
+  "area": 83,
+  "quartos": null,
+  "endereco_geo": "Rua Muniz Barreto 330, Botafogo, Rio de Janeiro, RJ",
+  "_nota": "Edital é PDF ESCANEADO (0 fontes, 736 imagens, 2,7 MB): área de 83 m² e vaga vêm do anúncio; quartos inacessíveis sem OCR. 2ª praça 25/11 a 50% (R$ 569.000). Direito de preferência de condôminos no ato. Coletado em 02/11/2026."
+ },
+ "RODRIGOLOPES-3784": {
+  "tipo": "Apartamento",
+  "area": 72,
+  "quartos": null,
+  "endereco_geo": "Praça José de Alencar 5, Flamengo, Rio de Janeiro, RJ",
+  "_nota": "72 m², de frente, em prédio comercial e residencial com lojas no térreo. Matrícula 3805 do 9º RGI; IPTU 0683.143-2 com débitos de vários exercícios. Quartos não constam do anúncio nem do edital. 2ª praça 17/12 'preço vil' (site: R$ 345.000 = 50%). Coletado em 02/11/2026."
  }
 }
