@@ -51,6 +51,7 @@ Pendência: a página de resultados do site cita 78 leiloeiros; o inventário te
 | `scripts/extracao_manual.json` | extração assistida por modelo de linguagem, revisada manualmente, por anúncio: `quartos` (null = não informado na fonte), `area`, `tipo`, `modalidade` corrigida, `endereco_geo`, `merge_em` (mesmo bem anunciado por outro leiloeiro), correções de `rodadas`, e `_nota` com a evidência. |
 | `scripts/gera_judicial.py` | mescla a coleta bruta com a extração, deduplica (`merge_em`), geocodifica cada endereço (Nominatim, com cache em `mapa/geocache_judicial.json`) e grava `mapa/judicial.json`. |
 | `scripts/serie_rodadas.py` | reconstrói a série das rodadas a partir do histórico do git e atualiza as tabelas da seção 4 deste registro. |
+| `scripts/agenda_observacao.py` | acrescenta à ficha de observação (`docs/observacao-pracas.csv`) as praças com data futura de `mapa/judicial.json`, sem alterar linhas já preenchidas. Protocolo em `docs/observacao-pracas.md`. |
 
 Os arquivos `mapa/*.json` alimentam o mapa publicado em GitHub Pages (`mapa/`), e a página `leiloes/` traz a leitura narrativa dos resultados.
 
@@ -176,7 +177,7 @@ _Tabelas geradas por `scripts/serie_rodadas.py` a partir do histórico do reposi
 1. Rodadas quinzenais a partir de novembro de 2026, com este protocolo.
 2. Reconciliar 77 × 78 leiloeiros com a planilha atual da CGJ.
 3. Retirar `processo` e `vara` do arquivo publicado.
-4. Definir e registrar o protocolo de observação das praças (data, nº da praça, lance mínimo, nº de lances, valor final, desfecho) e acompanhar os lotes com praça no período.
+4. Protocolo de observação das praças definido em 14/11/2026: `docs/observacao-pracas.md`, com ficha e agenda em `docs/observacao-pracas.csv`.
 5. Trocar a extração de texto de `ler_edital.py` por pypdf (ou usá-la como alternativa) e fazer o adaptador vlance ler o campo `anexos`.
-6. Aplicar o protocolo de observação nas praças de 16/11 a 17/12/2026 (onze bens com data marcada).
+6. Aplicar o protocolo de observação nas praças de 16/11 a 17/12/2026 (onze bens com data marcada) e rodar `scripts/agenda_observacao.py` após cada rodada.
 7. Especificar o protocolo de extração por modelo de linguagem (modelo, versão, prompt, esquema, parâmetros) e a amostra de conferência para medir acurácia e preenchimentos indevidos.
