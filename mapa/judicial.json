@@ -33,10 +33,12 @@
    "tipo": "Apartamento",
    "area": 160,
    "endereco_geo": "Rua República do Peru 72, Copacabana, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.965299,
     -43.183804
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGOLOPES-3617",
@@ -69,10 +71,12 @@
    "tipo": "Apartamento",
    "area": 500,
    "endereco_geo": "Avenida Atlântica 2172, Copacabana, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.976851,
     -43.188144
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGOLOPES-3759",
@@ -105,10 +109,12 @@
    "tipo": "Apartamento",
    "area": 21,
    "endereco_geo": "Praia de Botafogo 356, Botafogo, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.94642,
     -43.183198
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGOLOPES-3774",
@@ -141,10 +147,12 @@
    "tipo": "Apartamento",
    "area": 83,
    "endereco_geo": "Rua Muniz Barreto 330, Botafogo, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.94426,
     -43.183971
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGOLOPES-3784",
@@ -177,10 +185,12 @@
    "tipo": "Apartamento",
    "area": 72,
    "endereco_geo": "Praça José de Alencar 5, Flamengo, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.932715,
     -43.177445
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGOLOPES-3590",
@@ -213,10 +223,12 @@
    "tipo": "Casa",
    "area": 281,
    "endereco_geo": "Rua Senador Correia 37, Laranjeiras, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.934789,
     -43.180056
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGOLOPES-3625",
@@ -250,10 +262,12 @@
    "area": 840,
    "endereco_geo": "Rua Bambina 56, Botafogo, Rio de Janeiro, RJ",
    "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/79415",
+   "dados_fonte": "extração",
    "latlng": [
     -22.945204,
     -43.185911
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGOLOPES-3771",
@@ -286,10 +300,12 @@
    "tipo": "Sala Comercial",
    "area": 34,
    "endereco_geo": "Rua Barata Ribeiro 105, Copacabana, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.964007,
     -43.17836
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGODASIL-586",
@@ -316,10 +332,12 @@
    "tipo": "Apartamento",
    "area": null,
    "endereco_geo": "Praia de Botafogo 198, Botafogo, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.941593,
     -43.18041
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "RODRIGODASIL-618",
@@ -346,10 +364,12 @@
    "tipo": "Apartamento",
    "area": 44,
    "endereco_geo": "Rua Siqueira Campos 143, Copacabana, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.966667,
     -43.187584
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "JONASRYMER-1183",
@@ -375,10 +395,12 @@
    "tipo": "Apartamento",
    "area": 38,
    "endereco_geo": "Rua Paula Freitas 32, Copacabana, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.967141,
     -43.183651
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "JONASRYMER-1316",
@@ -404,10 +426,12 @@
    "tipo": "Apartamento",
    "area": null,
    "endereco_geo": "Rua Conselheiro Lafaiete 15, Copacabana, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.985948,
     -43.19236
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "JONASRYMER-1466",
@@ -440,10 +464,12 @@
    "tipo": "Apartamento",
    "area": 134,
    "endereco_geo": "Rua Bambina 114, Botafogo, Rio de Janeiro, RJ",
+   "dados_fonte": "extração",
    "latlng": [
     -22.946949,
     -43.185937
-   ]
+   ],
+   "geo_precisao": "conferida"
   },
   {
    "id": "JONASRYMER-1182",
@@ -471,10 +497,12 @@
    "area": null,
    "endereco_geo": "Rua Voluntários da Pátria 126, Botafogo, Rio de Janeiro, RJ",
    "link_lances": "https://comprei.pgfn.gov.br/anuncio/detalhe/74387",
+   "dados_fonte": "extração",
    "latlng": [
     -22.951309,
     -43.184121
-   ]
+   ],
+   "geo_precisao": "conferida"
   }
  ]
 }

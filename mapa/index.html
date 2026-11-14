@@ -51,6 +51,7 @@
   .imovel{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
   .imovel .tipo{font-size:13.5px;font-weight:700}
   .imovel .end{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .imovel .proc{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.4;font-style:italic}
   .imovel .valores{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;align-items:baseline}
   .imovel .preco{font-size:15px;font-weight:750;color:var(--green)}
   .imovel .aval{font-size:11.5px;color:var(--muted);text-decoration:line-through}
@@ -208,8 +209,10 @@ function desenha(){
   camadaJud = L.layerGroup();
   const juds = judFiltrados();
   for (const l of juds){
+    const aprox = l.geo_precisao === 'bairro';
     const m = L.circleMarker(l.latlng, {
-      radius: 8, weight: 2, color: '#eafaef', fillColor: '#3fb950', fillOpacity: .95
+      radius: 8, weight: 2, color: '#eafaef', fillColor: '#3fb950', fillOpacity: aprox ? .45 : .95,
+      dashArray: aprox ? '3 3' : null
     });
     const prox = (l.rodadas || [])[0];
     m.bindTooltip(`⚖ ${l.titulo}${prox ? ` — ${prox.n}ª praça ${prox.data}` : ''}`);
@@ -240,9 +243,16 @@ function cardJudicial(l){
       <span class="desc-pct"></span>
     </div>
     <div class="rodadas"></div>
-    <div class="meta"></div>`;
+    <div class="meta"></div>
+    <div class="proc"></div>`;
   d.querySelector('.tipo').textContent = `⚖ ${l.tipo || 'Imóvel'}${l.quartos ? ` · ${l.quartos} quarto${l.quartos>1?'s':''}` : (l.quartos === 0 ? ' · conjugado' : '')}${l.area ? ` · ${l.area} m²` : ''}`;
   d.querySelector('.end').textContent = l.endereco;
+  const proc = [];
+  if (l.geo_precisao === 'número') proc.push('Localização pelo endereço do anúncio.');
+  if (l.geo_precisao === 'rua') proc.push('Localização na rua do anúncio; o número não foi encontrado no mapa-base.');
+  if (l.geo_precisao === 'bairro') proc.push('Localização aproximada no centro do bairro: o endereço do anúncio não foi encontrado no mapa-base.');
+  if (l.dados_fonte === 'título do anúncio') proc.push('Tipo e quartos lidos no título do anúncio, ainda não conferidos com o edital; área não informada.');
+  d.querySelector('.proc').textContent = proc.join(' ');
   const ref = precoRef(l);
   d.querySelector('.preco').textContent = ref ? BRL.format(ref) : 'consultar';
   d.querySelector('.aval').textContent = l.avaliacao && l.avaliacao > (ref||0) ? BRL.format(l.avaliacao) : '';

@@ -3,9 +3,9 @@
 atualiza a agenda de observação das praças e acrescenta à seção 5 do registro um bloco só com os números.
 
 Não lê editais nem faz extração por modelo de linguagem: o passo 3 segue o protocolo de extração do projeto
-(anonimização antes de qualquer processamento) e é feito à parte. Anúncios novos entram nos totais com os campos
-do coletor e ficam fora do mapa até a extração, porque a coordenada depende do endereço normalizado;
-eles são listados no resumo. Não faz commit.
+(anonimização antes de qualquer processamento) e é feito à parte. Anúncios novos entram no mapa pelo que o
+próprio anúncio informa (ver gera_judicial.py) e são listados no resumo, com a precisão da localização e os
+possíveis duplicados por endereço. Não faz commit.
 
 Uso: python3 scripts/rodada.py [--data DD/MM/AAAA]
 
@@ -73,9 +73,9 @@ def registra_numeros(data, caixa, bruto, bens, novos):
               f"- Caixa: lista de {caixa['data_geracao']}, {fmt(len(caixa['imoveis']))} imóveis na capital.",
               f"- Leiloeiros: {bruto['coletados']} anúncios analisados nos sites cobertos, {len(bruto['alvo'])} nos "
               f"bairros-alvo, {bens} bens após a deduplicação.",
-              (f"- Anúncios novos ainda sem extração: {len(novos)} ({', '.join(novos)}). Contam nos totais, mas ficam "
-               "fora do mapa até a extração pelo protocolo do projeto, que fornece o endereço normalizado usado "
-               "na geocodificação." if novos else
+              (f"- Anúncios novos ainda sem extração: {len(novos)} ({', '.join(novos)}). Entram no mapa pelo que o "
+               "anúncio informa: localização pelo endereço do anúncio, conferida pelo bairro, e tipo e quartos "
+               "lidos no título; a área fica não informada até a extração pelo protocolo do projeto." if novos else
                "- Nenhum anúncio novo sem extração."),
               "- Registro gerado por `scripts/rodada.py`; os achados desta rodada ainda não foram redigidos.", "", ""]
     corte = txt.index("## 6.")
@@ -126,6 +126,16 @@ def main():
     registra_numeros(data, caixa, bruto, bens, novos)
 
     sem_geo = [l["id"] for l in judicial["lotes"] if not l.get("latlng")]
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    from gera_judicial import rua_numero, sem_acento
+    def chave(l):
+        rn = rua_numero(l.get("endereco_geo") or l.get("endereco") or "")
+        return (sem_acento(rn[0]), rn[1], sem_acento(l.get("bairro"))) if rn else None
+    por_end = {}
+    for l in judicial["lotes"]:
+        if chave(l):
+            por_end.setdefault(chave(l), []).append(l["id"])
+    duplicados = [ids for ids in por_end.values() if len(ids) > 1 and set(ids) & set(novos)]
     print("\n=== RESUMO DA RODADA ===")
     print(f"Data da rodada: {data}")
     ant = f" (rodada anterior: {fmt(len(antes_caixa['imoveis']))})" if antes_caixa else ""
@@ -134,8 +144,13 @@ def main():
           f"{bens} bens após deduplicação")
     print(f"Anúncios novos sem extração: {len(novos)}")
     for i in novos:
-        lote = next(l for l in bruto["alvo"] if l["id"] == i)
-        print(f"  {i}  {lote.get('link', '')}")
+        lote = next((l for l in judicial["lotes"] if l["id"] == i), None)
+        if lote:
+            print(f"  {i}  localização: {lote.get('geo_precisao') or 'sem coordenada'}; "
+                  f"tipo: {lote.get('tipo') or 'não informado'}; quartos: {lote.get('quartos') or 'não informado'}  "
+                  f"{lote.get('link', '')}")
+    for ids in duplicados:
+        print(f"Possível mesmo bem (mesmo endereço): {', '.join(ids)}. Conferir e apontar merge_em na extração.")
     print(f"Lotes sem coordenada no mapa: {', '.join(sem_geo) or 'nenhum'}")
     print(f"MENSAGEM DE COMMIT: Atualiza dados: Caixa {caixa['data_geracao'][:5]} "
           f"({fmt(len(caixa['imoveis']))}) e {bens} lotes judiciais na Zona Sul")
