@@ -256,7 +256,7 @@ function cardJudicial(l){
     rod.appendChild(linha);
   }
   const meta = d.querySelector('.meta');
-  for (const t of [l.modalidade, l.status_leilao, l.leiloeiro, l.vara].filter(Boolean)){
+  for (const t of [l.modalidade, l.status_leilao, l.leiloeiro].filter(Boolean)){
     const c = document.createElement('span'); c.className = 'chip'; c.textContent = t; meta.appendChild(c);
   }
   const links = [
