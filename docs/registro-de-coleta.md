@@ -51,6 +51,7 @@ Pendência: a página de resultados do site cita 78 leiloeiros; o inventário te
 | `scripts/extracao_manual.json` | extração assistida por modelo de linguagem, revisada manualmente, por anúncio: `quartos` (null = não informado na fonte), `area`, `tipo`, `modalidade` corrigida, `endereco_geo`, `merge_em` (mesmo bem anunciado por outro leiloeiro), correções de `rodadas`, e `_nota` com a evidência. |
 | `scripts/gera_judicial.py` | mescla a coleta bruta com a extração, deduplica (`merge_em`), geocodifica cada endereço (Nominatim, com cache em `mapa/geocache_judicial.json`) e grava `mapa/judicial.json`. |
 | `scripts/serie_rodadas.py` | reconstrói a série das rodadas a partir do histórico do git e atualiza as tabelas da seção 4 deste registro. |
+| `scripts/rodada.py` | executa de uma vez os passos 1, 2, 4 e 5 do protocolo e a agenda de observação; interrompe sem publicar se a coleta vier vazia ou com queda acima de 50%; acrescenta à seção 5 um bloco só com os números da rodada. Não lê editais, não faz extração e não faz commit. É o que a rodada automática quinzenal executa. |
 | `scripts/agenda_observacao.py` | acrescenta à ficha de observação (`docs/observacao-pracas.csv`) as praças com data futura de `mapa/judicial.json`, sem alterar linhas já preenchidas. Protocolo em `docs/observacao-pracas.md`. |
 
 Os arquivos `mapa/*.json` alimentam o mapa publicado em GitHub Pages (`mapa/`), e a página `leiloes/` traz a leitura narrativa dos resultados.
@@ -65,6 +66,8 @@ Os arquivos `mapa/*.json` alimentam o mapa publicado em GitHub Pages (`mapa/`), 
 4. Gerar o arquivo do mapa: `python3 scripts/gera_judicial.py judicial_bruto.json`.
 5. Atualizar as tabelas da série: `python3 scripts/serie_rodadas.py --escreve`, e redigir os achados da rodada na seção 5.
 6. Atualizar os números da página `leiloes/index.html`, commitar com a mensagem padrão `Atualiza dados: Caixa DD/MM (N) e K lotes judiciais na Zona Sul` e publicar (`git push`).
+
+Os passos 1, 2, 4 e 5 e a atualização da agenda de observação rodam de uma vez com `python3 scripts/rodada.py`. A partir de 16/11/2026, uma tarefa agendada no computador do pesquisador executa esse script a cada 14 dias, às segundas-feiras às 8h, confere o resultado e publica. O passo 3, a redação dos achados e a página `leiloes/index.html` ficam fora da automação: a extração segue o protocolo do projeto, com anonimização dos editais antes de qualquer processamento por modelo de linguagem.
 
 ### 3.2 Definições
 
