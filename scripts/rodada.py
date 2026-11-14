@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Executa a parte mecânica de uma rodada de coleta (registro de coleta, seção 3.1, passos 1, 2, 4 e 5),
-atualiza a agenda de observação das praças e acrescenta à seção 5 do registro um bloco só com os números.
+atualiza a agenda de observação das praças, acrescenta à seção 5 do registro um bloco só com os números e
+fotografa o mapa (scripts/captura_mapa.py) para a pasta de capturas, fora do repositório.
 
 Não lê editais nem faz extração por modelo de linguagem: o passo 3 segue o protocolo de extração do projeto
 (anonimização antes de qualquer processamento) e é feito à parte. Anúncios novos entram no mapa pelo que o
@@ -125,6 +126,14 @@ def main():
     roda(sys.executable, "scripts/agenda_observacao.py")
     registra_numeros(data, caixa, bruto, bens, novos)
 
+    dia = datetime.strptime(data, "%d/%m/%Y").strftime("%Y-%m-%d")
+    capturas = RAIZ.parent / "Capturas do mapa" / dia
+    try:
+        roda(sys.executable, "scripts/captura_mapa.py", str(capturas))
+    except Exception as e:  # captura é registro auxiliar: não interrompe a rodada
+        print(f"Capturas do mapa não feitas: {e}")
+        capturas = None
+
     sem_geo = [l["id"] for l in judicial["lotes"] if not l.get("latlng")]
     sys.path.insert(0, str(RAIZ / "scripts"))
     from gera_judicial import rua_numero, sem_acento
@@ -152,6 +161,7 @@ def main():
     for ids in duplicados:
         print(f"Possível mesmo bem (mesmo endereço): {', '.join(ids)}. Conferir e apontar merge_em na extração.")
     print(f"Lotes sem coordenada no mapa: {', '.join(sem_geo) or 'nenhum'}")
+    print(f"Capturas do mapa: {capturas or 'não feitas'}")
     print(f"MENSAGEM DE COMMIT: Atualiza dados: Caixa {caixa['data_geracao'][:5]} "
           f"({fmt(len(caixa['imoveis']))}) e {bens} lotes judiciais na Zona Sul")
 

@@ -43,6 +43,7 @@
 
   aside{width:360px;max-width:45%;border-left:1px solid var(--border);background:var(--surface);
     display:flex;flex-direction:column;min-height:0}
+  aside[hidden]{display:none}
   aside .cab{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:8px}
   aside .cab h2{font-size:15px;font-weight:700}
   aside .cab span{font-size:12px;color:var(--muted)}
@@ -133,7 +134,7 @@
 </div>
 
 <footer>
-  Demo (MVP) da pesquisa do TCC — dados públicos: lista oficial da Caixa (bolhas azuis, por centróide de bairro) e lotes de leilão judicial da Zona Sul coletados dos sites dos leiloeiros credenciados do TJRJ — 32 dos 78 sites da lista CGJ monitorados nesta fase (pins verdes, endereço geocodificado; quartos extraídos por IA das descrições; bens repetidos entre leiloeiros deduplicados). Sem dados pessoais das partes. Lances sempre no site oficial do leiloeiro.
+  Demo (MVP) da pesquisa do TCC — dados públicos: lista oficial da Caixa (bolhas azuis, por centróide de bairro) e lotes de leilão judicial da Zona Sul coletados dos sites dos leiloeiros credenciados do TJRJ — 32 dos 78 sites da lista CGJ monitorados nesta fase (pins verdes pelo endereço geocodificado ou, quando o endereço não é localizado, no centro do bairro; tipo, quartos e área lidos no anúncio e no edital, com a procedência indicada no painel de cada lote; bens repetidos entre leiloeiros deduplicados). Sem dados pessoais das partes. Lances sempre no site oficial do leiloeiro.
 </footer>
 
 <script>
@@ -286,7 +287,7 @@ function cardJudicial(l){
 
 function abrePainelJud(l){
   bairroAberto = null;
-  $('painel').hidden = false;
+  $('painel').hidden = false; mapa.invalidateSize();
   $('painel-titulo').textContent = titulo(l.bairro || '');
   $('painel-sub').textContent = 'lote judicial';
   const lista = $('painel-lista');
@@ -298,7 +299,7 @@ function abrePainel(bairro, atualizando){
     .sort((a,b) => (a.preco||9e12) - (b.preco||9e12));
   if (!atualizando && !itens.length && !judFiltrados().some(l => l.bairro === bairro)) return;
   bairroAberto = bairro;
-  $('painel').hidden = false;
+  $('painel').hidden = false; mapa.invalidateSize();
   $('painel-titulo').textContent = titulo(bairro);
   const judsBairro = judFiltrados().filter(l => l.bairro === bairro);
   $('painel-sub').textContent = `${itens.length} Caixa · ${judsBairro.length} judicia${judsBairro.length===1?'l':'is'}`;
@@ -378,7 +379,7 @@ async function init(){
   legenda.onAdd = () => {
     const div = L.DomUtil.create('div', 'legenda');
     div.innerHTML = '<span class="dot" style="background:#6ea8fe;opacity:.6"></span>Caixa — agregado por bairro<br>' +
-                    '<span class="dot" style="background:#3fb950"></span>Leilão judicial — endereço exato';
+                    '<span class="dot" style="background:#3fb950"></span>Leilão judicial — pelo endereço (tracejado: centro do bairro)';
     return div;
   };
   legenda.addTo(mapa);
@@ -410,9 +411,11 @@ async function init(){
     if (filtros.alvo) mapa.setView([-22.955, -43.185], 13);
     else mapa.setView([-22.92, -43.45], 11);
   };
-  $('painel-fechar').onclick = () => { $('painel').hidden = true; bairroAberto = null; };
+  $('painel-fechar').onclick = () => { $('painel').hidden = true; bairroAberto = null; mapa.invalidateSize(); };
 
   desenha();
+  // ?vista=zona-sul abre já com o filtro "Zona Sul alvo" (link direto e capturas da rodada)
+  if (new URLSearchParams(location.search).get('vista') === 'zona-sul') $('f-alvo').click();
 }
 init();
 </script>
