@@ -64,6 +64,10 @@ def main():
                 r["lance_minimo"] = None
         lote.pop("descricao", None)  # não precisa ir para o mapa
         lote.pop("status", None)
+        # processo e vara ficam só na coleta bruta local (chave interna de consolidação);
+        # o projeto promete que o número do processo nunca é divulgado.
+        lote.pop("processo", None)
+        lote.pop("vara", None)
         finais.append(lote)
 
     # geocodificação individual (com cache)

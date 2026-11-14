@@ -159,7 +159,7 @@
   "titulo": "Prédio na Rua Pereira da Silva (Laranjeiras)",
   "endereco": "Rua Pereira da Silva, nº 856 – Laranjeiras (matrícula 524.623)",
   "endereco_geo": "Rua Pereira da Silva 856, Laranjeiras, Rio de Janeiro, RJ",
-  "_dedupe": "MESMO BEM anunciado simultaneamente por 8 leiloeiros credenciados (leilão da CAEX/Justiça do Trabalho, proc. 0100073-14.2025.5.01.0078). Lances mínimos divergem entre os sites: R$ 600 mil na maioria e R$ 440 mil em um deles."
+  "_dedupe": "MESMO BEM anunciado simultaneamente por 8 leiloeiros credenciados (leilão da CAEX/Justiça do Trabalho). Lances mínimos divergem entre os sites: R$ 600 mil na maioria e R$ 440 mil em um deles."
  },
  "CARLOFERRARI-VL208187": {
   "merge_em": "RENATOGUEDES-VL208095"
@@ -222,7 +222,7 @@
   "quartos": null,
   "endereco": "Avenida Nossa Senhora de Copacabana, nº 959 – Loja J (matrícula 106.698)",
   "endereco_geo": "Avenida Nossa Senhora de Copacabana 959, Copacabana, Rio de Janeiro, RJ",
-  "_dedupe": "mesmo bem anunciado por 3 leiloeiros (leilão da CAEX/TRT 1ª Região, proc. 0100309-16.2016.5.01.0034), com a mesma avaliação e lance mínimo"
+  "_dedupe": "mesmo bem anunciado por 3 leiloeiros (leilão da CAEX/TRT 1ª Região), com a mesma avaliação e lance mínimo"
  },
  "CARLOFERRARI-VL212255": {
   "merge_em": "JONASRYMER-1346"
@@ -322,7 +322,7 @@
   "quartos": null,
   "endereco": "Avenida Rainha Elizabeth, nº 151, apto 1001, Copacabana/RJ",
   "endereco_geo": "Avenida Rainha Elizabeth 151, Copacabana, Rio de Janeiro, RJ",
-  "_nota": "Edital é PDF ESCANEADO (zero fontes, 63 imagens) — sem camada de texto, área e quartos ficam inacessíveis sem OCR. 25ª Vara Cível, processo de 1989 (0016907-34.1989.8.19.0001). 2ª praça em 05/11 a 50% (R$ 1.350.000)."
+  "_nota": "Edital é PDF ESCANEADO (zero fontes, 63 imagens) — sem camada de texto, área e quartos ficam inacessíveis sem OCR. 25ª Vara Cível, processo de 1989. 2ª praça em 05/11 a 50% (R$ 1.350.000)."
  },
  "HIDIRLENEDUS-VL222997": {
   "tipo": "Apartamento",

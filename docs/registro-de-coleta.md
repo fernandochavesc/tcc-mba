@@ -166,7 +166,7 @@ _Tabelas geradas por `scripts/serie_rodadas.py` a partir do histórico do reposi
 - **2ª praça antes de 04/10/2026:** subestimada pela falha de leitura descrita na seção 3.2; os números das rodadas de 25/07 a 27/08 são limites inferiores.
 - **Definição de giro:** as leituras narrativas anteriores usaram ora saídas/lista anterior (47% entre 27/08 e 02/10), ora (saídas + entradas)/lista anterior (41% entre 02/10 e 13/10). Neste registro a série usa uma definição única (seção 3.2); os textos do site devem ser lidos com essa ressalva.
 - **Catete:** incluído no coletor, excluído do caso de uso de quatro bairros; as tabelas separam os dois.
-- **Número do processo no arquivo público:** `mapa/judicial.json`, publicado no mapa, contém os campos `processo` e `vara`. O projeto de pesquisa declara que o número do processo é usado apenas como chave interna de consolidação e não é divulgado. Pendência: retirar o campo do arquivo publicado (mantendo-o apenas na coleta bruta e na extração), para alinhar o instrumento ao projeto.
+- **Número do processo no arquivo público (corrigido em 14/11/2026):** `mapa/judicial.json` publicava os campos `processo` e `vara`, embora o projeto de pesquisa declare que o número do processo é usado apenas como chave interna de consolidação e não é divulgado. Os dois campos foram retirados do arquivo e do gerador (`gera_judicial.py`), e três números de processo citados nas notas de `scripts/extracao_manual.json` também foram retirados. Eles permanecem só na coleta bruta local (`judicial_bruto.json`, não versionado). As versões anteriores do arquivo continuam no histórico do repositório.
 - **Observação dos leilões:** o coletor registra o status do leilão, mas o protocolo de observação das praças (número de lances, valor final e desfecho) previsto no projeto ainda não foi implementado nem registrado.
 - **Editais ilegíveis para o extrator próprio:** além dos PDFs escaneados, PDFs com fontes Identity-H (codificação por glifo) saem como lixo em `ler_edital.py`; a biblioteca pypdf, já disponível, lê esses casos. Até a troca, a conferência manual usa pypdf quando o extrator devolve texto vazio ou ilegível.
 - **Adaptador vlance sem edital:** a API traz o edital no campo `anexos`, que o adaptador não lê; o campo `edital_url` desses lotes é preenchido à mão em `extracao_manual.json`.
@@ -176,7 +176,7 @@ _Tabelas geradas por `scripts/serie_rodadas.py` a partir do histórico do reposi
 
 1. Rodadas quinzenais a partir de novembro de 2026, com este protocolo.
 2. Reconciliar 77 × 78 leiloeiros com a planilha atual da CGJ.
-3. Retirar `processo` e `vara` do arquivo publicado.
+3. Feito em 14/11/2026: `processo` e `vara` retirados do arquivo publicado (ver seção 6).
 4. Protocolo de observação das praças definido em 14/11/2026: `docs/observacao-pracas.md`, com ficha e agenda em `docs/observacao-pracas.csv`.
 5. Trocar a extração de texto de `ler_edital.py` por pypdf (ou usá-la como alternativa) e fazer o adaptador vlance ler o campo `anexos`.
 6. Aplicar o protocolo de observação nas praças de 16/11 a 17/12/2026 (onze bens com data marcada) e rodar `scripts/agenda_observacao.py` após cada rodada.
